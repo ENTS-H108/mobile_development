@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PetWell.SplashScreen" parent="Theme.SplashScreen.Common">
+        <item name="android:windowSplashScreenBackground">#278187</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ss_icon</item>
+        <item name="android:windowSplashScreenAnimationDuration">2000</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">#00000000</item>
+        <item name="postSplashScreenTheme">@style/Theme.PetWell</item>
+    </style>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PetWell.SplashScreen" parent="Theme.SplashScreen.Common">
+        <item name="windowSplashScreenBackground">#278187</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ss_icon</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="windowSplashScreenIconBackgroundColor">#00000000</item>
+        <item name="postSplashScreenTheme">@style/Theme.PetWell</item>
+    </style>
+</resources>
