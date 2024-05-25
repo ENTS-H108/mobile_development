@@ -13,60 +13,61 @@
         android:id="@+id/start_ob"
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:src="@drawable/landscape_icon"
         android:importantForAccessibility="no"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/landscape_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:id="@+id/skip_btn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="@string/skip"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
         android:fontFamily="@font/semibold"
+        android:text="@string/skip"
         android:textColor="@color/primary_blue"
         android:textSize="12sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/thumbnail_ob1"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/dummy_ob"
+        android:importantForAccessibility="no"
+        android:paddingHorizontal="20dp"
+        android:src="@drawable/img_onboarding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        android:importantForAccessibility="no" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/title_ob1"
+        style="@style/Onboarding.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/dummy_string_title"
-        android:textSize="20sp"
-        android:fontFamily="@font/bold"
+        android:text="@string/onboarding_title_1"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob1"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob1"
         app:layout_constraintTop_toBottomOf="@id/thumbnail_ob1" />
 
     <TextView
         android:id="@+id/subtitle_ob1"
+        style="@style/Onboarding"
+        android:paddingHorizontal="20dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:text="@string/dummy_string_subtitle"
         android:fontFamily="@font/medium"
+        android:gravity="center_horizontal"
+        android:text="@string/onboarding_desc_1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/title_ob1"
         app:layout_constraintStart_toStartOf="@id/title_ob1"
@@ -74,15 +75,16 @@
 
     <ImageView
         android:id="@+id/thumbnail_ob2"
+        android:paddingHorizontal="20dp"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:layout_marginStart="32dp"
-        android:src="@drawable/dummy_ob"
+        android:importantForAccessibility="no"
+        android:src="@drawable/img_onboarding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        android:importantForAccessibility="no" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/title_ob2"
@@ -90,9 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/dummy_string_title"
-        android:textSize="20sp"
-        android:fontFamily="@font/bold"
+        android:text="@string/onboarding_title_2"
+        style="@style/Onboarding.Title"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob2"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob2"
         app:layout_constraintTop_toBottomOf="@id/thumbnail_ob2" />
@@ -103,9 +104,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="@string/dummy_string_subtitle"
-        android:textSize="16sp"
-        android:fontFamily="@font/medium"
+        android:paddingHorizontal="20dp"
+        android:text="@string/onboarding_desc_2"
+        style="@style/Onboarding"
         app:layout_constraintEnd_toEndOf="@id/title_ob2"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob2"
         app:layout_constraintTop_toBottomOf="@id/title_ob2" />
@@ -113,15 +114,15 @@
     <ImageView
         android:id="@+id/thumbnail_ob3"
         android:layout_width="0dp"
+        android:paddingHorizontal="20dp"
         android:layout_height="300dp"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/dummy_ob"
+        android:importantForAccessibility="no"
+        android:src="@drawable/img_onboarding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        android:importantForAccessibility="no" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/title_ob3"
@@ -129,9 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/dummy_string_title"
-        android:textSize="20sp"
-        android:fontFamily="@font/bold"
+        android:text="@string/onboarding_title_3"
+        style="@style/Onboarding.Title"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob3"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob3"
         app:layout_constraintTop_toBottomOf="@id/thumbnail_ob3" />
@@ -142,9 +142,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="@string/dummy_string_subtitle"
-        android:textSize="16sp"
-        android:fontFamily="@font/medium"
+        android:text="@string/onboarding_desc_3"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Onboarding"
         app:layout_constraintEnd_toEndOf="@id/title_ob3"
         app:layout_constraintStart_toStartOf="@id/title_ob3"
         app:layout_constraintTop_toBottomOf="@id/title_ob3" />
@@ -206,8 +206,8 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="20dp"
-                android:background="@drawable/third_btn"
-                android:drawableLeft="@drawable/google"
+                android:background="@drawable/btn_google_states"
+                android:drawableStart="@drawable/google"
                 android:paddingHorizontal="20dp"
                 android:text="@string/google_btn_text"
                 android:fontFamily="@font/semibold"
@@ -223,24 +223,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="20dp"
                     android:text="@string/register"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/semibold"
                     android:textColor="@color/primary_blue"
                     android:layout_weight="1"
-                    android:background="@drawable/secondary_btn"/>
+                    android:background="@drawable/btn_secondary_states"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/log_btn"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/login"
                     android:fontFamily="@font/semibold"
                     android:textColor="@color/white"
                     android:layout_weight="1"
-                    android:background="@drawable/primary_btn"/>
+                    android:background="@drawable/btn_primary_states"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -20,5 +20,11 @@
     <string name="cpassword">Confirm Password</string>
     <string name="register_title">Sign up</string>
     <string name="have_account">Have an account? <font color="#278187">Sign in</font></string>
+    <string name="onboarding_title_1">1 easy step</string>
+    <string name="onboarding_title_2">2 easy step</string>
+    <string name="onboarding_title_3">3 easy step</string>
+    <string name="onboarding_desc_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
+    <string name="onboarding_desc_2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
+    <string name="onboarding_desc_3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
 
 </resources>
