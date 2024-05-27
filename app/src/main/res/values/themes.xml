@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PetWell" parent="Theme.Material3.DayNight.NoActionBar">
-    </style>
+    <style name="Base.Theme.PetWell" parent="Theme.Material3.DayNight.NoActionBar"></style>
 
     <style name="Theme.PetWell" parent="Base.Theme.PetWell">
         <!-- Primary brand color. -->
@@ -20,5 +19,18 @@
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@android:transition/fade</item>
         <item name="android:windowExitTransition">@android:transition/fade</item>
+    </style>
+
+
+    <style name="Onboarding" parent="Base.Theme.PetWell">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primary_blue_dark</item>
+        <item name="fontFamily">@font/regular</item>
+    </style>
+
+    <style name="Onboarding.Title" parent="Base.Theme.PetWell">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/bold</item>
     </style>
 </resources>
