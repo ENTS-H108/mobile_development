@@ -26,5 +26,9 @@
     <string name="onboarding_desc_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="onboarding_desc_2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="onboarding_desc_3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
+    <string name="field_empty">This field is required.</string>
+    <string name="cpassword_not_match">Please ensure that your confirmation passwords match.</string>
+    <string name="invalid_format_password">Password must contain at least 8 characters, including uppercase, lowercase, and a number.</string>
+    <string name="register_succes">Registration successful! Please login!</string>
 
 </resources>
