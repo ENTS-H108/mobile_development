@@ -38,6 +38,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"/>
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -53,4 +60,10 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ents_h108.petwell.view.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home"/>
 </navigation>

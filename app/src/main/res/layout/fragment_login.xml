@@ -72,7 +72,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"/>
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.ents_h108.petwell.view.auth.PasswordEditText
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:id="@+id/et_password"
@@ -82,11 +82,12 @@
         android:paddingHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
-        android:drawableEnd="@drawable/visibility_on"
+        android:drawableEnd="@drawable/visibility_off"
         android:drawableTint="@color/primary_blue"
         android:inputType="textPassword"
         android:imeOptions="actionDone"
         android:background="@drawable/rounded_et"/>
+
 
     <LinearLayout
         android:id="@+id/util"
