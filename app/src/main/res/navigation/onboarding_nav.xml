@@ -63,7 +63,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ents_h108.petwell.view.HomeFragment"
+        android:name="com.ents_h108.petwell.view.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.ents_h108.petwell.view.main.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history"/>
+    <fragment
+        android:id="@+id/promoFragment"
+        android:name="com.ents_h108.petwell.view.main.PromoFragment"
+        android:label="fragment_promo"
+        tools:layout="@layout/fragment_promo"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ents_h108.petwell.view.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

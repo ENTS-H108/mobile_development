@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PetWell</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="skip">Skip</string>
     <string name="dummy_string_title">Dummy Title</string>
     <string name="dummy_string_subtitle">Dummy Subtitle</string>
@@ -30,5 +29,16 @@
     <string name="cpassword_not_match">Please ensure that your confirmation passwords match.</string>
     <string name="invalid_format_password">Password must contain at least 8 characters, including uppercase, lowercase, and a number.</string>
     <string name="register_succes">Registration successful! Please login!</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="promo">Promo</string>
+    <string name="profile">Profile</string>
+    <string name="active_pet_profile">Active pet profile</string>
+    <string name="pet_name">Fiona</string>
+    <string name="pet_race">Feline | European</string>
+    <string name="change_pet_btn">Change</string>
+    <string name="article_section">Article</string>
+    <string name="promo_section">Active promo</string>
+    <string name="more_btn">More..</string>
 
 </resources>

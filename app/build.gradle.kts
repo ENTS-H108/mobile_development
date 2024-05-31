@@ -53,6 +53,10 @@ dependencies {
     //Navigation
     implementation(libs.androidx.navigation.fragment)
 
+    //CircleImageView
+    implementation(libs.circleimageview)
+    implementation(libs.coil)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
