@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
                     showToast(requireContext(), getString(R.string.field_empty))
                 } else {
                     resetError(etEmail, requireContext())
-                    findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+                    authViewModel.requestToken(email)
                 }
             }
         }
@@ -96,6 +96,22 @@ class LoginFragment : Fragment() {
                 is Result.Error -> {
                     showToast(requireContext(), result.error)
                     binding.loading.visibility = View.GONE
+                }
+            }
+        }
+        authViewModel.resetPasswordResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.loading.visibility = View.VISIBLE
+                }
+                is Result.Success -> {
+                    showToast(requireContext(), result.data.message)
+                    binding.loading.visibility = View.GONE
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
+                }
+                is Result.Error -> {
+                    binding.loading.visibility = View.GONE
+                    showToast(requireContext(), getString(R.string.email_not_found))
                 }
             }
         }
