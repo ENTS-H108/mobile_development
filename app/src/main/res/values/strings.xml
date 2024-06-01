@@ -40,5 +40,19 @@
     <string name="article_section">Article</string>
     <string name="promo_section">Active promo</string>
     <string name="more_btn">More..</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="reset">Reset</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="token">Token</string>
+    <string name="new_password_empty">New password cannot be empty!</string>
+    <string name="confirm_password_empty">Confirm password cannot be empty!</string>
+    <string name="passwords_do_not_match">Passwords do not match!</string>
+    <string name="password_reset_success">Password has been reset successfully!</string>
+    <string name="first_feature">Konsultasi Dengan Dokter</string>
+    <string name="second_feature">Buat Janji Offline</string>
+    <string name="third_feature">Deteksi Penyakit Hewan</string>
 
 </resources>
