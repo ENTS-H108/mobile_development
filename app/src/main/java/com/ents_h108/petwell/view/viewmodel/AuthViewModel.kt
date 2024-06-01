@@ -1,4 +1,4 @@
-package com.ents_h108.petwell.ui.viewmodel
+package com.ents_h108.petwell.view.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

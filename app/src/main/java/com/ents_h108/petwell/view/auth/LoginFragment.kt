@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentLoginBinding
-import com.ents_h108.petwell.ui.viewmodel.AuthViewModel
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
