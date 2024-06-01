@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
@@ -28,9 +29,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val imageUrls = listOf(
-            "https://images.unsplash.com/photo-1707707366307-6996af74a6f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxNzA4NDE5OQ&ixlib=rb-4.0.3&q=80&w=1080",
-            "https://images.unsplash.com/photo-1708165725218-3a37c2165755?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxNzA4NDIxNA&ixlib=rb-4.0.3&q=80&w=1080",
-            "https://images.unsplash.com/photo-1709409902991-dbc2ae8c3a4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxNzA4NDIyNQ&ixlib=rb-4.0.3&q=80&w=1080"
+            R.drawable.img_promo1,
+            R.drawable.img_promo2
         )
         val promoItems = imageUrls.map { ArticleItem(it) }
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
@@ -38,6 +38,13 @@ class HomeFragment : Fragment() {
                 // Handle item click if needed
             }
         })
+
+        val imageArticleUrls = listOf(
+            R.drawable.img_article1,
+            R.drawable.img_article2
+        )
+        val articleItems = imageArticleUrls.map { ArticleItem(it) }
+
         articleAdapter = ArticleAdapter(object : ArticleAdapter.OnItemClickListener {
             override fun onItemClick(item: ArticleItem) {
                 // Handle item click if needed
@@ -52,6 +59,6 @@ class HomeFragment : Fragment() {
             adapter = articleAdapter
         }
         promoAdapter.submitList(promoItems)
-        articleAdapter.submitList(promoItems)
+        articleAdapter.submitList(articleItems)
     }
 }
