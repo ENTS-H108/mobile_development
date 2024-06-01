@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.databinding.ItemArticleBinding
 
-data class ArticleItem(val imageUrl: String)
+data class ArticleItem(val imageUrl: Int)
 
 class ArticleAdapter(private val listener: OnItemClickListener) :
     ListAdapter<ArticleItem, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
@@ -33,7 +33,7 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val promoItem = getItem(position)
+                        val promoItem = getItem(position)
                     listener.onItemClick(promoItem)
                 }
             }

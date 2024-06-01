@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainer) as NavHostFragment
         val navController = navHostFragment.navController
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment -> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment-> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE

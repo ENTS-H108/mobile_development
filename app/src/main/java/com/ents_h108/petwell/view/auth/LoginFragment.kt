@@ -52,9 +52,21 @@ class LoginFragment : Fragment() {
                     showToast(requireContext(), getString(R.string.field_empty))
                 }
             }
+
+            forgotPw.setOnClickListener {
+                val email = etEmail.text.toString().trim()
+                if (email.isEmpty()) {
+                    showError(etEmail, requireContext())
+                    showToast(requireContext(), getString(R.string.field_empty))
+                } else {
+                    resetError(etEmail, requireContext())
+                    findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+                }
+            }
             regBtn.setOnClickListener {
                 findNavController().navigate(LoginFragmentDirections.actionLoginToRegister())
             }
+
             backBtn.setOnClickListener {
                 findNavController().popBackStack()
             }
