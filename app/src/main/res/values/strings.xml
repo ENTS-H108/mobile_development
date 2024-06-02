@@ -40,7 +40,6 @@
     <string name="article_section">Article</string>
     <string name="promo_section">Active promo</string>
     <string name="more_btn">More..</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="reset">Reset</string>
@@ -54,5 +53,9 @@
     <string name="first_feature">Konsultasi Dengan Dokter</string>
     <string name="second_feature">Buat Janji Offline</string>
     <string name="third_feature">Deteksi Penyakit Hewan</string>
+    <string name="email_verification_sent">Verification link has been sent to %s</string>
+    <string name="email_not_found">Error: Email Not Found</string>
+    <string name="token_mismatch">Error: Token Mismatch</string>
+
 
 </resources>
