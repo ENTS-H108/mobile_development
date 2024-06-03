@@ -1,11 +1,9 @@
-version: 2.1
-
 orbs:
-  android: circleci/android@0.2.1
-
+  android: circleci/android@2.4.0
 jobs:
   build:
-    executor: android/android
+    docker:
+      - image: cimg/android:2023.11.1
     steps:
       - checkout
       - restore_cache:
@@ -14,17 +12,19 @@ jobs:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
       - run:
+          name: Create Local Properties
+          command: echo "sdk.dir=$ANDROID_HOME" > local.properties
+      - run:
+          name: Accept Android SDK Licenses
+          command: (yes || true) | sdkmanager --licenses
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - run:
-          name: Download Gradle Wrapper
-          command: ./gradlew wrapper --gradle-version 8.7
       - save_cache:
-          key: gradle-deps-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          key: 'android-orb-v1-{{ epoch }}'
           paths:
             - ~/.android/build-cache
             - ~/.android/cache
-            - ~/.gradle/caches
       - run:
           name: Run Build
           command: ./gradlew build
