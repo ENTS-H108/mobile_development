@@ -209,11 +209,14 @@
                 android:textColor="@color/primary_blue" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginHorizontal="20dp"
                 android:id="@+id/rv_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/section_3"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                tools:listitem="@layout/item_article"
+                />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

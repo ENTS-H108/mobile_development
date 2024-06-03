@@ -56,6 +56,9 @@
     <string name="email_verification_sent">Verification link has been sent to %s</string>
     <string name="email_not_found">Error: Email Not Found</string>
     <string name="token_mismatch">Error: Token Mismatch</string>
+    <string name="history_type">Jenis History</string>
+    <string name="tab_text_1">Promo</string>
+    <string name="tab_text_2">Artikel</string>
 
 
 </resources>

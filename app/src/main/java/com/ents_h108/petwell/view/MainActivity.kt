@@ -33,7 +33,12 @@ class MainActivity : AppCompatActivity() {
                         bottomNavigation.visibility = View.VISIBLE
                         userDetail.visibility = View.GONE
                         locationDetail.visibility = View.GONE
-                        topAppBar.title = getString(R.string.app_name)
+                        topAppBar.title = when (nd.id) {
+                            R.id.profileFragment -> "Profile"
+                            R.id.promoFragment -> "Promo"
+                            R.id.historyFragment -> "History"
+                            else -> getString(R.string.app_name)
+                        }
                     }
                     else -> {
                         topAppBar.visibility = View.VISIBLE
