@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentForgotPasswordBinding
 import com.ents_h108.petwell.utils.ViewModelFactory
@@ -18,6 +19,7 @@ import com.ents_h108.petwell.utils.Utils.showToast
 class ForgotPasswordFragment : Fragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
     private val authViewModel: AuthViewModel by viewModels { ViewModelFactory() }
+    private val args: ForgotPasswordFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,18 +32,20 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val token = args.token
+        binding.etToken.setText(token)
+
         binding.resetBtn.setOnClickListener {
-            validateAndResetPassword()
+            validateAndResetPassword(token)
         }
         binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
         }
 
         observeResetPasswordResult()
     }
 
-    private fun validateAndResetPassword() {
-        val token = binding.etToken.text.toString().trim()
+    private fun validateAndResetPassword(token: String) {
         val newPassword = binding.etNewPassword.text.toString().trim()
         val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
@@ -70,7 +74,7 @@ class ForgotPasswordFragment : Fragment() {
                 is Result.Success -> {
                     binding.loading.visibility = View.GONE
                     Toast.makeText(requireContext(), result.data.message, Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+                    findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
                 }
                 is Result.Error -> {
                     binding.loading.visibility = View.GONE
