@@ -28,13 +28,16 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -42,7 +45,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,18 +53,17 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-
-    //Splash Screen
+    // Splash Screen
     implementation(libs.androidx.core.splashscreen)
 
-    //Navigation
+    // Navigation
     implementation(libs.androidx.navigation.fragment)
 
-    //CircleImageView
+    // CircleImageView
     implementation(libs.circleimageview)
     implementation(libs.coil)
 
-    //Retrofit
+    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
@@ -71,6 +72,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // view pager
-    implementation (libs.androidx.viewpager2)
+    // View Pager
+    implementation(libs.androidx.viewpager2)
 }

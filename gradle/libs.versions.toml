@@ -3,6 +3,7 @@ agp = "8.4.1"
 circleimageview = "3.1.0"
 coil = "2.6.0"
 coreSplashscreen = "1.0.1"
+gradle = "8.4.1"
 kotlin = "1.9.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -26,6 +27,7 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
