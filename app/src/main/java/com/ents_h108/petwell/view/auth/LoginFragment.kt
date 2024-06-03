@@ -107,7 +107,6 @@ class LoginFragment : Fragment() {
                 is Result.Success -> {
                     showToast(requireContext(), result.data.message)
                     binding.loading.visibility = View.GONE
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
                 }
                 is Result.Error -> {
                     binding.loading.visibility = View.GONE

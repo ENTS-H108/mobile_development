@@ -92,6 +92,13 @@
         <action
             android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <deepLink
+            android:id="@+id/deepLink_forgotPassword"
+            app:uri="https://www.entsh108.com/forgotPassword/{token}" />
+        <argument
+            android:name="token"
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
 
 </navigation>
