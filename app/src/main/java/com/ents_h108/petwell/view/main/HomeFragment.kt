@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
-import com.ents_h108.petwell.view.adapter.PromoAdapter
 import com.ents_h108.petwell.view.adapter.ArticleItem
+import com.ents_h108.petwell.view.adapter.PromoAdapter
 
 class HomeFragment : Fragment() {
 
