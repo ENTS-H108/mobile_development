@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Jenis History -->
+        <TextView
+            android:id="@+id/tv_history_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/semibold"
+            android:text="@string/history_type"
+            android:textColor="@color/primary_blue"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- More -->
+        <TextView
+            android:id="@+id/tvMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="more"
+            android:fontFamily="@font/medium"
+            android:textColor="@color/primary_blue"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Gambar -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgHistory"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_type" />
+
+        <!-- Nama Dokter -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/semibold"
+            android:text="Nama Dokter"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/imgHistory"
+            app:layout_constraintTop_toTopOf="@id/imgHistory" />
+
+        <!-- Deskripsi -->
+        <TextView
+            android:id="@+id/tvDeskripsi"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/regular"
+            android:maxLines="2"
+            android:text="Deskripsidfdfsdfffffffff sdfasdf asdf asdf asdf asdfd sdf  sdfs dfs dfsd fsdf sdfsd fsdf sdfsdf sdfsdf sdfsdfsdf sdf sdf sdf sdf sdf sdf sdf "
+            android:textColor="@color/grey"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@id/imgHistory"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <!-- Tanggal -->
+        <TextView
+            android:id="@+id/tvTanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:text="2 May 2024"
+            android:textColor="@color/grey"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDeskripsi" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
