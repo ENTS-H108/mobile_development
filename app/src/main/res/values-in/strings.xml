@@ -61,4 +61,6 @@
     <string name="consultation_title">Konsultasi</string>
     <string name="appointment_title">Janji temu</string>
     <string name="scan_title">Memindai</string>
+    <string name="dummy_blank_title">\t\t\t\t\t\t\t\t</string>
+    <string name="dummt_blank_subtitle">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n</string>
 </resources>

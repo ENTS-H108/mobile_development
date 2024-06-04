@@ -66,9 +66,10 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.fragment)
 
-    // CircleImageView
+    // Image Loader
     implementation(libs.circleimageview)
     implementation(libs.coil)
+    implementation(libs.shimmer)
 
     // Retrofit
     implementation(libs.retrofit)

@@ -60,5 +60,7 @@ class HomeFragment : Fragment() {
         }
         promoAdapter.submitList(promoItems)
         articleAdapter.submitList(articleItems)
+        binding.rvArticle.visibility = View.GONE
+        binding.rvPromo.visibility = View.GONE
     }
 }

@@ -5,31 +5,20 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     android:layout_margin="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/grey">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tvEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/medium"
-            android:text="@string/edit_btn"
-            android:textColor="@color/primary_blue"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgPet"
             android:layout_width="53dp"
             android:layout_height="53dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_launcher_background"
+            android:background="@color/light_grey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,10 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/semibold"
-            android:text="@string/doctor_name"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:text="@string/dummy_blank_title"
+            android:background="@color/light_grey"
             app:layout_constraintStart_toEndOf="@id/imgPet"
             app:layout_constraintTop_toTopOf="@id/imgPet" />
 
@@ -52,13 +39,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
-            android:fontFamily="@font/regular"
-            android:text="@string/pet_race"
-            android:textColor="@color/grey"
-            android:textSize="14sp"
+            android:text="@string/dummt_blank_subtitle"
+            android:background="@color/light_grey"
             app:layout_constraintStart_toEndOf="@id/imgPet"
             app:layout_constraintTop_toBottomOf="@id/tvPetName" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

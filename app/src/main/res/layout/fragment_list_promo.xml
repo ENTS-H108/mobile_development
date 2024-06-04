@@ -5,13 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".view.main.promo.ListPromoFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_list_promo"
         android:layout_marginHorizontal="20dp"
-        tools:listitem="@layout/item_promo"/>
+        tools:listitem="@layout/item_promo"
+        android:visibility="gone"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/history_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/item_promo_placeholder"/>
+            <include layout="@layout/item_promo_placeholder"/>
+            <include layout="@layout/item_promo_placeholder"/>
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </FrameLayout>

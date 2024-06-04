@@ -33,7 +33,6 @@ class ForgotPasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val token = args.token
-        binding.etToken.setText(token)
 
         binding.resetBtn.setOnClickListener {
             validateAndResetPassword(token)
