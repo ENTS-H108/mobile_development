@@ -2,7 +2,9 @@ package com.ents_h108.petwell.view.main
 
 import PetAdapter
 import PetItem
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,13 +20,16 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.button2.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
 
         val petList = listOf(
             PetItem("https://images.unsplash.com/photo-1606062663931-277af9e93298?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Nama Hewan 1", "Ras Hewan 1"),
@@ -41,7 +46,6 @@ class ProfileFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = petAdapter
         }
-
         petAdapter.submitList(petList)
     }
 
