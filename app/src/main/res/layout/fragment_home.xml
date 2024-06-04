@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -179,7 +179,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/section_2"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/promo_loading"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/section_2"
+                android:layout_marginTop="10dp"
+                app:shimmer_auto_start="true"
+                android:visibility="visible">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <include layout="@layout/item_promo_placeholder"/>
+                        <include layout="@layout/item_promo_placeholder"/>
+                        <include layout="@layout/item_promo_placeholder"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
         </RelativeLayout>
 
         <!-- Article Section -->
@@ -215,14 +245,45 @@
                 android:textColor="@color/primary_blue" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginHorizontal="20dp"
                 android:id="@+id/rv_article"
+                android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/section_3"
                 android:layout_marginTop="10dp"
                 tools:listitem="@layout/item_article"
-                />
+                android:visibility="gone"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/article_loading"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/section_3"
+                android:layout_marginTop="10dp"
+                app:shimmer_auto_start="true"
+                android:visibility="visible">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <include layout="@layout/item_article_placeholder"/>
+                        <include layout="@layout/item_article_placeholder"/>
+                        <include layout="@layout/item_article_placeholder"/>
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
         </RelativeLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</androidx.core.widget.NestedScrollView>

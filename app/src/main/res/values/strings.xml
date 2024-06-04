@@ -61,6 +61,8 @@
     <string name="consultation_title">Consultation</string>
     <string name="appointment_title">Appointment</string>
     <string name="scan_title">Scan</string>
+    <string name="dummy_blank_title">\t\t\t\t\t\t\t\t</string>
+    <string name="dummt_blank_subtitle">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n</string>
 
 
 </resources>
