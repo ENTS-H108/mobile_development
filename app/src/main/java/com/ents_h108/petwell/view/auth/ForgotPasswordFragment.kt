@@ -51,13 +51,13 @@ class ForgotPasswordFragment : Fragment() {
 
         when {
             newPassword.isEmpty() -> {
-                Toast.makeText(requireContext(), getString(R.string.new_password_empty), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.field_empty), Toast.LENGTH_SHORT).show()
             }
             confirmPassword.isEmpty() -> {
-                Toast.makeText(requireContext(), getString(R.string.confirm_password_empty), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.field_empty), Toast.LENGTH_SHORT).show()
             }
             newPassword != confirmPassword -> {
-                Toast.makeText(requireContext(), getString(R.string.passwords_do_not_match), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.cpassword_not_match), Toast.LENGTH_SHORT).show()
             }
             else -> {
                 authViewModel.resetPassword(token, newPassword)
