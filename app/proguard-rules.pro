@@ -19,3 +19,22 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep the KeyAttributes class and its constructor
+-keep class androidx.constraintlayout.motion.widget.KeyAttributes {
+    public <init>(...);
+}
+
+# Keep MotionLayout and related classes
+-keep class androidx.constraintlayout.motion.widget.** { *; }
+-keep class androidx.constraintlayout.widget.** { *; }
+
+# Keep all model classes and their constructors
+-keepclassmembers class com.ents_h108.petwell.data.model.** {
+    public <init>(...);
+}
+
+# With R8 full mode generic signatures are stripped for classes that are not
+# kept. Suspend functions are wrapped in continuations where the type argument
+# is used.
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation

@@ -7,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.R
-import com.ents_h108.petwell.databinding.FragmentListArticleBinding
 import com.ents_h108.petwell.databinding.FragmentListPromoBinding
-import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.ArticleItem
-import com.ents_h108.petwell.view.adapter.ArticleWideAdapterAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
 
 

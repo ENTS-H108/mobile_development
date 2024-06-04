@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ents_h108.petwell.data.model.LoginResponse
-import com.ents_h108.petwell.data.model.RequestToken
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpResponse
 import com.ents_h108.petwell.data.repository.AuthRepository

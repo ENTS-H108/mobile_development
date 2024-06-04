@@ -54,6 +54,7 @@
                     app:civ_border_width="2dp" />
 
                 <LinearLayout
+                    android:id="@+id/pet_identity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -85,7 +86,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/semibold"
-                    android:gravity="center"
+                    android:gravity="end|center_vertical"
+                    android:layout_toEndOf="@id/pet_identity"
                     android:text="@string/change_pet_btn"
                     android:textColor="@color/primary_blue"
                     android:textSize="12sp" />
@@ -167,6 +169,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/medium"
+                android:layout_toEndOf="@id/section_2"
+                android:gravity="end"
                 android:text="@string/more_btn"
                 android:textColor="@color/primary_blue" />
 
@@ -205,6 +209,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="20dp"
                 android:fontFamily="@font/medium"
+                android:layout_toEndOf="@id/section_3"
+                android:gravity="end"
                 android:text="@string/more_btn"
                 android:textColor="@color/primary_blue" />
 

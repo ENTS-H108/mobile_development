@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity"
-    app:layoutDescription="@xml/activity_onboarding_scene"
-    android:background="@color/white">
+    app:layoutDescription="@xml/activity_onboarding_scene">
 
     <ImageView
         android:id="@+id/start_ob"
@@ -53,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/onboarding_title_1"
+        android:text="@string/dummy_title"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob1"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob1"
         app:layout_constraintTop_toBottomOf="@id/thumbnail_ob1" />
@@ -67,7 +66,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/medium"
         android:gravity="center_horizontal"
-        android:text="@string/onboarding_desc_1"
+        android:text="@string/dummy_subtitle"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/title_ob1"
         app:layout_constraintStart_toStartOf="@id/title_ob1"
@@ -92,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/onboarding_title_2"
+        android:text="@string/dummy_title"
         style="@style/Onboarding.Title"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob2"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob2"
@@ -105,7 +104,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:paddingHorizontal="20dp"
-        android:text="@string/onboarding_desc_2"
+        android:text="@string/dummy_subtitle"
         style="@style/Onboarding"
         app:layout_constraintEnd_toEndOf="@id/title_ob2"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob2"
@@ -130,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
-        android:text="@string/onboarding_title_3"
+        android:text="@string/dummy_title"
         style="@style/Onboarding.Title"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_ob3"
         app:layout_constraintStart_toStartOf="@id/thumbnail_ob3"
@@ -142,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="@string/onboarding_desc_3"
+        android:text="@string/dummy_subtitle"
         android:layout_marginHorizontal="20dp"
         style="@style/Onboarding"
         app:layout_constraintEnd_toEndOf="@id/title_ob3"

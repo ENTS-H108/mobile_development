@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.databinding.ItemPromoBinding
 
-data class PromoItem(val imageUrl: String)
-
 class PromoAdapter(private val listener: OnItemClickListener) :
     ListAdapter<ArticleItem, PromoAdapter.PromoViewHolder>(DIFF_CALLBACK) {
 
