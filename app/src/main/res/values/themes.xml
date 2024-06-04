@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.PetWell" parent="Theme.Material3.DayNight.NoActionBar" />
 
@@ -52,12 +52,4 @@
         <item name="android:lines">2</item>
         <item name="android:maxWidth">95dp</item>
     </style>
-
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/primary_blue_light</item>
-        <item name="android:textColor">@color/primary_blue</item>
-        <item name="itemTextColor">@color/primary_blue</item>
-    </style>
-
-
 </resources>

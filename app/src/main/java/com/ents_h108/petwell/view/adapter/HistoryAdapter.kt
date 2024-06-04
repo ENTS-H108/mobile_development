@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.ItemHistoryBinding
 
 data class HistoryItem(
@@ -45,15 +46,19 @@ class HistoryAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(item: HistoryItem) {
-            when (item.type) {
-                1 -> binding.tvHistoryType.text = "Consultation"
-                2 -> binding.tvHistoryType.text = "Appointment"
-                else -> binding.tvHistoryType.text = "Scan"
+            binding.apply {
+                when (item.type) {
+                    1 -> tvHistoryType.text =
+                        root.context.getString(R.string.consultation_title)
+                    2 -> tvHistoryType.text =
+                        root.context.getString(R.string.appointment_title)
+                    else -> tvHistoryType.text = root.context.getString(R.string.scan_title)
+                }
+                imgHistory.load(item.imageUrl)
+                tvTitle.text = item.title
+                tvDeskripsi.text = item.deskripsi
+                tvTanggal.text = item.tanggal
             }
-            binding.imgHistory.load(item.imageUrl)
-            binding.tvTitle.text = item.title
-            binding.tvDeskripsi.text = item.deskripsi
-            binding.tvTanggal.text = item.tanggal
         }
     }
 

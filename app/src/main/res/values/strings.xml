@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">PetWell</string>
     <string name="skip">Skip</string>
-    <string name="dummy_string_title">Dummy Title</string>
-    <string name="dummy_string_subtitle">Dummy Subtitle</string>
-    <string name="start">Start</string>
     <string name="google_btn_text">Sign in with Google</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -19,16 +16,10 @@
     <string name="cpassword">Confirm Password</string>
     <string name="register_title">Sign up</string>
     <string name="have_account">Have an account? <font color="#278187">Sign in</font></string>
-    <string name="onboarding_title_1">1 easy step</string>
-    <string name="onboarding_title_2">2 easy step</string>
-    <string name="onboarding_title_3">3 easy step</string>
-    <string name="onboarding_desc_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
-    <string name="onboarding_desc_2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
-    <string name="onboarding_desc_3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
+    <string name="dummy_title">1 easy step</string>
+    <string name="dummy_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="field_empty">This field is required.</string>
     <string name="cpassword_not_match">Please ensure that your confirmation passwords match.</string>
-    <string name="invalid_format_password">Password must contain at least 8 characters, including uppercase, lowercase, and a number.</string>
-    <string name="register_succes">Registration successful! Please login!</string>
     <string name="home">Home</string>
     <string name="history">History</string>
     <string name="promo">Promo</string>
@@ -40,7 +31,6 @@
     <string name="article_section">Article</string>
     <string name="promo_section">Active promo</string>
     <string name="more_btn">More..</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="reset">Reset</string>
     <string name="new_password">New Password</string>
@@ -49,16 +39,31 @@
     <string name="new_password_empty">New password cannot be empty!</string>
     <string name="confirm_password_empty">Confirm password cannot be empty!</string>
     <string name="passwords_do_not_match">Passwords do not match!</string>
-    <string name="password_reset_success">Password has been reset successfully!</string>
     <string name="first_feature">Konsultasi Dengan Dokter</string>
     <string name="second_feature">Buat Janji Offline</string>
     <string name="third_feature">Deteksi Penyakit Hewan</string>
     <string name="email_verification_sent">Verification link has been sent to %s</string>
     <string name="email_not_found">Error: Email Not Found</string>
     <string name="token_mismatch">Error: Token Mismatch</string>
-    <string name="history_type">Jenis History</string>
+    <string name="history_type">History Type</string>
     <string name="tab_text_1">Promo</string>
     <string name="tab_text_2">Artikel</string>
+    <string name="article_thumbnail">Thumbnail for article</string>
+    <string name="promotion_thumbnail">Thumbnail for promotion</string>
+    <string name="top_bar_username">Helo, user</string>
+    <string name="top_bar_location">Location</string>
+    <string name="pet_sex">Woman</string>
+    <string name="edit_btn">Edit</string>
+    <string name="doctor_name">Doctor Name</string>
+    <string name="pet_list_title">Your Pet</string>
+    <string name="setting">Setting</string>
+    <string name="help_center">Help Center</string>
+    <string name="logout_btn">Logout</string>
+    <string name="app_version">Application Version 1.1.0</string>
+    <string name="dummy_timestamp">2 May 2024</string>
+    <string name="consultation_title">Consultation</string>
+    <string name="appointment_title">Appointment</string>
+    <string name="scan_title">Scan</string>
 
 
 </resources>

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

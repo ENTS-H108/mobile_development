@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/semibold"
-                    android:text="Helo, user"
+                    android:text="@string/top_bar_username"
                     android:textColor="@color/primary_blue" />
             </LinearLayout>
 
@@ -74,7 +74,7 @@
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/semibold"
                     android:gravity="center"
-                    android:text="Location"
+                    android:text="@string/top_bar_location"
                     android:textColor="@color/primary_blue"
                     app:drawableEndCompat="@drawable/maps_marker" />
 
