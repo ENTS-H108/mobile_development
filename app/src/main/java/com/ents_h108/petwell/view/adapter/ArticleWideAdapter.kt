@@ -30,7 +30,7 @@ class ArticleWideAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                val position = adapterPosition
+                @Suppress("DEPRECATION") val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val articleItem = getItem(position)
                     listener.onItemClick(articleItem)

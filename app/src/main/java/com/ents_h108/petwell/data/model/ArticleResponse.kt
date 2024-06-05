@@ -1,7 +1,9 @@
 package com.ents_h108.petwell.data.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class ArticleResponse(
 
 @field:SerializedName("listArticle")

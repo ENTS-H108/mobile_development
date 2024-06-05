@@ -13,13 +13,11 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     private val _article = MutableLiveData<Result<List<Article>>>()
     val articles: LiveData<Result<List<Article>>> = _article
 
-
-    fun getArticle(): LiveData<Result<List<Article>>> {
+    fun getArticles() {
         viewModelScope.launch {
             _article.value = Result.Loading
-            val articlesresult = mainRepository.getArticles()
-            _article.value = articlesresult
+            val articlesResult = mainRepository.getArticles()
+            _article.value = articlesResult
         }
-        return articles
     }
 }

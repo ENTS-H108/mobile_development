@@ -2,27 +2,33 @@ package com.ents_h108.petwell.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainer) as NavHostFragment
-        val navController = navHostFragment.navController
+        navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment-> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment -> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE
@@ -51,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
@@ -72,6 +77,27 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (navController.currentDestination?.id == R.id.homeFragment) {
+                    finish()
+                } else {
+                    navController.popBackStack()
+                    updateBottomNavigationView()
+                }
+            }
+        })
+    }
+
+    private fun updateBottomNavigationView() {
+        val currentFragment = navController.currentDestination?.id
+        when (currentFragment) {
+            R.id.homeFragment -> binding.bottomNavigation.menu.findItem(R.id.home).isChecked = true
+            R.id.historyFragment -> binding.bottomNavigation.menu.findItem(R.id.history).isChecked = true
+            R.id.promoFragment -> binding.bottomNavigation.menu.findItem(R.id.promo).isChecked = true
+            R.id.profileFragment -> binding.bottomNavigation.menu.findItem(R.id.profile).isChecked = true
         }
     }
 }
