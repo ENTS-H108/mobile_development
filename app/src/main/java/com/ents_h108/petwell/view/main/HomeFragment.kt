@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Article
@@ -57,6 +56,7 @@ class HomeFragment : Fragment() {
             adapter = articleAdapter
         }
         observeArticleData()
+        viewModel.getPromo()
         viewModel.getArticles()
         navigationPage()
     }
@@ -64,7 +64,29 @@ class HomeFragment : Fragment() {
 
 
     private fun observeArticleData() {
-        viewModel.articles.observe(viewLifecycleOwner) { result ->
+        viewModel.promoType.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.promoLoading.visibility = View.VISIBLE
+                    binding.rvPromo.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.promoLoading.visibility = View.GONE
+                    binding.rvPromo.visibility = View.VISIBLE
+                    Log.d("test", result.data.toString())
+                    promoAdapter.submitList(result.data)
+                }
+
+                is Result.Error -> {
+                    binding.promoLoading.visibility = View.GONE
+                    binding.rvPromo.visibility = View.GONE
+                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.articleType.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.articleLoading.visibility = View.VISIBLE

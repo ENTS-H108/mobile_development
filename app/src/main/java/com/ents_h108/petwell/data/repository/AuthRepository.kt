@@ -62,11 +62,10 @@ class AuthRepository {
         }
     }
 
-    suspend fun resetPassword(token: String, newPassword: String): Result<ResetPasswordResponse> {
+    suspend fun resetPassword(newPassword: String, token: String): Result<ResetPasswordResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val resetPassword = NewPassword(token, newPassword)
-                val response = apiService.resetPassword(resetPassword)
+                val response = apiService.resetPassword(NewPassword(newPassword, token))
                 Result.Success(response)
             } catch (e: Exception) {
                 Result.Error(e.message ?: "An unknown error occurred")

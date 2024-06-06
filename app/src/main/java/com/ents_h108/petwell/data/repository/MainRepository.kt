@@ -5,16 +5,23 @@ import com.ents_h108.petwell.data.remote.ApiConfig
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-class MainRepository {
+class MainRepository (
+    private val pref: UserPreferences
+) {
 
     private val apiService: ApiService = ApiConfig.getApiService()
 
-    suspend fun getArticles(): Result<List<Article>> {
+    suspend fun getArticles(type: String): Result<List<Article>> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = apiService.getArticles()
+                val token = runBlocking {
+                    pref.getToken().first()
+                }
+                val response = apiService.getArticles(type, "Bearer $token")
                 if (!response.error) {
                     Result.Success(response.listArticle)
                 } else {

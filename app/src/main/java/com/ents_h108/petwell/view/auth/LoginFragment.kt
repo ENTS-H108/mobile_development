@@ -1,6 +1,7 @@
 package com.ents_h108.petwell.view.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +86,8 @@ class LoginFragment : Fragment() {
                     is Result.Success -> {
                         showToast(requireContext(), result.data.message)
                         loading.visibility = View.GONE
-                        authViewModel.saveLoginStatus()
+                        Log.d("Login", result.data.token)
+                        authViewModel.saveLoginStatus(result.data.token)
                         findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                     is Result.Error -> {

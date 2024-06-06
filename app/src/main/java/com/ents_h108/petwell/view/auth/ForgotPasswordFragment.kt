@@ -1,6 +1,7 @@
 package com.ents_h108.petwell.view.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,8 @@ class ForgotPasswordFragment : Fragment() {
                 Toast.makeText(requireContext(), getString(R.string.cpassword_not_match), Toast.LENGTH_SHORT).show()
             }
             else -> {
-                authViewModel.resetPassword(token, newPassword)
+                authViewModel.resetPassword(newPassword, token)
+                Log.d("Reset", token)
             }
         }
     }

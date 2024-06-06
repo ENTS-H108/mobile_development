@@ -10,7 +10,9 @@ import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("login")
@@ -21,20 +23,9 @@ interface ApiService {
     suspend fun reqToken(@Body request: RequestToken): ResetPasswordResponse
     @POST("reset-password")
     suspend fun resetPassword(@Body request: NewPassword): ResetPasswordResponse
-
-
-    @GET("article")
-    suspend fun getArticles(): ArticleResponse
-
-
-//    @GET("forget-password")
-//    fun getTokenResetPassword(
-//        @Query("email") email: String
-//    ): Call<List<SignUpResponse>>
-//
-//    @POST("reset-password")
-//    fun resetPassword(
-//        @Query("token") token: String,
-//        @Body raw: JSONObject
-//    ): Call<List<SignUpResponse>>
+    @GET("/articles")
+    suspend fun getArticles(
+        @Query("type") type: String,
+        @Header("Authorization") token: String
+    ): ArticleResponse
 }

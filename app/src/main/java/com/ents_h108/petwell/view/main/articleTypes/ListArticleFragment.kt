@@ -45,7 +45,7 @@ class ListArticleFragment : Fragment() {
     }
 
     private fun observeArticleData() {
-        viewModel.articles.observe(viewLifecycleOwner) { result ->
+        viewModel.articleType.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.historyLoading.visibility = View.VISIBLE

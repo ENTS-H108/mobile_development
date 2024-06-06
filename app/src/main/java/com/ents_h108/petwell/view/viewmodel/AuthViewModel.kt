@@ -33,10 +33,10 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
         }
     }
 
-    fun resetPassword(token: String, newPassword: String) {
+    fun resetPassword(newPassword: String, token: String) {
         _resetPasswordResult.value = Result.Loading
         viewModelScope.launch {
-            val result = authRepository.resetPassword(token, newPassword)
+            val result = authRepository.resetPassword(newPassword, token)
             _resetPasswordResult.value = result
         }
     }
@@ -51,9 +51,9 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
         }
     }
 
-    fun saveLoginStatus() {
+    fun saveLoginStatus(token: String) {
         viewModelScope.launch {
-            pref.saveToken()
+            pref.saveToken(token)
         }
     }
 }

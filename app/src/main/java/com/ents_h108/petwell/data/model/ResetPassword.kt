@@ -5,8 +5,8 @@ data class RequestToken(
 )
 
 data class NewPassword(
-    val token: String,
-    val newPassword: String
+    val newPassword: String,
+    val token: String
 )
 
 data class ResetPasswordResponse(

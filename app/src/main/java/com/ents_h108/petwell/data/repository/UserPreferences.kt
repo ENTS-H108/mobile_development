@@ -25,9 +25,16 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    suspend fun saveToken() {
+    suspend fun saveToken(token: String) {
         dataStore.edit { preferences ->
             preferences[STATE_KEY] = true
+            preferences[TOKEN_KEY] = token
+        }
+    }
+
+    fun getToken(): Flow<String?> {
+        return dataStore.data.map { preferences ->
+            preferences[TOKEN_KEY]
         }
     }
 
