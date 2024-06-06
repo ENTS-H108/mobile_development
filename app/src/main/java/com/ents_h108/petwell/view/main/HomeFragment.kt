@@ -12,6 +12,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Article
@@ -67,7 +68,10 @@ class HomeFragment : Fragment() {
         }
         observeArticleData()
         viewModel.getArticles()
+        navigationPage()
     }
+
+
 
     private fun observeArticleData() {
         viewModel.articles.observe(viewLifecycleOwner) { result ->
@@ -90,6 +94,30 @@ class HomeFragment : Fragment() {
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun navigationPage() {
+
+        binding.apply {
+//            promo and artikel
+            tvPromoMore.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment())
+            }
+            tvArticleMore.setOnClickListener{
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment())
+            }
+//            main feature
+            btnConsultation.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment())
+            }
+            btnScan.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToInstructionScanFragment())
+            }
+            btnAppointment.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment())
+            }
+
         }
     }
 }

@@ -63,6 +63,8 @@
     <string name="scan_title">Scan</string>
     <string name="dummy_blank_title">\t\t\t\t\t\t\t\t</string>
     <string name="dummt_blank_subtitle">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
