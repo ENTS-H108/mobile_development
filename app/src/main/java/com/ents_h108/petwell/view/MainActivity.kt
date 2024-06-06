@@ -81,9 +81,13 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (navController.currentDestination?.id == R.id.homeFragment) {
+                if (navController.currentDestination?.id == R.id.homeFragment || navController.currentDestination?.id == R.id.onboardingFragment) {
                     finish()
-                } else {
+                }
+                if (navController.currentDestination?.id == R.id.registerFragment || navController.currentDestination?.id == R.id.loginFragment) {
+                    navController.navigate(R.id.onboardingFragment)
+                }
+                else {
                     navController.popBackStack()
                     updateBottomNavigationView()
                 }

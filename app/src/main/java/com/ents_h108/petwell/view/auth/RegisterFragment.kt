@@ -94,7 +94,7 @@ class RegisterFragment : Fragment() {
                 findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
             }
             backBtn.setOnClickListener {
-                findNavController().popBackStack()
+                findNavController().navigate(RegisterFragmentDirections.actionRegisterToOnboarding())
             }
         }
     }

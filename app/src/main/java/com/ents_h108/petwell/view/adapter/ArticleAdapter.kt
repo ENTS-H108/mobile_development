@@ -6,15 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.ItemArticleBinding
 
-data class ArticleItem(val imageUrl: Int)
-
 class ArticleAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<ArticleItem, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
-        fun onItemClick(item: ArticleItem)
+        fun onItemClick(item: Article)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -31,26 +30,28 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                val position = adapterPosition
+                @Suppress("DEPRECATION") val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                        val promoItem = getItem(position)
-                    listener.onItemClick(promoItem)
+                    val articleItem = getItem(position)
+                    listener.onItemClick(articleItem)
                 }
             }
         }
 
-        fun bind(item: ArticleItem) {
-            binding.itemThumbnail.load(item.imageUrl)
+        fun bind(item: Article) {
+            binding.itemThumbnail.load(item.thumbnail)
+            binding.articleTitle.text = item.title
+            binding.articleDesc.text = item.description
         }
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleItem>() {
-            override fun areItemsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
-                return oldItem.imageUrl == newItem.imageUrl
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
                 return oldItem == newItem
             }
         }
