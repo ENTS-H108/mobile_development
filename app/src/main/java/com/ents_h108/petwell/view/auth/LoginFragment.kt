@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
         binding.apply {
             logBtn.setOnClickListener { validateAndLogin() }
             regBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToRegister()) }
-            backBtn.setOnClickListener { findNavController().popBackStack() }
+            backBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToOnboarding()) }
             forgotPw.setOnClickListener {
                 val email = etEmail.text.toString().trim()
                 if (email.isEmpty()) {

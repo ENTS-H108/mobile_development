@@ -1,22 +1,38 @@
 package com.ents_h108.petwell.view.main
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.Article
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
+import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.ViewModelFactory
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
-import com.ents_h108.petwell.view.adapter.ArticleItem
+import com.ents_h108.petwell.view.adapter.ArticleWideAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var promoAdapter: PromoAdapter
     private lateinit var articleAdapter: ArticleAdapter
+    private val viewModel: MainViewModel by viewModels { ViewModelFactory(UserPreferences.getInstance(requireActivity().application.dataStore)) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,28 +44,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val imageUrls = listOf(
-            R.drawable.img_promo1,
-            R.drawable.img_promo2
-        )
-        val promoItems = imageUrls.map { ArticleItem(it) }
+
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
-            override fun onItemClick(item: ArticleItem) {
-                // Handle item click if needed
+            override fun onItemClick(item: Article) {
+                // Click handler
             }
         })
-
-        val imageArticleUrls = listOf(
-            R.drawable.img_article1,
-            R.drawable.img_article2
-        )
-        val articleItems = imageArticleUrls.map { ArticleItem(it) }
 
         articleAdapter = ArticleAdapter(object : ArticleAdapter.OnItemClickListener {
-            override fun onItemClick(item: ArticleItem) {
-                // Handle item click if needed
+            override fun onItemClick(item: Article) {
+                // Click handler
             }
         })
+
         binding.rvPromo.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = promoAdapter
@@ -58,9 +65,31 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = articleAdapter
         }
-        promoAdapter.submitList(promoItems)
-        articleAdapter.submitList(articleItems)
-        binding.rvArticle.visibility = View.GONE
-        binding.rvPromo.visibility = View.GONE
+        observeArticleData()
+        viewModel.getArticles()
+    }
+
+    private fun observeArticleData() {
+        viewModel.articles.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.articleLoading.visibility = View.VISIBLE
+                    binding.rvArticle.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.articleLoading.visibility = View.GONE
+                    binding.rvArticle.visibility = View.VISIBLE
+                    Log.d("test", result.data.toString())
+                    articleAdapter.submitList(result.data)
+                }
+
+                is Result.Error -> {
+                    binding.articleLoading.visibility = View.GONE
+                    binding.rvArticle.visibility = View.GONE
+                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }

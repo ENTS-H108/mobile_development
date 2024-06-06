@@ -6,13 +6,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.ItemPromoBinding
 
 class PromoAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<ArticleItem, PromoAdapter.PromoViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Article, PromoAdapter.PromoViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
-        fun onItemClick(item: ArticleItem)
+        fun onItemClick(item: Article)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoViewHolder {
@@ -37,18 +38,18 @@ class PromoAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun bind(item: ArticleItem) {
-            binding.itemThumbnail.load(item.imageUrl)
+        fun bind(item: Article) {
+            binding.itemThumbnail.load(item.title)
         }
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticleItem>() {
-            override fun areItemsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
-                return oldItem.imageUrl == newItem.imageUrl
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem.title == newItem.title
             }
 
-            override fun areContentsTheSame(oldItem: ArticleItem, newItem: ArticleItem): Boolean {
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
                 return oldItem == newItem
             }
         }

@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
         binding.tvLogOut.setOnClickListener {
             lifecycleScope.launch {
                 viewModel.logout()
-                findNavController().navigate(ProfileFragmentDirections.actionProfileToOnboarding())
+                findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
             }
         }
 

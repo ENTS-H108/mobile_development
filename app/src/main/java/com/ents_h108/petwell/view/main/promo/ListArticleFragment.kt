@@ -58,20 +58,17 @@ class ListArticleFragment : Fragment() {
         viewModel.articles.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
-                    Log.d("ListArticleFragment", "Loading")
                     binding.historyLoading.visibility = View.VISIBLE
                     binding.rvArticle.visibility = View.GONE
                 }
 
                 is Result.Success -> {
-                    Log.d("ListArticleFragment", "Success")
                     binding.historyLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
                     articleAdapter.submitList(result.data)
                 }
 
                 is Result.Error -> {
-                    Log.d("ListArticleFragment", "Error")
                     binding.historyLoading.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }

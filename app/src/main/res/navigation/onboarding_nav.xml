@@ -39,6 +39,13 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
+            android:id="@+id/action_login_to_onboarding"
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
+        <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/slide_in"
@@ -62,6 +69,13 @@
         android:name="com.ents_h108.petwell.view.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_onboarding"
+            app:destination="@id/onboardingFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/loginFragment"
@@ -92,8 +106,8 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profile_to_onboarding"
-            app:destination="@id/onboardingFragment"
+            android:id="@+id/action_profile_to_login"
+            app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
