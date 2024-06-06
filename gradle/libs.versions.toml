@@ -20,6 +20,7 @@ navigationFragment = "2.7.7"
 shimmer = "0.5.0"
 viewpager2 = "1.1.0"
 datastorePreferences = "1.1.1"
+lifecycleLivedataKtx = "2.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

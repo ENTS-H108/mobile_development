@@ -10,14 +10,25 @@ import com.ents_h108.petwell.utils.Result
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
-    private val _article = MutableLiveData<Result<List<Article>>>()
-    val articles: LiveData<Result<List<Article>>> = _article
+    private val _getPromo = MutableLiveData<Result<List<Article>>>()
+    val promoType: LiveData<Result<List<Article>>> = _getPromo
+
+    private val _getArticles = MutableLiveData<Result<List<Article>>>()
+    val articleType: LiveData<Result<List<Article>>> = _getArticles
+
+    fun getPromo() {
+        _getPromo.value = Result.Loading
+        viewModelScope.launch {
+            val result = mainRepository.getArticles("promo")
+            _getPromo.value = result
+        }
+    }
 
     fun getArticles() {
+        _getArticles.value = Result.Loading
         viewModelScope.launch {
-            _article.value = Result.Loading
-            val articlesResult = mainRepository.getArticles()
-            _article.value = articlesResult
+            val result = mainRepository.getArticles("artikel")
+            _getArticles.value = result
         }
     }
 }

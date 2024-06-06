@@ -16,9 +16,9 @@ import org.koin.dsl.module
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 val repositoryModule = module {
-    single { MainRepository() }
-    single { AuthRepository() }
     single { UserPreferences.getInstance(androidContext().dataStore) }
+    single { MainRepository(get()) }
+    single { AuthRepository() }
 }
 
 val viewModelModule = module {

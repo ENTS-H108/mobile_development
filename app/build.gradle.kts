@@ -21,14 +21,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
         debug {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -80,6 +80,7 @@ dependencies {
     // Koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
