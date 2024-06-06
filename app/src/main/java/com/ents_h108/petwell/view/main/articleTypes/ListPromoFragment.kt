@@ -1,4 +1,4 @@
-package com.ents_h108.petwell.view.main.promo
+package com.ents_h108.petwell.view.main.articleTypes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
