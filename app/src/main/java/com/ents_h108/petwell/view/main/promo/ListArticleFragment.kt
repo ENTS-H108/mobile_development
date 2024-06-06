@@ -1,32 +1,23 @@
 package com.ents_h108.petwell.view.main.promo
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Article
-import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentListArticleBinding
 import com.ents_h108.petwell.utils.Result
-import com.ents_h108.petwell.utils.ViewModelFactory
 import com.ents_h108.petwell.view.adapter.ArticleWideAdapter
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListArticleFragment : Fragment() {
     private lateinit var binding: FragmentListArticleBinding
     private lateinit var articleAdapter: ArticleWideAdapter
-    private val viewModel: MainViewModel by viewModels { ViewModelFactory(UserPreferences.getInstance(requireActivity().application.dataStore))}
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +40,6 @@ class ListArticleFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = articleAdapter
         }
-
         observeArticleData()
         viewModel.getArticles()
     }

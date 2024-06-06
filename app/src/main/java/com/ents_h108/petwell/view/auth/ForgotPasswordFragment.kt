@@ -1,31 +1,23 @@
 package com.ents_h108.petwell.view.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ents_h108.petwell.R
-import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentForgotPasswordBinding
-import com.ents_h108.petwell.utils.ViewModelFactory
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.showToast
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForgotPasswordFragment : Fragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
-    private val authViewModel: AuthViewModel by viewModels { ViewModelFactory(UserPreferences.getInstance(requireActivity().application.dataStore)) }
+    private val authViewModel: AuthViewModel by viewModel()
     private val args: ForgotPasswordFragmentArgs by navArgs()
 
     override fun onCreateView(

@@ -1,32 +1,24 @@
 package com.ents_h108.petwell.view.auth
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
-import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentLoginBinding
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.utils.Utils.resetError
-import com.ents_h108.petwell.utils.ViewModelFactory
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var authViewModel: AuthViewModel
+    private val authViewModel: AuthViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +30,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val pref = UserPreferences.getInstance(requireActivity().application.dataStore)
-        authViewModel = ViewModelProvider(this, ViewModelFactory(pref))[AuthViewModel::class.java]
-
         setupUI()
         observeViewModel()
     }
