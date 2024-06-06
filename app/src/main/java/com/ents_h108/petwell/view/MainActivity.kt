@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                         userDetail.visibility = View.GONE
                         locationDetail.visibility = View.GONE
                     }
+
                     R.id.profileFragment, R.id.promoFragment, R.id.historyFragment -> {
                         topAppBar.visibility = View.VISIBLE
                         bottomNavigation.visibility = View.VISIBLE
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                             else -> getString(R.string.app_name)
                         }
                     }
+
                     else -> {
                         topAppBar.visibility = View.VISIBLE
                         bottomNavigation.visibility = View.VISIBLE
@@ -56,25 +58,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     navController.navigate(R.id.homeFragment)
                     true
                 }
+
                 R.id.history -> {
                     navController.navigate(R.id.historyFragment)
                     true
                 }
+
                 R.id.promo -> {
                     navController.navigate(R.id.promoFragment)
                     true
                 }
+
                 R.id.profile -> {
                     navController.navigate(R.id.profileFragment)
                     true
                 }
+
                 else -> false
             }
         }
@@ -86,22 +91,30 @@ class MainActivity : AppCompatActivity() {
                 }
                 if (navController.currentDestination?.id == R.id.registerFragment || navController.currentDestination?.id == R.id.loginFragment) {
                     navController.navigate(R.id.onboardingFragment)
-                }
-                else {
+                } else {
                     navController.popBackStack()
-                    updateBottomNavigationView()
                 }
             }
         })
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            btmNavTrue(destination.id)
+        }
+
     }
 
-    private fun updateBottomNavigationView() {
-        val currentFragment = navController.currentDestination?.id
-        when (currentFragment) {
+    private fun btmNavTrue(destinationId: Int) {
+        when (destinationId) {
             R.id.homeFragment -> binding.bottomNavigation.menu.findItem(R.id.home).isChecked = true
-            R.id.historyFragment -> binding.bottomNavigation.menu.findItem(R.id.history).isChecked = true
-            R.id.promoFragment -> binding.bottomNavigation.menu.findItem(R.id.promo).isChecked = true
-            R.id.profileFragment -> binding.bottomNavigation.menu.findItem(R.id.profile).isChecked = true
+            R.id.historyFragment -> binding.bottomNavigation.menu.findItem(R.id.history).isChecked =
+                true
+
+            R.id.promoFragment -> binding.bottomNavigation.menu.findItem(R.id.promo).isChecked =
+                true
+
+            R.id.profileFragment -> binding.bottomNavigation.menu.findItem(R.id.profile).isChecked =
+                true
         }
     }
+
 }
