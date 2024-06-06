@@ -64,4 +64,5 @@
     <string name="dummy_blank_title">\t\t\t\t\t\t\t\t</string>
     <string name="dummt_blank_subtitle">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n</string>
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
+
 </resources>
