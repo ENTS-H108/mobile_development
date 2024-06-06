@@ -1,14 +1,19 @@
 package com.ents_h108.petwell.view.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentRegisterBinding
 import com.ents_h108.petwell.utils.Utils.resetError
 import com.ents_h108.petwell.utils.Utils.showError
@@ -16,10 +21,12 @@ import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.utils.ViewModelFactory
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private val authViewModel: AuthViewModel by viewModels { ViewModelFactory() }
+    private val authViewModel: AuthViewModel by viewModels { ViewModelFactory(UserPreferences.getInstance(requireActivity().application.dataStore)) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +39,6 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
-        observeViewModel()
     }
 
     private fun setupUI() {
@@ -62,7 +68,23 @@ class RegisterFragment : Fragment() {
                         val email = etEmail.text.toString().trim()
                         val username = etUsername.text.toString().trim()
                         val password = etPassword.text.toString().trim()
-                        authViewModel.register(email, username, password)
+                        authViewModel.register(email, username, password).observe(viewLifecycleOwner) { result ->
+                            when (result) {
+                                is Result.Loading -> loading.visibility = View.VISIBLE
+                                is Result.Success -> {
+                                    loading.visibility = View.GONE
+                                    showToast(requireContext(), getString(R.string.email_verification_sent, email))
+                                    findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
+                                }
+                                is Result.Error -> {
+                                    loading.visibility = View.GONE
+                                    showToast(requireContext(), result.error)
+                                    etEmail.text?.clear()
+                                    etPassword.text?.clear()
+                                    etCpassword.text?.clear()
+                                }
+                            }
+                        }
                     }
                 } else {
                     showToast(requireContext(), getString(R.string.field_empty))
@@ -73,30 +95,6 @@ class RegisterFragment : Fragment() {
             }
             backBtn.setOnClickListener {
                 findNavController().popBackStack()
-            }
-        }
-    }
-
-    private fun observeViewModel() {
-        authViewModel.registerResult.observe(viewLifecycleOwner) { result ->
-            binding.apply {
-                when (result) {
-                    is Result.Loading -> {
-                        loading.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        loading.visibility = View.GONE
-                        showToast(requireContext(), getString(R.string.email_verification_sent, email))
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
-                    }
-                    is Result.Error -> {
-                        loading.visibility = View.GONE
-                        showToast(requireContext(), result.error)
-                        etEmail.text?.clear()
-                        etPassword.text?.clear()
-                        etCpassword.text?.clear()
-                    }
-                }
             }
         }
     }

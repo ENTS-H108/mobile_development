@@ -2,6 +2,7 @@ package com.ents_h108.petwell.view.main
 
 import PetAdapter
 import PetItem
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -9,13 +10,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
+import com.ents_h108.petwell.utils.ViewModelFactory
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import kotlinx.coroutines.launch
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var petAdapter: PetAdapter
+    private val viewModel: AuthViewModel by viewModels { ViewModelFactory(UserPreferences.getInstance(requireActivity().application.dataStore)) }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +45,12 @@ class ProfileFragment : Fragment() {
 
         binding.button2.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+        binding.tvLogOut.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.logout()
+                findNavController().navigate(ProfileFragmentDirections.actionProfileToOnboarding())
+            }
         }
 
         val petList = listOf(
@@ -48,5 +70,4 @@ class ProfileFragment : Fragment() {
         }
         petAdapter.submitList(petList)
     }
-
 }

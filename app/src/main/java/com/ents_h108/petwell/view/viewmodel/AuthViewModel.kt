@@ -3,40 +3,26 @@ package com.ents_h108.petwell.view.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpResponse
 import com.ents_h108.petwell.data.repository.AuthRepository
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.utils.Result
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
-
-    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
-    val loginResult: LiveData<Result<LoginResponse>> = _loginResult
-
-    private val _registerResult = MutableLiveData<Result<SignUpResponse>>()
-    val registerResult: LiveData<Result<SignUpResponse>> = _registerResult
+class AuthViewModel(private val authRepository: AuthRepository, private val pref: UserPreferences) : ViewModel() {
 
     private val _resetPasswordResult = MutableLiveData<Result<ResetPasswordResponse>>()
     val resetPasswordResult: LiveData<Result<ResetPasswordResponse>> = _resetPasswordResult
 
-    fun login(email: String, password: String) {
-        _loginResult.value = Result.Loading
-        viewModelScope.launch {
-            val result = authRepository.login(email, password)
-            _loginResult.value = result
-        }
-    }
+    fun login(emailInput: String, passwordInput: String) =
+        authRepository.loginUser(emailInput, passwordInput)
 
-    fun register(email: String, username: String, password: String) {
-        _registerResult.value = Result.Loading
-        viewModelScope.launch {
-            val result = authRepository.register(email, username, password)
-            _registerResult.value = result
-        }
-    }
+    fun register(name: String, email: String, password: String) =
+        authRepository.registerUser(name, email, password)
 
     fun requestToken(email: String) {
         viewModelScope.launch {
@@ -54,4 +40,19 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun getLoginStatus(): LiveData<Boolean?> {
+        return pref.getLoginStatus().asLiveData()
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
+    }
+
+    fun saveLoginStatus() {
+        viewModelScope.launch {
+            pref.saveToken()
+        }
+    }
 }

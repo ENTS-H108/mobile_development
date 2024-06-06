@@ -1,5 +1,7 @@
 package com.ents_h108.petwell.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.ents_h108.petwell.data.model.LoginRequest
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.NewPassword
@@ -10,35 +12,41 @@ import com.ents_h108.petwell.data.model.SignUpResponse
 import com.ents_h108.petwell.data.remote.ApiConfig
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import java.lang.Exception
 
 class AuthRepository {
 
     private val apiService: ApiService = ApiConfig.getApiService()
 
-    suspend fun login(email: String, password: String): Result<LoginResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val loginRequest = LoginRequest(email, password)
-                val response = apiService.login(loginRequest)
-                Result.Success(response)
-            } catch (e: Exception) {
-                Result.Error(e.message ?: "An unknown error occurred")
-            }
+    fun loginUser(email: String, password: String): LiveData<Result<LoginResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.login(LoginRequest(email, password))
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
+            emit(Result.Error(errorBody.error))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
         }
     }
 
-    suspend fun register(email: String, username: String, password: String): Result<SignUpResponse> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val signUpRequest = SignUpRequest(email, username, password)
-                val response = apiService.register(signUpRequest)
-                Result.Success(response)
-            } catch (e: Exception) {
-                Result.Error(e.message ?: "An unknown error occurred")
-            }
+    fun registerUser(name: String, email: String, password: String): LiveData<Result<SignUpResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.register(SignUpRequest(email, name, password))
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, SignUpResponse::class.java)
+            emit(Result.Error(errorBody.error))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
         }
     }
 
