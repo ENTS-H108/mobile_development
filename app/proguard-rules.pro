@@ -40,3 +40,4 @@
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
 
 -keep @androidx.annotation.Keep public class *
+-keep class androidx.datastore.*.** {*;}

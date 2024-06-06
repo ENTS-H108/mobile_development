@@ -1,5 +1,7 @@
 package com.ents_h108.petwell.data.model
 
+import java.lang.Error
+
 data class SignUpRequest(
     val email: String,
     val username: String,
@@ -7,5 +9,6 @@ data class SignUpRequest(
 )
 
 data class SignUpResponse(
-    val message: String
+    val message: String,
+    val error: String
 )

@@ -1,13 +1,18 @@
 package com.ents_h108.petwell.view.auth
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentLoginBinding
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
@@ -16,10 +21,12 @@ import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.utils.Utils.resetError
 import com.ents_h108.petwell.utils.ViewModelFactory
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private val authViewModel: AuthViewModel by viewModels { ViewModelFactory() }
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +38,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val pref = UserPreferences.getInstance(requireActivity().application.dataStore)
+        authViewModel = ViewModelProvider(this, ViewModelFactory(pref))[AuthViewModel::class.java]
+
         setupUI()
         observeViewModel()
     }
@@ -77,28 +88,28 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleLogin() {
-        val email = binding.etEmail.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
-        authViewModel.login(email, password)
-    }
-
-    private fun observeViewModel() {
-        authViewModel.loginResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.loading.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    showToast(requireContext(), result.data.message)
-                    binding.loading.visibility = View.GONE
-                    findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
-                }
-                is Result.Error -> {
-                    showToast(requireContext(), result.error)
-                    binding.loading.visibility = View.GONE
+        binding.apply {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
+            authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> loading.visibility = View.VISIBLE
+                    is Result.Success -> {
+                        showToast(requireContext(), result.data.message)
+                        loading.visibility = View.GONE
+                        authViewModel.saveLoginStatus()
+                        findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
+                    }
+                    is Result.Error -> {
+                        showToast(requireContext(), result.error)
+                        loading.visibility = View.GONE
+                    }
                 }
             }
         }
+    }
+
+    private fun observeViewModel() {
         authViewModel.resetPasswordResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
