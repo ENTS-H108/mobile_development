@@ -22,20 +22,13 @@ import com.ents_h108.petwell.databinding.FragmentProfileBinding
 import com.ents_h108.petwell.utils.ViewModelFactory
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var petAdapter: PetAdapter
-    private val viewModel: AuthViewModel by viewModels {
-        ViewModelFactory(
-            UserPreferences.getInstance(
-                requireActivity().application.dataStore
-            )
-        )
-    }
+    private val viewModel: AuthViewModel by viewModel()
 
 
     override fun onCreateView(
