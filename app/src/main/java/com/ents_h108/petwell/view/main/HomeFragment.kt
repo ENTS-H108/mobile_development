@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
