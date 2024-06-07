@@ -17,18 +17,19 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://petwell-api-wmaq4jxv4a-et.a.run.app/\"")
+        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"346975805406-lemndt4g4qs63ri355v4k1pkl4fqfmn4.apps.googleusercontent.com\"")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -88,4 +89,9 @@ dependencies {
 
     // View Pager
     implementation(libs.androidx.viewpager2)
+
+    // Google Auth
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 }

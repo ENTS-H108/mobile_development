@@ -4,7 +4,6 @@ import com.ents_h108.petwell.data.model.ArticleResponse
 import com.ents_h108.petwell.data.model.LoginRequest
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.NewPassword
-import com.ents_h108.petwell.data.model.RequestToken
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
@@ -20,7 +19,7 @@ interface ApiService {
     @POST("signup")
     suspend fun register(@Body request: SignUpRequest): SignUpResponse
     @POST("forgot-password")
-    suspend fun reqToken(@Body request: RequestToken): ResetPasswordResponse
+    suspend fun reqToken(@Body body: Map<String, String>): ResetPasswordResponse
     @POST("reset-password")
     suspend fun resetPassword(@Body request: NewPassword): ResetPasswordResponse
     @GET("/articles")

@@ -32,7 +32,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
-        observeViewModel()
     }
 
     private fun setupUI() {
@@ -47,7 +46,21 @@ class LoginFragment : Fragment() {
                     showToast(requireContext(), getString(R.string.field_empty))
                 } else {
                     resetError(etEmail, requireContext())
-                    authViewModel.requestToken(email)
+                    authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
+                        when (result) {
+                            is Result.Loading -> {
+                                binding.loading.visibility = View.VISIBLE
+                            }
+                            is Result.Success -> {
+                                showToast(requireContext(), result.data.message)
+                                binding.loading.visibility = View.GONE
+                            }
+                            is Result.Error -> {
+                                binding.loading.visibility = View.GONE
+                                showToast(requireContext(), getString(R.string.email_not_found))
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -94,24 +107,6 @@ class LoginFragment : Fragment() {
                         showToast(requireContext(), result.error)
                         loading.visibility = View.GONE
                     }
-                }
-            }
-        }
-    }
-
-    private fun observeViewModel() {
-        authViewModel.resetPasswordResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.loading.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    showToast(requireContext(), result.data.message)
-                    binding.loading.visibility = View.GONE
-                }
-                is Result.Error -> {
-                    binding.loading.visibility = View.GONE
-                    showToast(requireContext(), getString(R.string.email_not_found))
                 }
             }
         }
