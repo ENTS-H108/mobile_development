@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
@@ -57,15 +56,13 @@ class HomeFragment : Fragment() {
             adapter = articleAdapter
         }
         observeArticleData()
-        viewModel.getPromo()
-        viewModel.getArticles()
         navigationPage()
     }
 
 
 
     private fun observeArticleData() {
-        viewModel.promoType.observe(viewLifecycleOwner) { result ->
+        viewModel.getPromo().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.promoLoading.visibility = View.VISIBLE
@@ -87,7 +84,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.articleType.observe(viewLifecycleOwner) { result ->
+        viewModel.getArticles().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.articleLoading.visibility = View.VISIBLE

@@ -1,35 +1,36 @@
 package com.ents_h108.petwell.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.ents_h108.petwell.data.model.Article
-import com.ents_h108.petwell.data.remote.ApiConfig
+import com.ents_h108.petwell.data.model.ArticleResponse
+import com.ents_h108.petwell.data.model.LoginRequest
+import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
-class MainRepository (
-    private val pref: UserPreferences
+class MainRepository(
+    private val pref: UserPreferences,
+    private val apiService: ApiService
 ) {
 
-    private val apiService: ApiService = ApiConfig.getApiService()
-
-    suspend fun getArticles(type: String): Result<List<Article>> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val token = runBlocking {
-                    pref.getToken().first()
-                }
-                val response = apiService.getArticles(type, "Bearer $token")
-                if (!response.error) {
-                    Result.Success(response.listArticle)
-                } else {
-                    Result.Error(response.message)
-                }
-            } catch (e: Exception) {
-                Result.Error(e.message ?: "An unknown error occurred")
-            }
+    fun getArticles(type: String): LiveData<Result<List<Article>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = pref.getToken().first()
+            val response = apiService.getArticles(type, "Bearer $token")
+            emit(Result.Success(response.listArticle))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ArticleResponse::class.java)
+            emit(Result.Error(errorBody.error.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
         }
     }
 }
