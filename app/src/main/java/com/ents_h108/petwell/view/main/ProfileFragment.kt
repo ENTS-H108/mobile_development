@@ -89,6 +89,10 @@ class ProfileFragment : Fragment() {
             tvEdit.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment())
             }
+
+            addPet.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+            }
         }
     }
 }
