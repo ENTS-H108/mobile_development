@@ -41,3 +41,7 @@
 
 -keep @androidx.annotation.Keep public class *
 -keep class androidx.datastore.*.** {*;}
+
+-keep class androidx.credentials.playservices.** {
+  *;
+}

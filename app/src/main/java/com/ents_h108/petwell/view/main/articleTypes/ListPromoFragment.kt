@@ -42,12 +42,8 @@ class ListPromoFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = promoAdapter
         }
-        observeArticleData()
-        viewModel.getPromo()
-    }
 
-    private fun observeArticleData() {
-        viewModel.promoType.observe(viewLifecycleOwner) { result ->
+        viewModel.getPromo().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.historyLoading.visibility = View.VISIBLE

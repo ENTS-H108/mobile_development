@@ -40,12 +40,8 @@ class ListArticleFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = articleAdapter
         }
-        observeArticleData()
-        viewModel.getArticles()
-    }
 
-    private fun observeArticleData() {
-        viewModel.articleType.observe(viewLifecycleOwner) { result ->
+        viewModel.getArticles().observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.historyLoading.visibility = View.VISIBLE
