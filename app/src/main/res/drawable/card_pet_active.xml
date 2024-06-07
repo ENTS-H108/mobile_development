@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@android:color/transparent" />
+
+    <stroke
+        android:width="3dp"
+        android:color="@color/primary_blue" />
+
+    <corners android:radius="8dp" /> <!-- Sudut bulat sesuai dengan cardCornerRadius -->
+
+</shape>

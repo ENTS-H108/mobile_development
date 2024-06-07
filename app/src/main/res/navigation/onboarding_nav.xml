@@ -134,6 +134,9 @@
         <action
             android:id="@+id/action_profileFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editPetFragment"
+            app:destination="@id/editPetFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -213,5 +216,10 @@
         android:name="com.ents_h108.petwell.view.main.profile.HelpFragment"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/editPetFragment"
+        android:name="com.ents_h108.petwell.view.main.profile.EditPetFragment"
+        android:label="fragment_edit_pet"
+        tools:layout="@layout/fragment_edit_pet" />
 
 </navigation>
