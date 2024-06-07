@@ -62,6 +62,11 @@ class ProfileFragment : Fragment() {
             override fun onItemClick(item: PetItem) {
                 // Handle item click if needed
             }
+            override fun onEditProfileClick(item: PetItem) {
+                // Navigate to HomeFragment with data
+
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+            }
         })
 
         binding.rvPet.apply {

@@ -66,6 +66,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save_changes" translatable="false">Save Changes</string>
+    <string name="active">Active</string>
+    <string name="add_new_pet">add new pet</string>
+    <string name="tvEdtRace">Pet Race</string>
 
 
 </resources>
