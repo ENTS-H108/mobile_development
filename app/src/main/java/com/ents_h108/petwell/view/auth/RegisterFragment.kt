@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.R
@@ -18,7 +18,7 @@ import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private val authViewModel: AuthViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,59 +35,61 @@ class RegisterFragment : Fragment() {
 
     private fun setupUI() {
         binding.apply {
-            regBtn.setOnClickListener {
-                val fields = mapOf(
-                    etUsername to etUsername,
-                    etEmail to etEmail,
-                    etPassword to etPassword,
-                    etCpassword to etCpassword
-                )
-                var allFieldsFilled = true
-                fields.forEach { (editText, value) ->
-                    if (value.text.toString().trim().isEmpty()) {
-                        showError(editText, requireContext())
-                        allFieldsFilled = false
-                    } else {
-                        resetError(editText, requireContext())
-                    }
-                }
+            regBtn.setOnClickListener { handleRegister() }
+            logBtn.setOnClickListener { findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin()) }
+            backBtn.setOnClickListener { findNavController().navigate(RegisterFragmentDirections.actionRegisterToOnboarding()) }
+        }
+    }
 
-                if (allFieldsFilled) {
-                    if (etPassword.text.toString() != etCpassword.text.toString()) {
-                        showError(etCpassword, requireContext())
-                        showToast(requireContext(), getString(R.string.cpassword_not_match))
-                    } else {
-                        val email = etEmail.text.toString().trim()
-                        val username = etUsername.text.toString().trim()
-                        val password = etPassword.text.toString().trim()
-                        authViewModel.register(email, username, password).observe(viewLifecycleOwner) { result ->
-                            when (result) {
-                                is Result.Loading -> loading.visibility = View.VISIBLE
-                                is Result.Success -> {
-                                    loading.visibility = View.GONE
-                                    showToast(requireContext(), getString(R.string.email_verification_sent, email))
-                                    findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
-                                }
-                                is Result.Error -> {
-                                    loading.visibility = View.GONE
-                                    showToast(requireContext(), result.error)
-                                    etEmail.text?.clear()
-                                    etPassword.text?.clear()
-                                    etCpassword.text?.clear()
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    showToast(requireContext(), getString(R.string.field_empty))
+    private fun handleRegister() {
+        with(binding) {
+            val fields = mapOf(
+                etUsername to etUsername.text.toString().trim(),
+                etEmail to etEmail.text.toString().trim(),
+                etPassword to etPassword.text.toString().trim(),
+                etCpassword to etCpassword.text.toString().trim()
+            )
+
+            if (fields.values.any { it.isEmpty() }) {
+                fields.forEach { (editText, value) ->
+                    if (value.isEmpty()) showError(editText, requireContext()) else resetError(editText, requireContext())
                 }
+                showToast(requireContext(), getString(R.string.field_empty))
+                return
             }
-            logBtn.setOnClickListener {
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
+
+            if (etPassword.text.toString() != etCpassword.text.toString()) {
+                showError(etCpassword, requireContext())
+                showToast(requireContext(), getString(R.string.cpassword_not_match))
+                return
             }
-            backBtn.setOnClickListener {
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterToOnboarding())
-            }
+
+            authViewModel.register(fields.getValue(etEmail), fields.getValue(etUsername), fields.getValue(etPassword))
+                .observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Loading -> loading.visibility = View.VISIBLE
+                        is Result.Success -> handleRegistrationSuccess(fields.getValue(etEmail))
+                        is Result.Error -> handleRegistrationError(result.error)
+                    }
+                }
+        }
+    }
+
+    private fun handleRegistrationSuccess(email: String) {
+        with(binding) {
+            loading.visibility = View.GONE
+            showToast(requireContext(), getString(R.string.email_verification_sent, email))
+            findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
+        }
+    }
+
+    private fun handleRegistrationError(error: String) {
+        with(binding) {
+            loading.visibility = View.GONE
+            showToast(requireContext(), error)
+            etEmail.text?.clear()
+            etPassword.text?.clear()
+            etCpassword.text?.clear()
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.ents_h108.petwell.view.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
-import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,25 +27,31 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAdapters()
+        setupRecyclerViews()
+        observeArticleData()
+        setupNavigation()
+    }
 
+    private fun setupAdapters() {
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                // Click handler
             }
         })
 
         articleAdapter = ArticleAdapter(object : ArticleAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                // Click handler
             }
         })
+    }
 
+    private fun setupRecyclerViews() {
         binding.rvPromo.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = promoAdapter
@@ -56,11 +60,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = articleAdapter
         }
-        observeArticleData()
-        navigationPage()
     }
-
-
 
     private fun observeArticleData() {
         viewModel.getPromo().observe(viewLifecycleOwner) { result ->
@@ -73,7 +73,6 @@ class HomeFragment : Fragment() {
                 is Result.Success -> {
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.VISIBLE
-                    Log.d("test", result.data.toString())
                     promoAdapter.submitList(result.data)
                 }
 
@@ -95,7 +94,6 @@ class HomeFragment : Fragment() {
                 is Result.Success -> {
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
-                    Log.d("test", result.data.toString())
                     articleAdapter.submitList(result.data)
                 }
 
@@ -108,27 +106,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun navigationPage() {
-
+    private fun setupNavigation() {
         binding.apply {
-//            promo and artikel
-            tvPromoMore.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment())
-            }
-            tvArticleMore.setOnClickListener{
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment())
-            }
-//            main feature
-            btnConsultation.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment())
-            }
-            btnScan.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChosePetFragment())
-            }
-            btnAppointment.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment())
-            }
-
+            tvPromoMore.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(0)) }
+            tvArticleMore.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(1)) }
+            btnConsultation.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment()) }
+            btnScan.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChosePetFragment()) }
+            btnAppointment.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment()) }
         }
     }
 }

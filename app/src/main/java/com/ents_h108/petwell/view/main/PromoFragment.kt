@@ -1,19 +1,20 @@
 package com.ents_h108.petwell.view.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentPromoBinding
 import com.ents_h108.petwell.view.adapter.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class PromoFragment : Fragment() {
-    private var _binding: FragmentPromoBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentPromoBinding
+    private val args: PromoFragmentArgs by navArgs()
 
     companion object {
         @StringRes
@@ -27,26 +28,30 @@ class PromoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPromoBinding.inflate(inflater, container, false)
-        val view = binding.root
+        binding = FragmentPromoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        // Set up ViewPager and TabLayout
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViewPager()
+        selectTab(args.tabPosition)
+        hideActionBarElevation()
+    }
+
+    private fun setupViewPager() {
         val sectionsPagerAdapter = SectionsPagerAdapter(requireActivity())
         binding.viewPager.adapter = sectionsPagerAdapter
-
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+    }
 
-        // Hide ActionBar elevation
+    private fun selectTab(position: Int) {
+        binding.viewPager.setCurrentItem(position, false)
+    }
+
+    private fun hideActionBarElevation() {
         requireActivity().actionBar?.elevation = 0f
-
-        return view
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

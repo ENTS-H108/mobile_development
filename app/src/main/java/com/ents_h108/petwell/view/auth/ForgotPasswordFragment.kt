@@ -4,18 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentForgotPasswordBinding
-import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.showToast
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForgotPasswordFragment : Fragment() {
+
     private lateinit var binding: FragmentForgotPasswordBinding
     private val authViewModel: AuthViewModel by viewModel()
     private val args: ForgotPasswordFragmentArgs by navArgs()
@@ -32,12 +32,13 @@ class ForgotPasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val token = args.token
+        setupUI(token)
+    }
 
-        binding.resetBtn.setOnClickListener {
-            validateAndResetPassword(token)
-        }
-        binding.backBtn.setOnClickListener {
-            findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
+    private fun setupUI(token: String) {
+        binding.apply {
+            resetBtn.setOnClickListener { validateAndResetPassword(token) }
+            backBtn.setOnClickListener { findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment()) }
         }
     }
 
@@ -46,32 +47,22 @@ class ForgotPasswordFragment : Fragment() {
         val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
         when {
-            newPassword.isEmpty() -> {
-                Toast.makeText(requireContext(), getString(R.string.field_empty), Toast.LENGTH_SHORT).show()
-            }
-            confirmPassword.isEmpty() -> {
-                Toast.makeText(requireContext(), getString(R.string.field_empty), Toast.LENGTH_SHORT).show()
-            }
-            newPassword != confirmPassword -> {
-                Toast.makeText(requireContext(), getString(R.string.cpassword_not_match), Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                authViewModel.resetPassword(newPassword, token).observe(viewLifecycleOwner) { result ->
-                    when (result) {
-                        is Result.Loading -> {
-                            binding.loading.visibility = View.VISIBLE
-                        }
-                        is Result.Success -> {
-                            binding.loading.visibility = View.GONE
-                            Toast.makeText(requireContext(), result.data.message, Toast.LENGTH_SHORT).show()
-                            findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
-                        }
-                        is Result.Error -> {
-                            binding.loading.visibility = View.GONE
-                            showToast(requireContext(), getString(R.string.token_mismatch))
-                        }
-                    }
+            newPassword.isEmpty() -> showToast(requireContext(), getString(R.string.field_empty))
+            confirmPassword.isEmpty() -> showToast(requireContext(), getString(R.string.field_empty))
+            newPassword != confirmPassword -> showToast(requireContext(), getString(R.string.cpassword_not_match))
+            else -> resetPassword(token, newPassword)
+        }
+    }
+
+    private fun resetPassword(token: String, newPassword: String) {
+        authViewModel.resetPassword(newPassword, token).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> binding.loading.visibility = View.GONE
+                is Result.Success -> {
+                    showToast(requireContext(), result.data.message)
+                    findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
                 }
+                is Result.Error -> showToast(requireContext(), getString(R.string.token_mismatch))
             }
         }
     }
