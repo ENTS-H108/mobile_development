@@ -1,7 +1,10 @@
 package com.ents_h108.petwell.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment,R.id.editPetFragment -> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment -> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE
@@ -54,6 +57,25 @@ class MainActivity : AppCompatActivity() {
                             R.id.historyFragment -> "History"
                             else -> getString(R.string.app_name)
                         }
+
+                    }
+//                    fitur scann
+                    R.id.chosePetFragment, R.id.imageScanFragment, R.id.instructionScanFragment, R.id.resultScanFragment, R.id.tabularFragment -> {
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.GONE
+                        locationDetail.visibility = View.GONE
+                        topAppBar.title = "Fitur Scan"
+
+                    }
+
+//                    fitur appointment
+                    R.id.appointmentFragment , R.id.detailAppointment ->{
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.VISIBLE
+                        locationDetail.visibility = View.VISIBLE
+                        topAppBar.title = null
                     }
 
                     else -> {
@@ -124,5 +146,6 @@ class MainActivity : AppCompatActivity() {
                 true
         }
     }
+
 
 }

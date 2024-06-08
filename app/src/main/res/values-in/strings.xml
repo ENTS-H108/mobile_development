@@ -70,6 +70,34 @@
     <string name="tvEdtRace">Ras Pet</string>
     <string name="delete_pet">Hapus Hewan Peliharaan</string>
     <string name="add_pet_btn">Tambah Profil Hewan</string>
+    <string name="appointment">Janji Temu</string>
+    <string name="price">Rp. 100.000</string>
+    <string name="biaya_konsultasi">Biaya Konsultasi</string>
+    <string name="answer_questione">Jawab Pertanyaan</string>
+    <string name="start_scan">Mulai Pemindaian</string>
+    <string name="numberOne">1.</string>
+    <string name="decriptionOne">Arahkan kamera Anda ke area yang terkena pada kulit hewan.</string>
+    <string name="numbertwo">2.</string>
+    <string name="decriptiontwo">Pastikan area tersebut terlihat jelas di layar.</string>
+    <string name="numberThree">3.</string>
+    <string name="descriptionThree">Tekan tombol \'Selanjutnya\' untuk melanjutkan.</string>
+    <string name="number4">4.</string>
+    <string name="descriptionFour">Setelah itu, Anda akan menjawab beberapa pertanyaan.</string>
+    <string name="numberFive">5.</string>
+    <string name="descriptionFive">Jawablah dengan jujur untuk diagnosis yang akurat.</string>
+    <string name="numberSix">6.</string>
+    <string name="descriptionSix">Tekan \'Kirim\' ketika selesai.</string>
+    <string name="let_s_go">Ayo Mulai!!</string>
+    <string name="imageUpload">Belum ada gambar! Silakan tambahkan menggunakan galeri atau kamera Anda.</string>
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="next">Selanjutnya</string>
+    <string name="maintenance">Maaf \n Sedang dalam pemeliharaan</string>
+    <string name="maintenanceDesc">Maaf, halaman ini sedang dalam pemeliharaan, silakan kembali ke halaman utama</string>
+    <string name="back_to_home">kembali ke halaman utama</string>
+    <string name="animalChoice">Pilih hewan peliharaan Anda yang ingin Anda analisis</string>
+    <string name="cat">Kucing</string>
+    <string name="dog">Anjing</string>
 
 
 

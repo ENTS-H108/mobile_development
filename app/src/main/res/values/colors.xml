@@ -6,9 +6,11 @@
     <color name="primary_blue">#278187</color>
     <color name="secondary_blue">#ECE8FF</color>
     <color name="primary_blue_dark">#14474A</color>
-    <color name="primary_blue_light">#82B8BC</color>
+    <color name="primary_blue_light">#3ECAD3</color>
     <color name="grey">#808B9a</color>
     <color name="light_grey">#DDDDDD</color>
+    <color name="yellow">#FFB82E</color>
+    <color name="red">#F93232</color>
 
 
 </resources>

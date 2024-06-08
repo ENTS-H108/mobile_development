@@ -70,4 +70,9 @@
         <item name="android:fontFamily">@font/semibold</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="SpinnerDropdownStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">10dp</item> <!-- Sesuaikan sesuai kebutuhan -->
+    </style>
 </resources>
