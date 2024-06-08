@@ -1,26 +1,34 @@
 package com.ents_h108.petwell.view.main
 
+import android.content.Context
 import com.ents_h108.petwell.view.adapter.PetAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Pet
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class ProfileFragment : Fragment() {
 
@@ -28,6 +36,7 @@ class ProfileFragment : Fragment() {
     private lateinit var petAdapter: PetAdapter
     private val authViewModel: AuthViewModel by viewModel()
     private val mainViewModel: MainViewModel by viewModel()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +48,11 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        coroutineScope.launch {
+            binding.tvTitle.text = UserPreferences.getInstance(requireActivity().dataStore).getUsername().first()
+            binding.tvDeskripsi.text = UserPreferences.getInstance(requireActivity().dataStore).getEmail().first()
+        }
 
         binding.btnSetting.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))

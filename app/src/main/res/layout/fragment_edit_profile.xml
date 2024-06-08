@@ -23,6 +23,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_edit_picture"
         android:src="@drawable/btn_edit_profile"
         android:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@id/img_avatar"
