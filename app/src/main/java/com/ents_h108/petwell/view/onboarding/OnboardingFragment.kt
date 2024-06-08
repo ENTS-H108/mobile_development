@@ -21,6 +21,7 @@ import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentOnboardingBinding
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.utils.Utils.showToast
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -30,6 +31,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
@@ -38,6 +40,7 @@ class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentOnboardingBinding
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     private val credentialManager: CredentialManager by inject()
+    private val authViewModel: AuthViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,8 +96,7 @@ class OnboardingFragment : Fragment() {
                 )
                 val credential = result.credential
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                val googleIdToken = googleIdTokenCredential.idToken
-                Log.i("Success", "Google ID Token: $googleIdToken")
+                authViewModel.saveLoginStatus(googleIdTokenCredential.idToken, googleIdTokenCredential.displayName.toString(), googleIdTokenCredential.id)
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
             } catch (e: GetCredentialException) {
                 showToast(requireContext(),"Failed to retrieve credentials. Please try again.")

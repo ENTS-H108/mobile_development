@@ -233,7 +233,15 @@
         android:id="@+id/editPetFragment"
         android:name="com.ents_h108.petwell.view.main.profile.EditPetFragment"
         android:label="fragment_edit_pet"
-        tools:layout="@layout/fragment_edit_pet" />
+        tools:layout="@layout/fragment_edit_pet">
+        <action
+            android:id="@+id/action_editPetFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <argument
+            android:name="pet"
+            app:argType="com.ents_h108.petwell.data.model.Pet"
+            app:nullable="true"/>
+    </fragment>
     <fragment
         android:id="@+id/chosePetFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.ChosePetFragment"

@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private val viewModel: AuthViewModel by viewModel()
+    private val authViewModel: AuthViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,16 +27,14 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val tokenLiveData = viewModel.getToken()
-
-        tokenLiveData.observe(this) { token ->
-            binding.profileUserName.text = token.toString()
-
-        }
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
+
+        authViewModel.getUsername().observe(this) {
+            binding.profileUserName.text = it.toString()
+        }
 
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {

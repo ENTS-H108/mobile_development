@@ -1,7 +1,7 @@
 package com.ents_h108.petwell.view.main
 
-import PetAdapter
-import PetItem
+import android.content.Context
+import com.ents_h108.petwell.view.adapter.PetAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -9,20 +9,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.data.model.Pet
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
+import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var petAdapter: PetAdapter
-    private val viewModel: AuthViewModel by viewModel()
-
+    private val authViewModel: AuthViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,37 +49,28 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        coroutineScope.launch {
+            binding.tvTitle.text = UserPreferences.getInstance(requireActivity().dataStore).getUsername().first()
+            binding.tvDeskripsi.text = UserPreferences.getInstance(requireActivity().dataStore).getEmail().first()
+        }
+
         binding.btnSetting.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         binding.tvLogOut.setOnClickListener {
             lifecycleScope.launch {
-                viewModel.logout()
+                authViewModel.logout()
                 findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
             }
         }
 
-        val petList = listOf(
-            PetItem(
-                "https://images.unsplash.com/photo-1606062663931-277af9e93298?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                "Nama Hewan 1",
-                "Ras Hewan 1"
-            ),
-            PetItem(
-                "https://plus.unsplash.com/premium_photo-1676479610722-1f855a4f0cac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                "Nama Hewan 2",
-                "Ras Hewan 2"
-            )
-        )
-
         petAdapter = PetAdapter(object : PetAdapter.OnItemClickListener {
-            override fun onItemClick(item: PetItem) {
+            override fun onItemClick(item: Pet) {
                 // Handle item click if needed
             }
-            override fun onEditProfileClick(item: PetItem) {
-                // Navigate to HomeFragment with data
-
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+            override fun onEditProfileClick(item: Pet) {
+                findNavController().navigate(ProfileFragmentDirections
+                    .actionProfileFragmentToEditPetFragment(item))
             }
         })
 
@@ -73,7 +78,26 @@ class ProfileFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = petAdapter
         }
-        petAdapter.submitList(petList)
+
+        mainViewModel.getPets().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.petItemLoading.visibility = View.VISIBLE
+                    binding.rvPet.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.petItemLoading.visibility = View.GONE
+                    binding.rvPet.visibility = View.VISIBLE
+                    petAdapter.submitList(result.data)
+                }
+
+                is Result.Error -> {
+                    binding.petItemLoading.visibility = View.GONE
+                    context?.let { Utils.showToast(it, result.error) }
+                }
+            }
+        }
 
         navigationFragment()
     }
@@ -91,7 +115,8 @@ class ProfileFragment : Fragment() {
             }
 
             addPet.setOnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+                val pet: Pet? = null
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment(pet))
             }
         }
     }

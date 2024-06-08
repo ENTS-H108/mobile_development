@@ -14,6 +14,7 @@ import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
