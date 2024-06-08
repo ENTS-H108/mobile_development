@@ -4,6 +4,7 @@ import com.ents_h108.petwell.data.model.ArticleResponse
 import com.ents_h108.petwell.data.model.LoginRequest
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.NewPassword
+import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
@@ -27,4 +28,8 @@ interface ApiService {
         @Query("type") type: String,
         @Header("Authorization") token: String
     ): ArticleResponse
+    @GET("/pets")
+    suspend fun getPets(
+        @Header("Authorization") token: String
+    ): PetResponse
 }

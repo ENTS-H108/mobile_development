@@ -4,17 +4,18 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class ArticleResponse(
-    val listArticle: List<Article>,
+data class PetResponse(
+    val pets: List<Pet>,
     val error: Boolean,
     val message: String
 )
 
 @Keep
-data class Article(
+data class Pet(
     @SerializedName("_id") val id: String,
-    val title: String,
-    val description: String,
-    val thumbnail: String,
-    val type: String
+    val name: String,
+    val species: String,
+    val age: Int,
+    val owner: String,
+    @SerializedName("__v") val v: Int,
 )

@@ -36,9 +36,13 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
         }
     }
 
-    fun saveLoginStatus(token: String) {
+    fun getUsername(): LiveData<String?> {
+        return pref.getUsername().asLiveData()
+    }
+
+    fun saveLoginStatus(token: String, username: String, email: String) {
         viewModelScope.launch {
-            pref.saveToken(token)
+            pref.saveToken(token, username, email)
         }
     }
 }
