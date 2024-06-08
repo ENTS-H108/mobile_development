@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment,R.id.editPetFragment -> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment -> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE
@@ -59,6 +59,16 @@ class MainActivity : AppCompatActivity() {
                             R.id.historyFragment -> "History"
                             else -> getString(R.string.app_name)
                         }
+
+                    }
+//                    fitur scann
+                    R.id.chosePetFragment, R.id.imageScanFragment, R.id.instructionScanFragment, R.id.resultScanFragment, R.id.tabularFragment -> {
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.GONE
+                        locationDetail.visibility = View.GONE
+                        topAppBar.title = "Fitur Scan"
+
                     }
 
                     else -> {
@@ -129,7 +139,6 @@ class MainActivity : AppCompatActivity() {
                 true
         }
     }
-
 
 
 }

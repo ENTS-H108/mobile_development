@@ -69,7 +69,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_primary_states"
             android:elevation="2dp"
-            android:text="back to home"
+            android:text="Home"
             android:textColor="@color/white" />
 
         <Button
