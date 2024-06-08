@@ -25,7 +25,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
-        android:text="1." />
+        android:text="@string/numberOne" />
 
     <TextView
         android:id="@+id/firstInstructionNumberOne"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberOne"
         android:layout_below="@id/firstInstruction"
-        android:text="Point your camera to affected area on the animal's skin."
+        android:text="@string/decriptionOne"
         android:layout_marginTop="8dp" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:text="2." />
+        android:text="@string/numbertwo" />
 
     <TextView
         android:id="@+id/firstInstructionNumberTwo"
@@ -55,8 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberTwo"
         android:layout_below="@id/firstInstructionNumberOne"
-        android:layout_weight="1"
-        android:text="Make sure the area is clearly visible on the screen."
+        android:text="@string/decriptiontwo"
         android:layout_marginTop="4dp" />
 
     <TextView
@@ -68,7 +67,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:text="3." />
+        android:text="@string/numberThree" />
 
     <TextView
         android:id="@+id/firstInstructionNumberThree"
@@ -78,7 +77,7 @@
         android:layout_toEndOf="@id/numberthree"
         android:layout_below="@id/firstInstructionNumberTwo"
         android:layout_weight="1"
-        android:text="Press the 'Next' button to continue"
+        android:text="@string/descriptionThree"
         android:layout_marginTop="4dp" />
     <ImageView
         android:id="@+id/secondInstruction"
@@ -95,7 +94,7 @@
         style="@style/Medium12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4."
+        android:text="@string/number4"
         android:layout_below="@id/secondInstruction"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp" />
@@ -108,7 +107,7 @@
         android:layout_toEndOf="@id/numberFour"
         android:layout_below="@id/secondInstruction"
         android:layout_weight="1"
-        android:text="After that, you'll answer some questions"
+        android:text="@string/descriptionFour"
         android:layout_marginTop="8dp" />
 
     <TextView
@@ -116,7 +115,7 @@
         style="@style/Medium12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5."
+        android:text="@string/numberFive"
         android:layout_below="@id/secondInstructionNumberFour"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp" />
@@ -129,7 +128,7 @@
         android:layout_toEndOf="@id/numberFive"
         android:layout_below="@id/secondInstructionNumberFour"
         android:layout_weight="1"
-        android:text="Answer honestly for an accurate diagnosis."
+        android:text="@string/descriptionFive"
         android:layout_marginTop="4dp" />
 
     <TextView
@@ -137,7 +136,7 @@
         style="@style/Medium12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6."
+        android:text="@string/numberSix"
         android:layout_below="@id/secondInstructionNumberFive"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp" />
@@ -150,7 +149,7 @@
         android:layout_toEndOf="@id/numberSix"
         android:layout_below="@id/secondInstructionNumberFive"
         android:layout_weight="1"
-        android:text="Press 'Submit' when finished."
+        android:text="@string/descriptionSix"
         android:layout_marginTop="4dp" />
 
     <Button
@@ -160,7 +159,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_primary_states"
-        android:text="Let's Go!!"
+        android:text="@string/let_s_go"
         style="@style/H4Bold"
         android:textColor="@android:color/white" />
 </RelativeLayout>

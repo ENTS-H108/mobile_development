@@ -69,6 +69,15 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
+//                    fitur appointment
+                    R.id.appointmentFragment , R.id.detailAppointment ->{
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.VISIBLE
+                        locationDetail.visibility = View.VISIBLE
+                        topAppBar.title = null
+                    }
+
                     else -> {
                         topAppBar.visibility = View.VISIBLE
                         bottomNavigation.visibility = View.VISIBLE

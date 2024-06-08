@@ -71,6 +71,34 @@
     <string name="tvEdtRace">Pet Race</string>
     <string name="delete_pet">Delete Pet</string>
     <string name="add_pet_btn">Add Pet Profile</string>
+    <string name="appointment">Appointment</string>
+    <string name="price">Rp. 100.000</string>
+    <string name="biaya_konsultasi">Biaya Konsultasi</string>
+    <string name="answer_questione">Answer Questione</string>
+    <string name="start_scan">Start Scan</string>
+    <string name="numberOne">1.</string>
+    <string name="decriptionOne">Point your camera to affected area on the animal\'s skin.</string>
+    <string name="numbertwo">2.</string>
+    <string name="decriptiontwo">Make sure the area is clearly visible on the screen.</string>
+    <string name="numberThree">3.</string>
+    <string name="descriptionThree">Press the \'Next\' button to continue</string>
+    <string name="number4">4.</string>
+    <string name="descriptionFour">After that, you\'ll answer some questions</string>
+    <string name="numberFive">5.</string>
+    <string name="descriptionFive">Answer honestly for an accurate diagnosis.</string>
+    <string name="numberSix">6.</string>
+    <string name="descriptionSix">Press \'Submit\' when finished.</string>
+    <string name="let_s_go">Let\'s Go!!</string>
+    <string name="imageUpload">No image yet! Please add one using your gallery or camera.</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="next">Next</string>
+    <string name="maintenance">Sorry \n Under maintenance</string>
+    <string name="maintenanceDesc">Sorry, the page is currently under maintenance, please go back to home</string>
+    <string name="back_to_home">back to home</string>
+    <string name="animalChoice">Choose your pet that you want to analyze</string>
+    <string name="cat">Cat</string>
+    <string name="dog">Dog</string>
 
 
 </resources>

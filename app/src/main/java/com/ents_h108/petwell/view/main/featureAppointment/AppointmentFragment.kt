@@ -5,56 +5,53 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ents_h108.petwell.R
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.databinding.FragmentAppointmentBinding
+import com.ents_h108.petwell.view.adapter.AppointmentAdapter
+import com.ents_h108.petwell.view.adapter.AppointmentItem
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AppointmentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AppointmentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentAppointmentBinding
+    private lateinit var adapter: AppointmentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointment, container, false)
+        binding = FragmentAppointmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AppointmentFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AppointmentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = AppointmentAdapter(object : AppointmentAdapter.OnItemClickListener {
+            override fun onItemClick(item: AppointmentItem) {
+                // Handle item click
             }
+
+            override fun onBtnClick(item: AppointmentItem) {
+                findNavController().navigate(AppointmentFragmentDirections.actionAppointmentFragmentToDetailAppointment())
+            }
+        })
+
+        binding.rvAppointment.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvAppointment.adapter = adapter
+
+        // Submit dummy data to the adapter
+        val dummyData = listOf(
+            AppointmentItem("Dr. John Doe", "Animal Clinic A", "Veterinarian", "New York", "$50"),
+            AppointmentItem("Dr. Jane Smith", "Animal Clinic B", "Veterinarian", "Los Angeles", "$60"),
+            AppointmentItem("Dr. Emily Johnson", "Animal Clinic C", "Veterinarian", "Chicago", "$70"),
+            AppointmentItem("Dr. Michael Brown", "Animal Clinic D", "Veterinarian", "Houston", "$80"),
+            AppointmentItem("Dr. Sarah Davis", "Animal Clinic E", "Veterinarian", "Phoenix", "$90"),
+            AppointmentItem("Dr. Chris Wilson", "Animal Clinic F", "Veterinarian", "Philadelphia", "$100"),
+            AppointmentItem("Dr. Jessica Martinez", "Animal Clinic G", "Veterinarian", "San Antonio", "$110")
+        )
+
+        adapter.submitList(dummyData)
     }
 }

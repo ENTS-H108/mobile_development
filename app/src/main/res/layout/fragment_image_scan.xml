@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imagePreview"
-        android:text="No image yet! Please add one using your gallery or camera."
+        android:text="@string/imageUpload"
         android:textAlignment="center" />
 
     <LinearLayout
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_primary_states"
             android:elevation="2dp"
-            android:text="Gallery"
+            android:text="@string/gallery"
             android:textColor="@color/white" />
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@drawable/btn_primary_states"
-            android:text="Camera"
+            android:text="@string/camera"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -76,7 +76,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_primary_states"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>
