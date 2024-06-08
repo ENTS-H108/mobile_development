@@ -97,11 +97,11 @@
             android:id="@+id/action_homeFragment_to_appointmentFragment"
             app:destination="@id/appointmentFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_instructionScanFragment"
-            app:destination="@id/instructionScanFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_promoFragment"
             app:destination="@id/promoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chosePetFragment"
+            app:destination="@id/chosePetFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -195,7 +195,20 @@
         android:id="@+id/resultScanFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.ResultScanFragment"
         android:label="fragment_result_scan"
-        tools:layout="@layout/fragment_result_scan" />
+        tools:layout="@layout/fragment_result_scan" >
+        <action
+            android:id="@+id/action_resultScanFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_resultScanFragment_to_consultationFragment"
+            app:destination="@id/consultationFragment" />
+        <action
+            android:id="@+id/action_resultScanFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_resultScanFragment_to_consultationFragment2"
+            app:destination="@id/consultationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listArticleFragment"
         android:name="com.ents_h108.petwell.view.main.articleTypes.ListArticleFragment"
@@ -221,5 +234,14 @@
         android:name="com.ents_h108.petwell.view.main.profile.EditPetFragment"
         android:label="fragment_edit_pet"
         tools:layout="@layout/fragment_edit_pet" />
+    <fragment
+        android:id="@+id/chosePetFragment"
+        android:name="com.ents_h108.petwell.view.main.featureScan.ChosePetFragment"
+        android:label="fragment_chose_pet"
+        tools:layout="@layout/fragment_chose_pet" >
+        <action
+            android:id="@+id/action_chosePetFragment_to_instructionScanFragment"
+            app:destination="@id/instructionScanFragment" />
+    </fragment>
 
 </navigation>

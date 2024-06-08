@@ -23,8 +23,8 @@ object Utils {
     fun resetError(editText: AppCompatEditText, context: Context) {
         editText.background = ContextCompat.getDrawable(context, R.drawable.rounded_et)
     }
-
     fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
+
 }
