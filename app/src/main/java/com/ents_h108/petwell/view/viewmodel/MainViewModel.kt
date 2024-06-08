@@ -18,4 +18,11 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun getPets() =
         mainRepository.getPets()
+
+    fun editPet(id: String, name: String, species: String) = mainRepository.editPets(id, name, species)
+
+    fun addPet(name: String, species: String) = mainRepository.addPets(name, species)
+
+    fun deletePet(id: String) = mainRepository.deletePet(id)
+
 }

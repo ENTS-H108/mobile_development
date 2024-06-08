@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Pet
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
 import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
@@ -54,8 +55,8 @@ class ProfileFragment : Fragment() {
                 // Handle item click if needed
             }
             override fun onEditProfileClick(item: Pet) {
-                // Navigate to HomeFragment with data
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+                findNavController().navigate(ProfileFragmentDirections
+                    .actionProfileFragmentToEditPetFragment(item))
             }
         })
 
@@ -74,13 +75,12 @@ class ProfileFragment : Fragment() {
                 is Result.Success -> {
                     binding.petItemLoading.visibility = View.GONE
                     binding.rvPet.visibility = View.VISIBLE
-                    Log.d("profile", result.data.toString())
                     petAdapter.submitList(result.data)
                 }
 
                 is Result.Error -> {
                     binding.petItemLoading.visibility = View.GONE
-                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                    context?.let { Utils.showToast(it, result.error) }
                 }
             }
         }
@@ -101,7 +101,8 @@ class ProfileFragment : Fragment() {
             }
 
             addPet.setOnClickListener {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
+                val pet: Pet? = null
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment(pet))
             }
         }
     }
