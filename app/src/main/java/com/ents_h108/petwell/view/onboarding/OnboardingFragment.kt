@@ -1,19 +1,17 @@
 package com.ents_h108.petwell.view.onboarding
 
 import android.content.Context
-import androidx.credentials.CredentialManager
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
-import androidx.credentials.GetCredentialRequest.Builder
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.BuildConfig
 import com.ents_h108.petwell.R
@@ -46,25 +44,31 @@ class OnboardingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOnboardingBinding.inflate(inflater)
+        binding = FragmentOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
         checkLoginStatus()
-        binding.skipBtn.setOnClickListener {
-            binding.onboardingFragment.transitionToState(R.id.tabs_ob2)
-            binding.onboardingFragment.transitionToState(R.id.tabs_ob3)
-        }
-        binding.logBtn.setOnClickListener {
-            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToLogin())
-        }
-        binding.regBtn.setOnClickListener {
-            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToRegister())
-        }
-        binding.googleBtn.setOnClickListener {
-            googleCredentialManager()
+    }
+
+    private fun setupUI() {
+        binding.apply {
+            skipBtn.setOnClickListener {
+                onboardingFragment.transitionToState(R.id.tabs_ob2)
+                onboardingFragment.transitionToState(R.id.tabs_ob3)
+            }
+            logBtn.setOnClickListener {
+                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToLogin())
+            }
+            regBtn.setOnClickListener {
+                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToRegister())
+            }
+            googleBtn.setOnClickListener {
+                googleCredentialManager()
+            }
         }
     }
 
@@ -78,36 +82,36 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun googleCredentialManager() {
-        val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
+        val googleIdOption = GetGoogleIdOption.Builder()
             .setFilterByAuthorizedAccounts(false)
             .setServerClientId(BuildConfig.GOOGLE_WEB_CLIENT_ID)
             .setNonce(Utils.generateHashedNonce())
             .build()
 
-        val request: GetCredentialRequest = Builder()
+        val request = GetCredentialRequest.Builder()
             .addCredentialOption(googleIdOption)
             .build()
 
         coroutineScope.launch {
             try {
-                val result = credentialManager.getCredential(
-                    request = request,
-                    context = requireContext(),
-                )
+                val result = credentialManager.getCredential(request = request, context = requireContext())
                 val credential = result.credential
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                authViewModel.saveLoginStatus(googleIdTokenCredential.idToken, googleIdTokenCredential.displayName.toString(), googleIdTokenCredential.id)
+                authViewModel.saveLoginStatus(
+                    googleIdTokenCredential.idToken,
+                    googleIdTokenCredential.displayName.toString(),
+                    googleIdTokenCredential.id
+                )
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
             } catch (e: GetCredentialException) {
-                showToast(requireContext(),"Failed to retrieve credentials. Please try again.")
+                showToast(requireContext(), "Failed to retrieve credentials. Please try again.")
             } catch (e: GoogleIdTokenParsingException) {
-                showToast(requireContext(),"Failed to parse Google ID Token. Please try again.")
+                showToast(requireContext(), "Failed to parse Google ID Token. Please try again.")
             } catch (e: Exception) {
-                showToast(requireContext(),"An unexpected error occurred. Please try again.")
+                showToast(requireContext(), "An unexpected error occurred. Please try again.")
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
