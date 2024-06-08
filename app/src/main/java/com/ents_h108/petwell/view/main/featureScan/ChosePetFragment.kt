@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
-import com.ents_h108.petwell.databinding.FragmentResultScanBinding
+import com.ents_h108.petwell.databinding.FragmentChosePetBinding
 
-class ResultScanFragment : Fragment() {
-    private lateinit var binding: FragmentResultScanBinding
+
+class ChosePetFragment : Fragment() {
+   private lateinit var binding: FragmentChosePetBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentResultScanBinding.inflate(inflater, container, false)
+
+        binding = FragmentChosePetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -25,13 +28,10 @@ class ResultScanFragment : Fragment() {
     }
 
     private fun navigation() {
-        binding.btnBackToHomne.setOnClickListener {
-            findNavController().navigate(ResultScanFragmentDirections.actionResultScanFragmentToHomeFragment())
+        binding.btnNext.isEnabled = true
+        binding.btnNext.setOnClickListener{
+            findNavController().navigate(ChosePetFragmentDirections.actionChosePetFragmentToInstructionScanFragment())
         }
-        binding.btnAskDoctor.setOnClickListener {
-            findNavController().navigate(ResultScanFragmentDirections.actionResultScanFragmentToConsultationFragment())
-        }
-
     }
 
 

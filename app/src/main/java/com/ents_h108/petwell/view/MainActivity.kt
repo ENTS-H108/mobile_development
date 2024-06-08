@@ -1,7 +1,10 @@
 package com.ents_h108.petwell.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
@@ -10,16 +13,26 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.ActivityMainBinding
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private val viewModel: AuthViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val tokenLiveData = viewModel.getToken()
+
+        tokenLiveData.observe(this) { token ->
+            binding.profileUserName.text = token.toString()
+
+        }
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainer) as NavHostFragment
@@ -116,5 +129,7 @@ class MainActivity : AppCompatActivity() {
                 true
         }
     }
+
+
 
 }
