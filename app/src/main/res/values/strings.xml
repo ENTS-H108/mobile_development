@@ -99,6 +99,9 @@
     <string name="animalChoice">Choose your pet that you want to analyze</string>
     <string name="cat">Cat</string>
     <string name="dog">Dog</string>
-
+    <string-array name="pet_types">
+        <item>anjing</item>
+        <item>kucing</item>
+    </string-array>
 
 </resources>
