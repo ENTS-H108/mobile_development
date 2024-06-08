@@ -66,9 +66,10 @@
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
     <string name="save_changes">Simpan Perubahan</string>
     <string name="active">Aktif</string>
-    <string name="add_new_pet">tambah hewan peliharaan</string>
+    <string name="add_new_pet">Tambah Hewan Peliharaan</string>
     <string name="tvEdtRace">Ras Pet</string>
     <string name="delete_pet">Hapus Hewan Peliharaan</string>
+    <string name="add_pet_btn">Tambah Profil Hewan</string>
 
 
 

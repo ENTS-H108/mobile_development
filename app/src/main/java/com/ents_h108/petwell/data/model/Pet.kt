@@ -1,7 +1,9 @@
 package com.ents_h108.petwell.data.model
 
+import android.os.Parcelable
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Keep
 data class PetResponse(
@@ -11,11 +13,17 @@ data class PetResponse(
 )
 
 @Keep
+@Parcelize
 data class Pet(
     @SerializedName("_id") val id: String,
     val name: String,
     val species: String,
     val age: Int,
     val owner: String,
-    @SerializedName("__v") val v: Int,
+) : Parcelable
+
+data class editPet(
+    val name: String,
+    val species: String,
+    val age: Int = 5
 )

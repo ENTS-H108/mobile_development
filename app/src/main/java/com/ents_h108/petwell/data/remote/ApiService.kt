@@ -8,10 +8,14 @@ import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
+import com.ents_h108.petwell.data.model.editPet
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -30,6 +34,22 @@ interface ApiService {
     ): ArticleResponse
     @GET("/pets")
     suspend fun getPets(
+        @Header("Authorization") token: String
+    ): PetResponse
+    @PUT("pets/{id}")
+    suspend fun editPet(
+        @Path("id") id: String,
+        @Header("Authorization") token: String,
+        @Body editpet: editPet
+    ): PetResponse
+    @POST("pets")
+    suspend fun addPet(
+        @Header("Authorization") token: String,
+        @Body editpet: editPet
+    ): PetResponse
+    @DELETE("pets/{id}")
+    suspend fun deletePet(
+        @Path("id") id: String,
         @Header("Authorization") token: String
     ): PetResponse
 }
