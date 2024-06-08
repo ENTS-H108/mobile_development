@@ -1,7 +1,5 @@
 package com.ents_h108.petwell.data.model
 
-import java.lang.Error
-
 data class LoginRequest(
     val email: String,
     val password: String

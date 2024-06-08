@@ -1,19 +1,23 @@
 package com.ents_h108.petwell.view.main
 
-import PetAdapter
-import PetItem
+import com.ents_h108.petwell.view.adapter.PetAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.data.model.Pet
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
+import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,8 +25,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var petAdapter: PetAdapter
-    private val viewModel: AuthViewModel by viewModel()
-
+    private val authViewModel: AuthViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,31 +44,17 @@ class ProfileFragment : Fragment() {
         }
         binding.tvLogOut.setOnClickListener {
             lifecycleScope.launch {
-                viewModel.logout()
+                authViewModel.logout()
                 findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
             }
         }
 
-        val petList = listOf(
-            PetItem(
-                "https://images.unsplash.com/photo-1606062663931-277af9e93298?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                "Nama Hewan 1",
-                "Ras Hewan 1"
-            ),
-            PetItem(
-                "https://plus.unsplash.com/premium_photo-1676479610722-1f855a4f0cac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                "Nama Hewan 2",
-                "Ras Hewan 2"
-            )
-        )
-
         petAdapter = PetAdapter(object : PetAdapter.OnItemClickListener {
-            override fun onItemClick(item: PetItem) {
+            override fun onItemClick(item: Pet) {
                 // Handle item click if needed
             }
-            override fun onEditProfileClick(item: PetItem) {
+            override fun onEditProfileClick(item: Pet) {
                 // Navigate to HomeFragment with data
-
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment())
             }
         })
@@ -73,7 +63,27 @@ class ProfileFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = petAdapter
         }
-        petAdapter.submitList(petList)
+
+        mainViewModel.getPets().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.petItemLoading.visibility = View.VISIBLE
+                    binding.rvPet.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.petItemLoading.visibility = View.GONE
+                    binding.rvPet.visibility = View.VISIBLE
+                    Log.d("profile", result.data.toString())
+                    petAdapter.submitList(result.data)
+                }
+
+                is Result.Error -> {
+                    binding.petItemLoading.visibility = View.GONE
+                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         navigationFragment()
     }

@@ -1,3 +1,5 @@
+package com.ents_h108.petwell.view.adapter
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -5,17 +7,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.Pet
 import com.ents_h108.petwell.databinding.ItemPetBinding
 
-data class PetItem(val imageUrl: String, val petName: String, val petRace: String)
 class PetAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<PetItem, PetAdapter.PetViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Pet, PetAdapter.PetViewHolder>(DIFF_CALLBACK) {
 
     private var selectedPosition = RecyclerView.NO_POSITION
 
     interface OnItemClickListener {
-        fun onItemClick(item: PetItem)
-        fun onEditProfileClick(item: PetItem)
+        fun onItemClick(item: Pet)
+        fun onEditProfileClick(item: Pet)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
@@ -50,10 +52,10 @@ class PetAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun bind(item: PetItem, isSelected: Boolean) {
-            binding.imgPet.load(item.imageUrl)
-            binding.tvPetName.text = item.petName
-            binding.tvRace.text = item.petRace
+        fun bind(item: Pet, isSelected: Boolean) {
+            binding.imgPet.load(item.name)
+            binding.tvPetName.text = item.name
+            binding.tvRace.text = item.species
             if (isSelected) {
                 binding.cardPet.setBackgroundResource(R.drawable.card_pet_active)
                 binding.tvStatus.text = itemView.context.getString(R.string.active)
@@ -65,12 +67,12 @@ class PetAdapter(private val listener: OnItemClickListener) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PetItem>() {
-            override fun areItemsTheSame(oldItem: PetItem, newItem: PetItem): Boolean {
-                return oldItem.imageUrl == newItem.imageUrl
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Pet>() {
+            override fun areItemsTheSame(oldItem: Pet, newItem: Pet): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: PetItem, newItem: PetItem): Boolean {
+            override fun areContentsTheSame(oldItem: Pet, newItem: Pet): Boolean {
                 return oldItem == newItem
             }
         }

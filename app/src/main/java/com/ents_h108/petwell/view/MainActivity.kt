@@ -3,17 +3,20 @@ package com.ents_h108.petwell.view
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.ActivityMainBinding
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private val authViewModel: AuthViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHostFragment.navController
+
+        authViewModel.getUsername().observe(this) {
+            binding.profileUserName.text = it.toString()
+        }
 
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
