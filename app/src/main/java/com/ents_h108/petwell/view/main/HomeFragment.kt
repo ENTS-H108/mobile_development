@@ -123,7 +123,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment())
             }
             btnScan.setOnClickListener {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToInstructionScanFragment())
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChosePetFragment())
             }
             btnAppointment.setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment())

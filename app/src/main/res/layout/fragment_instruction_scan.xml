@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
     tools:context=".view.main.featureScan.InstructionScanFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/firstInstruction"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/instruction_satu"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="8dp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/numberOne"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstInstruction"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="1." />
+
+    <TextView
+        android:id="@+id/firstInstructionNumberOne"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberOne"
+        android:layout_below="@id/firstInstruction"
+        android:text="Point your camera to affected area on the animal's skin."
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/numberTwo"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstInstructionNumberOne"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="2." />
+
+    <TextView
+        android:id="@+id/firstInstructionNumberTwo"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberTwo"
+        android:layout_below="@id/firstInstructionNumberOne"
+        android:layout_weight="1"
+        android:text="Make sure the area is clearly visible on the screen."
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/numberthree"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstInstructionNumberTwo"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="3." />
+
+    <TextView
+        android:id="@+id/firstInstructionNumberThree"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberthree"
+        android:layout_below="@id/firstInstructionNumberTwo"
+        android:layout_weight="1"
+        android:text="Press the 'Next' button to continue"
+        android:layout_marginTop="4dp" />
+    <ImageView
+        android:id="@+id/secondInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/instruction_dua"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_below="@id/firstInstructionNumberThree"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/numberFour"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4."
+        android:layout_below="@id/secondInstruction"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp" />
+
+    <TextView
+        android:id="@+id/secondInstructionNumberFour"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberFour"
+        android:layout_below="@id/secondInstruction"
+        android:layout_weight="1"
+        android:text="After that, you'll answer some questions"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/numberFive"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5."
+        android:layout_below="@id/secondInstructionNumberFour"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp" />
+
+    <TextView
+        android:id="@+id/secondInstructionNumberFive"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberFive"
+        android:layout_below="@id/secondInstructionNumberFour"
+        android:layout_weight="1"
+        android:text="Answer honestly for an accurate diagnosis."
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/numberSix"
+        style="@style/Medium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6."
+        android:layout_below="@id/secondInstructionNumberFive"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp" />
+
+    <TextView
+        android:id="@+id/secondInstructionNumberSix"
+        style="@style/Medium12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/numberSix"
+        android:layout_below="@id/secondInstructionNumberFive"
+        android:layout_weight="1"
+        android:text="Press 'Submit' when finished."
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/btn_letGo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/btn_primary_states"
+        android:text="Let's Go!!"
+        style="@style/H4Bold"
+        android:textColor="@android:color/white" />
+</RelativeLayout>

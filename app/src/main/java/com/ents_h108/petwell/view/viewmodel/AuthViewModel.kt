@@ -19,6 +19,14 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
     fun requestToken(email: String) =
         authRepository.requestToken(email)
 
+
+    fun getLoginStatus(): LiveData<Boolean?> {
+        return pref.getLoginStatus().asLiveData()
+    }
+    fun getToken(): LiveData<String?> {
+        return pref.getToken().asLiveData()
+    }
+
     fun resetPassword(newPassword: String, token: String) =
         authRepository.resetPassword(newPassword, token)
 

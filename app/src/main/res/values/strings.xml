@@ -69,6 +69,7 @@
     <string name="active">Active</string>
     <string name="add_new_pet">add new pet</string>
     <string name="tvEdtRace">Pet Race</string>
+    <string name="delete_pet">Delete Pet</string>
 
 
 </resources>

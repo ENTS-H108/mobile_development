@@ -52,4 +52,22 @@
         <item name="android:lines">2</item>
         <item name="android:maxWidth">95dp</item>
     </style>
+
+    <style name="H4Bold" parent="Base.Theme.PetWell">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="H3Bold" parent="Base.Theme.PetWell">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Medium12" parent="Base.Theme.PetWell">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
