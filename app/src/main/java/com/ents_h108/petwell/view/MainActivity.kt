@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment -> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment, R.id.chatFragment -> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE
@@ -70,12 +70,25 @@ class MainActivity : AppCompatActivity() {
                     }
 
 //                    fitur appointment
-                    R.id.appointmentFragment , R.id.detailAppointment ->{
+                    R.id.appointmentFragment, R.id.detailAppointment -> {
                         topAppBar.visibility = View.VISIBLE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.VISIBLE
                         locationDetail.visibility = View.VISIBLE
                         topAppBar.title = null
+                    }
+
+//                    fitur chat
+                    R.id.consultationFragment, R.id.paymentFragment -> {
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.GONE
+                        locationDetail.visibility = View.GONE
+                        topAppBar.title = when (nd.id) {
+                            R.id.consultationFragment -> "Consultation"
+                            R.id.paymentFragment -> "Payment"
+                            else -> getString(R.string.app_name)
+                        }
                     }
 
                     else -> {

@@ -5,56 +5,59 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ents_h108.petwell.R
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.databinding.FragmentConsultationBinding
+import com.ents_h108.petwell.view.adapter.ConsultationAdapter
+import com.ents_h108.petwell.data.dataClassDummy.ConsultationItem
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ConsultationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ConsultationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentConsultationBinding
+    private lateinit var consultationAdapter: ConsultationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultation, container, false)
+        binding = FragmentConsultationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ConsultationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ConsultationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        populateDummyData()
+    }
+
+    private fun setupRecyclerView() {
+        consultationAdapter = ConsultationAdapter(object : ConsultationAdapter.OnItemClickListener {
+            override fun onItemClick(item: ConsultationItem) {
+                // Handle item click
             }
+
+            override fun onBtnClick(item: ConsultationItem) {
+                findNavController().navigate(ConsultationFragmentDirections.actionConsultationFragmentToPaymentFragment())
+            }
+        })
+
+        binding.rvListPersonChat.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = consultationAdapter
+        }
+    }
+
+    private fun populateDummyData() {
+        val dummyData = listOf(
+            ConsultationItem("Dr. John Doe", "Animal Clinic A", "Veterinarian", " 8 Year", "$50"),
+            ConsultationItem("Dr. Jane Smith", "Animal Clinic B", "Veterinarian", "8 Year", "$60"),
+            ConsultationItem("Dr. Emily Johnson", "Animal Clinic C", "Veterinarian", "8 Year", "$70"),
+            ConsultationItem("Dr. Michael Brown", "Animal Clinic D", "Veterinarian", "8 Year", "$80"),
+            ConsultationItem("Dr. Sarah Davis", "Animal Clinic E", "Veterinarian", "8 Year", "$90"),
+            ConsultationItem("Dr. Chris Wilson", "Animal Clinic F", "Veterinarian", "8 Year", "$100"),
+            ConsultationItem("Dr. Jessica Martinez", "Animal Clinic G", "Veterinarian", "8 Year", "$110")
+        )
+        consultationAdapter.submitList(dummyData)
     }
 }

@@ -75,4 +75,9 @@
         <item name="android:background">@color/white</item>
         <item name="android:padding">10dp</item> <!-- Sesuaikan sesuai kebutuhan -->
     </style>
+
+    <style name="CustomShapeAppearance" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">100dp</item> <!-- Adjust the corner size as needed -->
+    </style>
 </resources>

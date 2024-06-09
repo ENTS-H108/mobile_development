@@ -98,6 +98,7 @@
     <string name="animalChoice">Pilih hewan peliharaan Anda yang ingin Anda analisis</string>
     <string name="cat">Kucing</string>
     <string name="dog">Anjing</string>
+    <string name="bayar_n_konfirmasi"><![CDATA[Bayar & \n Konfirmasi]]></string>
 
 
 
