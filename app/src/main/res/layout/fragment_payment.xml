@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondWhite"
-    android:paddingHorizontal="20dp"
+    android:background="@color/white"
     tools:context=".view.main.featureConsultation.PaymentFragment">
 
     <!-- Consultation for Pet Layout -->
     <LinearLayout
         android:id="@+id/consultation_for_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingHorizontal="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -37,17 +37,21 @@
     <!-- NestedScrollView for Payment Summary -->
 
     <!-- Fixed Bottom Button -->
+
+    <!-- Bottom Section -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/secondWhite"
+        android:paddingHorizontal="20dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_section"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/consultation_for_layout"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <!-- Payment Summary Layout -->
         <LinearLayout
@@ -109,20 +113,20 @@
                 android:id="@+id/payment_method_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
 
                 <RadioButton
                     android:id="@+id/radio_gopay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GoPay"/>
+                    android:text="GoPay" />
 
                 <RadioButton
                     android:id="@+id/radio_dana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DANA"/>
+                    android:text="DANA" />
             </RadioGroup>
 
             <!-- Total Payment -->
@@ -131,14 +135,13 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Section -->
     <LinearLayout
         android:id="@+id/bottom_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:layout_weight="1"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,34 +153,37 @@
             android:layout_height="wrap_content"
             android:layout_gravity=""
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/text_total_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Pembayaran"
                 android:fontFamily="@font/regular"
+                android:text="Total Pembayaran"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/text_total_payment_amount"
                 android:layout_width="wrap_content"
-                android:fontFamily="@font/bold"
-
                 android:layout_height="wrap_content"
+
+                android:fontFamily="@font/bold"
                 android:text="Rp 100000"
                 android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Payment Button -->
         <Button
+            android:layout_marginEnd="20dp"
             android:id="@+id/button_pay_confirm"
+            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:fontFamily="@font/regular"
-            android:text="@string/bayar_n_konfirmasi"
-            android:layout_gravity="end"/>
+            android:text="@string/bayar_n_konfirmasi" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,21 +16,21 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_onboarding_to_register"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_onboarding_to_login"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -44,21 +44,21 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
@@ -75,14 +75,14 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 
     <fragment
@@ -112,12 +112,17 @@
         android:id="@+id/historyFragment"
         android:name="com.ents_h108.petwell.view.main.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history"/>
     <fragment
         android:id="@+id/promoFragment"
         android:name="com.ents_h108.petwell.view.main.PromoFragment"
         android:label="fragment_promo"
-        tools:layout="@layout/fragment_promo"/>
+        tools:layout="@layout/fragment_promo">
+        <argument
+            android:name="tabPosition"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ents_h108.petwell.view.main.ProfileFragment"
@@ -129,7 +134,7 @@
             app:enterAnim="@anim/slide_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/slide_out"/>
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -147,7 +152,7 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.ents_h108.petwell.view.auth.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password">
+        tools:layout="@layout/fragment_forgot_password" >
         <action
             android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -156,14 +161,14 @@
             app:uri="https://www.entsh108.com/forgotPassword/{token}" />
         <argument
             android:name="token"
-            android:defaultValue=""
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="" />
     </fragment>
     <fragment
         android:id="@+id/consultationFragment"
         android:name="com.ents_h108.petwell.view.main.featureConsultation.ConsultationFragment"
         android:label="fragment_consultation"
-        tools:layout="@layout/fragment_consultation">
+        tools:layout="@layout/fragment_consultation" >
         <action
             android:id="@+id/action_consultationFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
@@ -172,7 +177,7 @@
         android:id="@+id/appointmentFragment"
         android:name="com.ents_h108.petwell.view.main.featureAppointment.AppointmentFragment"
         android:label="fragment_appointment"
-        tools:layout="@layout/fragment_appointment">
+        tools:layout="@layout/fragment_appointment" >
         <action
             android:id="@+id/action_appointmentFragment_to_detailAppointment"
             app:destination="@id/detailAppointment" />
@@ -187,7 +192,7 @@
         android:id="@+id/instructionScanFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.InstructionScanFragment"
         android:label="fragment_instruction_scan"
-        tools:layout="@layout/fragment_instruction_scan">
+        tools:layout="@layout/fragment_instruction_scan" >
         <action
             android:id="@+id/action_instructionScanFragment_to_imageScanFragment"
             app:destination="@id/imageScanFragment" />
@@ -196,7 +201,7 @@
         android:id="@+id/imageScanFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.ImageScanFragment"
         android:label="fragment_image_scan"
-        tools:layout="@layout/fragment_image_scan">
+        tools:layout="@layout/fragment_image_scan" >
         <action
             android:id="@+id/action_imageScanFragment_to_tabularFragment"
             app:destination="@id/tabularFragment" />
@@ -205,7 +210,7 @@
         android:id="@+id/tabularFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.TabularFragment"
         android:label="fragment_tabular"
-        tools:layout="@layout/fragment_tabular">
+        tools:layout="@layout/fragment_tabular" >
         <action
             android:id="@+id/action_tabularFragment_to_resultScanFragment"
             app:destination="@id/resultScanFragment" />
@@ -214,7 +219,7 @@
         android:id="@+id/resultScanFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.ResultScanFragment"
         android:label="fragment_result_scan"
-        tools:layout="@layout/fragment_result_scan">
+        tools:layout="@layout/fragment_result_scan" >
         <action
             android:id="@+id/action_resultScanFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -259,13 +264,13 @@
         <argument
             android:name="pet"
             app:argType="com.ents_h108.petwell.data.model.Pet"
-            app:nullable="true" />
+            app:nullable="true"/>
     </fragment>
     <fragment
         android:id="@+id/chosePetFragment"
         android:name="com.ents_h108.petwell.view.main.featureScan.ChosePetFragment"
         android:label="fragment_chose_pet"
-        tools:layout="@layout/fragment_chose_pet">
+        tools:layout="@layout/fragment_chose_pet" >
         <action
             android:id="@+id/action_chosePetFragment_to_instructionScanFragment"
             app:destination="@id/instructionScanFragment" />
@@ -276,25 +281,24 @@
         android:label="fragment_detail_appointment"
         tools:layout="@layout/fragment_detail_appointment" />
     <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.ents_h108.petwell.view.main.featureAppointment.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
-
+        android:id="@+id/chatFragment"
+        android:name="com.ents_h108.petwell.view.main.featureConsultation.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.ents_h108.petwell.view.main.featureConsultation.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment">
+        tools:layout="@layout/fragment_payment" >
         <action
             android:id="@+id/action_paymentFragment_to_chatFragment"
-            app:destination="@id/chatFragment2" />
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
-        android:id="@+id/chatFragment2"
-        android:name="com.ents_h108.petwell.view.main.featureConsultation.ChatFragment"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        android:id="@+id/mapsFragment"
+        android:name="com.ents_h108.petwell.view.main.featureAppointment.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 
 
 </navigation>
