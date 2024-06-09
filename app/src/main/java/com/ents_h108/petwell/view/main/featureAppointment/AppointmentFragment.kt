@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.data.dataClassDummy.AppointmentItem
 import com.ents_h108.petwell.databinding.FragmentAppointmentBinding
 import com.ents_h108.petwell.view.adapter.AppointmentAdapter
-import com.ents_h108.petwell.view.adapter.AppointmentItem
 
 class AppointmentFragment : Fragment() {
 
@@ -53,5 +54,35 @@ class AppointmentFragment : Fragment() {
         )
 
         adapter.submitList(dummyData)
+
+        setupScrollListener()
+
+        navigation()
+
+        binding.extFloatingActionButton.text = "Sidoarjo"
+
+    }
+
+    private fun navigation() {
+        binding.extFloatingActionButton.setOnClickListener {
+            findNavController().navigate(AppointmentFragmentDirections.actionAppointmentFragmentToMapsFragment())
+        }
+    }
+
+    private fun setupScrollListener() {
+        val fab = binding.extFloatingActionButton
+        val nestedScrollView = binding.nestedScrollView
+
+        nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY + 12 && fab.isExtended) {
+                fab.shrink()
+            } else if (scrollY < oldScrollY - 12 && !fab.isExtended) {
+                fab.extend()
+            }
+
+            if (scrollY == 0) {
+                fab.extend()
+            }
+        })
     }
 }
