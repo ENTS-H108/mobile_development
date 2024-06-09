@@ -13,79 +13,40 @@ import com.ents_h108.petwell.databinding.FragmentHistoryBinding
 class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentHistoryBinding
-    private lateinit var historyadapter: HistoryAdapter
+    private val historyAdapter = HistoryAdapter(object : HistoryAdapter.OnItemClickListener {
+        override fun onItemClick(item: HistoryItem) {
+            // Handle item click
+        }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+    }
 
-
-        val historyList = listOf(
-            HistoryItem(
-                type = 1,
-                imageUrl = "url_gambar_1",
-                title = "Dr. Repabdonad ",
-                deskripsi = "veterinarians",
-                tanggal = "2024-06-01"
-            ),
-            HistoryItem(
-                type = 2,
-                imageUrl = "url_gambar_2",
-                title = "Vaccine Calicivirus",
-                deskripsi = "rumah sakit hewan jaya raya",
-                tanggal = "2024-06-02"
-            ),
-            HistoryItem(
-                type = 3,
-                imageUrl = "url_gambar_3",
-                title = "Folikulitis",
-                deskripsi = "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....",
-                tanggal = "2024-06-03"
-            ),
-            HistoryItem(
-                type = 1,
-                imageUrl = "url_gambar_1",
-                title = "Dr. Repabdonad ",
-                deskripsi = "veterinarians",
-                tanggal = "2024-06-01"
-            ),
-            HistoryItem(
-                type = 2,
-                imageUrl = "url_gambar_2",
-                title = "Vaccine Calicivirus",
-                deskripsi = "rumah sakit hewan jaya raya",
-                tanggal = "2024-06-02"
-            ),
-            HistoryItem(
-                type = 3,
-                imageUrl = "url_gambar_3",
-                title = "Folikulitis",
-                deskripsi = "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....",
-                tanggal = "2024-06-03"
-            )
-        )
-
-        historyadapter = HistoryAdapter(object : HistoryAdapter.OnItemClickListener {
-            override fun onItemClick(item: HistoryItem) {
-                // Handle item click
-            }
-
-        })
-
+    private fun setupRecyclerView() {
         binding.rvHistory.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = historyadapter
+            adapter = historyAdapter
         }
 
-        historyadapter.submitList(historyList)
+        val historyList = listOf(
+            HistoryItem(1, "url_gambar_1", "Dr. Repabdonad", "veterinarians", "2024-06-01"),
+            HistoryItem(2, "url_gambar_2", "Vaccine Calicivirus", "rumah sakit hewan jaya raya", "2024-06-02"),
+            HistoryItem(3, "url_gambar_3", "Folikulitis", "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....", "2024-06-03"),
+            HistoryItem(1, "url_gambar_1", "Dr. Repabdonad", "veterinarians", "2024-06-01"),
+            HistoryItem(2, "url_gambar_2", "Vaccine Calicivirus", "rumah sakit hewan jaya raya", "2024-06-02"),
+            HistoryItem(3, "url_gambar_3", "Folikulitis", "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....", "2024-06-03")
+        )
+
+        historyAdapter.submitList(historyList)
     }
 }
-

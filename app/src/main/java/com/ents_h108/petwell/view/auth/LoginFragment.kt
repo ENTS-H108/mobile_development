@@ -8,11 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentLoginBinding
-import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.Utils.resetError
 import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
-import com.ents_h108.petwell.utils.Utils.resetError
+import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -38,46 +38,20 @@ class LoginFragment : Fragment() {
             logBtn.setOnClickListener { validateAndLogin() }
             regBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToRegister()) }
             backBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToOnboarding()) }
-            forgotPw.setOnClickListener {
-                val email = etEmail.text.toString().trim()
-                if (email.isEmpty()) {
-                    showError(etEmail, requireContext())
-                    showToast(requireContext(), getString(R.string.field_empty))
-                } else {
-                    resetError(etEmail, requireContext())
-                    authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
-                        when (result) {
-                            is Result.Loading -> {
-                                binding.loading.visibility = View.VISIBLE
-                            }
-                            is Result.Success -> {
-                                showToast(requireContext(), result.data.message)
-                                binding.loading.visibility = View.GONE
-                            }
-                            is Result.Error -> {
-                                binding.loading.visibility = View.GONE
-                                showToast(requireContext(), getString(R.string.email_not_found))
-                            }
-                        }
-                    }
-                }
-            }
+            forgotPw.setOnClickListener { handleForgotPassword() }
         }
     }
 
     private fun validateAndLogin() {
-        val fields = mapOf(
-            binding.etEmail to binding.etEmail.text.toString().trim(),
-            binding.etPassword to binding.etPassword.text.toString().trim()
-        )
-
-        var allFieldsFilled = true
-        for ((editText, value) in fields) {
+        val fields = listOf(binding.etEmail, binding.etPassword)
+        val allFieldsFilled = fields.all { editText ->
+            val value = editText.text.toString().trim()
             if (value.isEmpty()) {
                 showError(editText, requireContext())
-                allFieldsFilled = false
+                false
             } else {
                 resetError(editText, requireContext())
+                true
             }
         }
 
@@ -89,21 +63,42 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleLogin() {
-        binding.apply {
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
-            authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+        authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> binding.loading.visibility = View.VISIBLE
+                is Result.Success -> {
+                    binding.loading.visibility = View.GONE
+                    showToast(requireContext(), result.data.message)
+                    authViewModel.saveLoginStatus(result.data.token, "nama", "email")
+                    findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
+                }
+                is Result.Error -> {
+                    binding.loading.visibility = View.GONE
+                    showToast(requireContext(), result.error)
+                }
+            }
+        }
+    }
+
+    private fun handleForgotPassword() {
+        val email = binding.etEmail.text.toString().trim()
+        if (email.isEmpty()) {
+            showError(binding.etEmail, requireContext())
+            showToast(requireContext(), getString(R.string.field_empty))
+        } else {
+            resetError(binding.etEmail, requireContext())
+            authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is Result.Loading -> loading.visibility = View.VISIBLE
+                    is Result.Loading -> binding.loading.visibility = View.VISIBLE
                     is Result.Success -> {
+                        binding.loading.visibility = View.GONE
                         showToast(requireContext(), result.data.message)
-                        loading.visibility = View.GONE
-                        authViewModel.saveLoginStatus(result.data.token, "nama", "email")
-                        findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                     is Result.Error -> {
-                        showToast(requireContext(), result.error)
-                        loading.visibility = View.GONE
+                        binding.loading.visibility = View.GONE
+                        showToast(requireContext(), getString(R.string.email_not_found))
                     }
                 }
             }

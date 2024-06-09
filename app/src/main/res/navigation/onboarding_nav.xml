@@ -98,7 +98,12 @@
             app:destination="@id/appointmentFragment" />
         <action
             android:id="@+id/action_homeFragment_to_promoFragment"
-            app:destination="@id/promoFragment" />
+            app:destination="@id/promoFragment">
+            <argument
+                android:name="tabPosition"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
         <action
             android:id="@+id/action_homeFragment_to_chosePetFragment"
             app:destination="@id/chosePetFragment" />
@@ -112,7 +117,7 @@
         android:id="@+id/promoFragment"
         android:name="com.ents_h108.petwell.view.main.PromoFragment"
         android:label="fragment_promo"
-        tools:layout="@layout/fragment_promo" />
+        tools:layout="@layout/fragment_promo"/>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ents_h108.petwell.view.main.ProfileFragment"
