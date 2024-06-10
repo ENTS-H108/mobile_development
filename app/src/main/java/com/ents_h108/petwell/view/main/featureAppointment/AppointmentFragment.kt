@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ents_h108.petwell.data.dataClassDummy.AppointmentItem
+import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.FragmentAppointmentBinding
 import com.ents_h108.petwell.view.adapter.AppointmentAdapter
 
@@ -21,7 +22,6 @@ class AppointmentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentAppointmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,11 +30,11 @@ class AppointmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = AppointmentAdapter(object : AppointmentAdapter.OnItemClickListener {
-            override fun onItemClick(item: AppointmentItem) {
+            override fun onItemClick(item: Doctor) {
                 // Handle item click
             }
 
-            override fun onBtnClick(item: AppointmentItem) {
+            override fun onBtnClick(item: Doctor) {
                 findNavController().navigate(AppointmentFragmentDirections.actionAppointmentFragmentToDetailAppointment())
             }
         })
@@ -42,30 +42,32 @@ class AppointmentFragment : Fragment() {
         binding.rvAppointment.layoutManager = LinearLayoutManager(requireContext())
         binding.rvAppointment.adapter = adapter
 
-        // Submit dummy data to the adapter
         val dummyData = listOf(
-            AppointmentItem("Dr. John Doe", "Animal Clinic A", "Veterinarian", "New York", "$50"),
-            AppointmentItem("Dr. Jane Smith", "Animal Clinic B", "Veterinarian", "Los Angeles", "$60"),
-            AppointmentItem("Dr. Emily Johnson", "Animal Clinic C", "Veterinarian", "Chicago", "$70"),
-            AppointmentItem("Dr. Michael Brown", "Animal Clinic D", "Veterinarian", "Houston", "$80"),
-            AppointmentItem("Dr. Sarah Davis", "Animal Clinic E", "Veterinarian", "Phoenix", "$90"),
-            AppointmentItem("Dr. Chris Wilson", "Animal Clinic F", "Veterinarian", "Philadelphia", "$100"),
-            AppointmentItem("Dr. Jessica Martinez", "Animal Clinic G", "Veterinarian", "San Antonio", "$110")
+            Doctor("Dr. John Doe", "Animal Clinic A", "Veterinarian", " 8 Year", "Dokter kucing", "200.000", 10.0, 11.0),
+            Doctor("Dr. Jane Smith", "Animal Clinic B", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 10.0, 12.0),
+            Doctor("Dr. Emily Johnson", "Animal Clinic C", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 10.0, 13.0),
+            Doctor("Dr. Michael Brown", "Animal Clinic D", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 11.0, 11.0),
+            Doctor("Dr. Sarah Davis", "Animal Clinic E", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 12.0, 11.0),
+            Doctor("Dr. Chris Wilson", "Animal Clinic F", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 13.0, 11.0),
+            Doctor("Dr. Jessica Martinez", "Animal Clinic G", "Veterinarian", "8 Year", "Dokter kucing", "200.000", 10.0, 11.0)
         )
 
         adapter.submitList(dummyData)
 
         setupScrollListener()
 
-        navigation()
+        navigation(dummyData)
 
         binding.extFloatingActionButton.text = "Sidoarjo"
 
     }
 
-    private fun navigation() {
+    private fun navigation(data: List<Doctor>) {
         binding.extFloatingActionButton.setOnClickListener {
-            findNavController().navigate(AppointmentFragmentDirections.actionAppointmentFragmentToMapsFragment())
+            val bundle = Bundle().apply {
+                putParcelableArrayList("doctors", ArrayList(data))
+            }
+            findNavController().navigate(R.id.action_appointmentFragment_to_mapsFragment, bundle)
         }
     }
 

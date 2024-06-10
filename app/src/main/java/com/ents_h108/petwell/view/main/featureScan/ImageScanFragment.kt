@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -65,7 +64,7 @@ class ImageScanFragment : Fragment() {
 
     private fun openCamera() {
         createImageFile()?.let { file ->
-            currentImageUri = FileProvider.getUriForFile(requireContext(), "com.entsh108.petwell.fileprovider", file)
+            currentImageUri = FileProvider.getUriForFile(requireContext(), "com.ents_h108.project.fileprovider", file)
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply { putExtra(MediaStore.EXTRA_OUTPUT, currentImageUri) }
             startActivityForResult(cameraIntent, CAMERA_PERMISSION_REQUEST_CODE)
         }
@@ -103,6 +102,5 @@ class ImageScanFragment : Fragment() {
     }
 
     companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

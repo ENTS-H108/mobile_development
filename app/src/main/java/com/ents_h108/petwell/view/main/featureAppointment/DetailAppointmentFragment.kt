@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.ents_h108.petwell.R
 
 
-class DetailAppointment : Fragment() {
+class DetailAppointmentFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

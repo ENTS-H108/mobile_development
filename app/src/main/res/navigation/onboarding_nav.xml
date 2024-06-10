@@ -277,7 +277,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailAppointment"
-        android:name="com.ents_h108.petwell.view.main.featureAppointment.DetailAppointment"
+        android:name="com.ents_h108.petwell.view.main.featureAppointment.DetailAppointmentFragment"
         android:label="fragment_detail_appointment"
         tools:layout="@layout/fragment_detail_appointment" />
     <fragment
@@ -298,7 +298,11 @@
         android:id="@+id/mapsFragment"
         android:name="com.ents_h108.petwell.view.main.featureAppointment.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps">
+        <action
+            android:id="@+id/action_mapsFragment_to_detailAppointmentFragment"
+            app:destination="@id/detailAppointment" />
+    </fragment>
 
 
 </navigation>
