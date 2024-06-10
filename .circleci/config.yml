@@ -4,7 +4,7 @@ orbs:
   android: circleci/android@2.4.0
 
 secrets:
-  defaultPropertiesFileName: 'local.defaults.properties'
+  defaultPropertiesFileName: 'local.properties'
 
 jobs:
   build:
