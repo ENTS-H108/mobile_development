@@ -1,14 +1,17 @@
-package com.ents_h108.petwell.view.auth
+package com.ents_h108.petwell.utils
 
 import android.content.Context
+import android.graphics.Color
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.MotionEvent
-import androidx.appcompat.widget.AppCompatEditText
+import com.google.android.material.textfield.TextInputEditText
 import com.ents_h108.petwell.R
 
-class PasswordEditText : AppCompatEditText {
+class PasswordCustomView : TextInputEditText {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -18,6 +21,15 @@ class PasswordEditText : AppCompatEditText {
 
     init {
         updateIcon()
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                validatePassword(s.toString())
+            }
+        })
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -55,5 +67,20 @@ class PasswordEditText : AppCompatEditText {
             R.drawable.visibility_off
         }
         setCompoundDrawablesWithIntrinsicBounds(0, 0, drawable, 0)
+    }
+
+    private fun validatePassword(password: String) {
+        when {
+            password.length < 8 -> {
+                error = context.getString(R.string.incorrect_pw_format)
+                setTextColor(Color.RED)
+                setBackgroundResource(R.drawable.rounded_et_error)
+            }
+            else -> {
+                error = null
+                setTextColor(Color.BLACK)
+                setBackgroundResource(R.drawable.rounded_et)
+            }
+        }
     }
 }

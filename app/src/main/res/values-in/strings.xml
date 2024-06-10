@@ -19,6 +19,8 @@
     <string name="dummy_title">1 easy step</string>
     <string name="dummy_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="field_empty">Bagian ini perlu diisi.</string>
+    <string name="incorrect_email_format">Format surel tidak valid.</string>
+    <string name="incorrect_pw_format">Kata sandi harus lebih dari 8 karakter.</string>
     <string name="cpassword_not_match">Pastikan konfirmasi kata sandi telah sesuai.</string>
     <string name="home">Beranda</string>
     <string name="history">Riwayat</string>

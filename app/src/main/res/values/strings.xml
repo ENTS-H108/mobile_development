@@ -19,6 +19,8 @@
     <string name="dummy_title">1 easy step</string>
     <string name="dummy_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="field_empty">This field is required.</string>
+    <string name="incorrect_email_format">Email format is incorrect.</string>
+    <string name="incorrect_pw_format">Password must be at least 8 characters.</string>
     <string name="cpassword_not_match">Please ensure that your confirmation passwords match.</string>
     <string name="home">Home</string>
     <string name="history">History</string>
