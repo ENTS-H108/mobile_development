@@ -9,7 +9,6 @@ plugins {
 android {
     namespace = "com.ents_h108.petwell"
     compileSdk = 34
-
     defaultConfig {
         applicationId = "com.ents_h108.petwell"
         minSdk = 24
@@ -85,6 +84,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ents_h108.petwell.data.dataClassDummy.ConsultationItem
+import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.ItemChatPersonBinding
 
 
 class ConsultationAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<ConsultationItem, ConsultationAdapter.ConsultaionViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Doctor, ConsultationAdapter.ConsultaionViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
-        fun onItemClick(item: ConsultationItem)
-        fun onBtnClick(item: ConsultationItem)
+        fun onItemClick(item: Doctor)
+        fun onBtnClick(item: Doctor)
 
     }
 
@@ -51,12 +51,12 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
 
         }
 
-        fun bind(item: ConsultationItem) {
+        fun bind(item: Doctor) {
             binding.apply {
                 tvDoctorName.text = item.namadokter
                 tvHospitalName.text = item.tempatbekerja
                 doctorType.text = item.spesialis
-                tvExperience.text = item.Pengalaman
+                tvExperience.text = item.pengalaman
                 tvPrice.text = item.harga
 
             }
@@ -64,17 +64,17 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ConsultationItem>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doctor>() {
             override fun areItemsTheSame(
-                oldItem: ConsultationItem,
-                newItem: ConsultationItem
+                oldItem: Doctor,
+                newItem: Doctor
             ): Boolean {
                 return oldItem.namadokter == newItem.namadokter && oldItem.tempatbekerja == newItem.tempatbekerja
             }
 
             override fun areContentsTheSame(
-                oldItem: ConsultationItem,
-                newItem: ConsultationItem
+                oldItem: Doctor,
+                newItem: Doctor
             ): Boolean {
                 return oldItem == newItem
             }

@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ents_h108.petwell.data.dataClassDummy.AppointmentItem
+import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.ItemAppointmentBinding
 
 
 class AppointmentAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<AppointmentItem, AppointmentAdapter.AppointmentViewHolder>(DIFF_CALLBACK) {
+    ListAdapter<Doctor, AppointmentAdapter.AppointmentViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
-        fun onItemClick(item: AppointmentItem)
-        fun onBtnClick(item: AppointmentItem)
+        fun onItemClick(item: Doctor)
+        fun onBtnClick(item: Doctor)
 
     }
 
@@ -35,45 +35,45 @@ class AppointmentAdapter(private val listener: OnItemClickListener) :
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val appointmentItem = getItem(position)
-                    listener.onItemClick(appointmentItem)
+                    val Doctor = getItem(position)
+                    listener.onItemClick(Doctor)
                 }
             }
 
             binding.btnAppointment.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val appointmentItem = getItem(position)
-                    listener.onBtnClick(appointmentItem)
+                    val Doctor = getItem(position)
+                    listener.onBtnClick(Doctor)
                 }
             }
 
 
         }
 
-        fun bind(item: AppointmentItem) {
+        fun bind(item: Doctor) {
             binding.apply {
                 tvDoctorName.text = item.namadokter
                 tvHospitalName.text = item.tempatbekerja
                 doctorType.text = item.spesialis
-                tvLocation.text = item.lokasi
+                tvLocation.text = item.pengalaman
                 tvPrice.text = item.harga
             }
         }
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AppointmentItem>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doctor>() {
             override fun areItemsTheSame(
-                oldItem: AppointmentItem,
-                newItem: AppointmentItem
+                oldItem: Doctor,
+                newItem: Doctor
             ): Boolean {
                 return oldItem.namadokter == newItem.namadokter && oldItem.tempatbekerja == newItem.tempatbekerja
             }
 
             override fun areContentsTheSame(
-                oldItem: AppointmentItem,
-                newItem: AppointmentItem
+                oldItem: Doctor,
+                newItem: Doctor
             ): Boolean {
                 return oldItem == newItem
             }
