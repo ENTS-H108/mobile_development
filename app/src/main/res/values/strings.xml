@@ -16,6 +16,12 @@
     <string name="cpassword">Confirm Password</string>
     <string name="register_title">Sign up</string>
     <string name="have_account">Have an account? <font color="#278187">Sign in</font></string>
+    <string name="title_ob1">Rapid Diagnosis: Know Pet Issues!</string>
+    <string name="subtitle_ob1">Just snap your pet! Get quick, easy, accurate diagnosis with pet disease detection.</string>
+    <string name="title_ob2">Easy Consults, Trusted Doctors!</string>
+    <string name="subtitle_ob2">Get medical advice from experts without leaving home, ensuring pets receive fast and accurate care.</string>
+    <string name="title_ob3">Meet the Doctor? Schedule Now!</string>
+    <string name="subtitle_ob3">Find the nearest veterinarian based on your location, facilitating access to the necessary animal healthcare.</string>
     <string name="dummy_title">1 easy step</string>
     <string name="dummy_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="field_empty">This field is required.</string>
