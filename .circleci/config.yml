@@ -19,7 +19,9 @@ jobs:
           command: sudo chmod +x ./gradlew
       - run:
           name: Create Local Properties
-          command: echo "sdk.dir=$ANDROID_HOME" > local.properties
+          command: |
+            echo "sdk.dir=$ANDROID_HOME" > local.properties
+            echo "MAPS_API_KEY=$MAPS_API_KEY" > local.defaults.properties
       - run:
           name: Accept Android SDK Licenses
           command: (yes || true) | sdkmanager --licenses
