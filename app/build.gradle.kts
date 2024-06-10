@@ -100,4 +100,7 @@ dependencies {
 
     // FAB
     implementation (libs.androidx.legacy.support.v4)
+
+    // Gemini
+    implementation("com.google.ai.client.generativeai:generativeai:0.6.0")
 }

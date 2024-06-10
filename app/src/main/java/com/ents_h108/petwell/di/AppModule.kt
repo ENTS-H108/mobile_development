@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.ents_h108.petwell.BuildConfig
+import com.ents_h108.petwell.data.model.chatbot.ChatViewModel
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.data.repository.AuthRepository
 import com.ents_h108.petwell.data.repository.MainRepository
@@ -69,6 +70,7 @@ val credentialManagerModule = module {
 val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { AuthViewModel(get(), get()) }
+    viewModel { ChatViewModel() }
 }
 
 val appModule = listOf(networkModule, repositoryModule, viewModelModule, credentialManagerModule)
