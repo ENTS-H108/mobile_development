@@ -16,9 +16,17 @@
     <string name="cpassword">Konfirmasi Kata Sandi</string>
     <string name="register_title">Daftar Akun</string>
     <string name="have_account">Sudah memiliki akun? <font color="#278187">Masuk sekarang</font></string>
+    <string name="title_ob1">Gerak Cepat, Kenali Penyakit Hewanmu!</string>
+    <string name="subtitle_ob1">Cukup foto hewan peliharaan anda! Dapatkan diagnosa awal cepat, mudah, dan akurat dengan fitur deteksi penyakit.</string>
+    <string name="title_ob2">Konsultasi Mudah, Dokter Terpercaya!</string>
+    <string name="subtitle_ob2">Dapatkan saran medis dari para ahli tanpa harus meninggalkan rumah, memastikan hewan peliharaan mendapatkan perawatan yang cepat dan tepat.</string>
+    <string name="title_ob3">Perlu Bertemu Dokter? Atur Waktunya!</string>
+    <string name="subtitle_ob3">Temukan dokter hewan terdekat berdasarkan lokasimu, memudahkan akses ke perawatan kesehatan yang diperlukan.</string>
     <string name="dummy_title">1 easy step</string>
     <string name="dummy_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae magna enim.</string>
     <string name="field_empty">Bagian ini perlu diisi.</string>
+    <string name="incorrect_email_format">Format surel tidak valid.</string>
+    <string name="incorrect_pw_format">Kata sandi harus lebih dari 8 karakter.</string>
     <string name="cpassword_not_match">Pastikan konfirmasi kata sandi telah sesuai.</string>
     <string name="home">Beranda</string>
     <string name="history">Riwayat</string>

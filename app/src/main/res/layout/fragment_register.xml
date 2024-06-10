@@ -71,7 +71,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_username" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.ents_h108.petwell.utils.EmailCustomView
         android:id="@+id/et_email"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_email" />
 
-    <com.ents_h108.petwell.view.auth.PasswordEditText
+    <com.ents_h108.petwell.utils.PasswordCustomView
         android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -127,7 +127,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_password" />
 
-    <com.ents_h108.petwell.view.auth.PasswordEditText
+    <com.ents_h108.petwell.utils.PasswordCustomView
         android:id="@+id/et_cpassword"
         android:layout_width="0dp"
         android:layout_height="40dp"
