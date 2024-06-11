@@ -107,8 +107,8 @@
     <string name="cat">Kucing</string>
     <string name="dog">Anjing</string>
     <string name="bayar_n_konfirmasi"><![CDATA[Bayar & \n Konfirmasi]]></string>
-
-
-
+    <string name="location_format">%s %s</string>
+    <string name="city_not_found">Lokasi Tidak Ditemukan</string>
+    <string name="permission_denied">Akses Ditolak</string>
 
 </resources>
