@@ -20,7 +20,7 @@ class AuthRepository(private val apiService: ApiService) {
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-            emit(Result.Error(errorBody.error))
+            emit(Result.Error(errorBody.message))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }

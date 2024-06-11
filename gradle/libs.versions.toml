@@ -26,7 +26,7 @@ datastorePreferences = "1.1.1"
 lifecycleLivedataKtx = "2.8.1"
 googleid = "1.1.0"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
-playServicesMaps = "18.1.0"
+playServicesMaps = "18.2.0"
 playServicesLocation = "21.3.0"
 
 [libraries]

@@ -71,9 +71,12 @@ class LoginFragment : Fragment() {
                 is Result.Success -> {
                     binding.loading.visibility = View.GONE
                     showToast(requireContext(), result.data.message)
-                    authViewModel.saveLoginStatus(result.data.token, "nama", "email")
-                    findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
+                    result.data.user.let {
+                        authViewModel.saveLoginStatus(it.token, it.username, it.email)
+                        findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
+                    }
                 }
+
                 is Result.Error -> {
                     binding.loading.visibility = View.GONE
                     showToast(requireContext(), result.error)
@@ -96,6 +99,7 @@ class LoginFragment : Fragment() {
                         binding.loading.visibility = View.GONE
                         showToast(requireContext(), result.data.message)
                     }
+
                     is Result.Error -> {
                         binding.loading.visibility = View.GONE
                         showToast(requireContext(), getString(R.string.email_not_found))
@@ -105,3 +109,4 @@ class LoginFragment : Fragment() {
         }
     }
 }
+
