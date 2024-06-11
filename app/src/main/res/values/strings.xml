@@ -113,5 +113,10 @@
         <item>anjing</item>
         <item>kucing</item>
     </string-array>
+    <string name="location_format">%s %s</string>
+    <string name="city_not_found">Unknown City</string>
+    <string name="permission_denied">Permission Denied</string>
+    <string name="maps" translatable="false">AIzaSyBXN3C5I34UTl8P-dA_2jkFZAMlAES6tS8</string>
+
 
 </resources>
