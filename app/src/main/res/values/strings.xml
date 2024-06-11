@@ -103,7 +103,7 @@
     <string name="next">Next</string>
     <string name="maintenance">Sorry \n Under maintenance</string>
     <string name="maintenanceDesc">Sorry, the page is currently under maintenance, please go back to home</string>
-    <string name="back_to_home">back to home</string>
+    <string name="back_to_home">Back to Home</string>
     <string name="animalChoice">Choose your pet that you want to analyze</string>
     <string name="cat">Cat</string>
     <string name="dog">Dog</string>
