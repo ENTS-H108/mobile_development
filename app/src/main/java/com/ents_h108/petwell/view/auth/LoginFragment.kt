@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
                     binding.loading.visibility = View.GONE
                     showToast(requireContext(), result.data.message)
                     result.data.user.let {
-                        authViewModel.saveLoginStatus(it.token, it.username, it.email)
+                        authViewModel.saveLoginStatus(it.token)
                         findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                 }

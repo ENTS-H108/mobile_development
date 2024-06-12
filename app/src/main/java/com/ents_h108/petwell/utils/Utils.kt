@@ -1,11 +1,16 @@
 package com.ents_h108.petwell.utils
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ents_h108.petwell.R
+import com.google.android.gms.location.FusedLocationProviderClient
 import java.security.MessageDigest
 import java.util.Locale
 import java.util.UUID
@@ -28,6 +33,7 @@ object Utils {
     fun resetError(editText: AppCompatEditText, context: Context) {
         editText.background = ContextCompat.getDrawable(context, R.drawable.rounded_et)
     }
+
     fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
@@ -60,4 +66,38 @@ object Utils {
             callback(null, null, null)
         }
     }
+
+    fun setupLocation(
+        context: Context,
+        fusedLocationProviderClient: FusedLocationProviderClient,
+        callback: (String) -> Unit
+    ) {
+        if (ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
+                location?.let {
+                    getAddressFromLocation(context, it.latitude, it.longitude) { city, _, _ ->
+                        callback(city ?: "Unknown City")
+                    }
+                }
+            }.addOnFailureListener {
+                callback(context.getString(R.string.city_not_found))
+            }
+        } else {
+            requestLocationPermission(context as Activity)
+        }
+    }
+
+    fun requestLocationPermission(activity: Activity) {
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            LOCATION_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    private const val LOCATION_PERMISSION_REQUEST_CODE = 100
 }

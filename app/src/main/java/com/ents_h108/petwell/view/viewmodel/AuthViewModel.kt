@@ -1,8 +1,6 @@
 package com.ents_h108.petwell.view.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.ents_h108.petwell.data.repository.AuthRepository
 import com.ents_h108.petwell.data.repository.UserPreferences
@@ -19,14 +17,6 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
     fun requestToken(email: String) =
         authRepository.requestToken(email)
 
-
-    fun getLoginStatus(): LiveData<Boolean?> {
-        return pref.getLoginStatus().asLiveData()
-    }
-    fun getToken(): LiveData<String?> {
-        return pref.getToken().asLiveData()
-    }
-
     fun resetPassword(newPassword: String, token: String) =
         authRepository.resetPassword(newPassword, token)
 
@@ -36,13 +26,9 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
         }
     }
 
-    fun getUsername(): LiveData<String?> {
-        return pref.getUsername().asLiveData()
-    }
-
-    fun saveLoginStatus(token: String, username: String, email: String) {
+    fun saveLoginStatus(token: String) {
         viewModelScope.launch {
-            pref.saveToken(token, username, email)
+            pref.saveToken(token)
         }
     }
 }

@@ -6,8 +6,6 @@ import com.ents_h108.petwell.data.model.*
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
 import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class AuthRepository(private val apiService: ApiService) {

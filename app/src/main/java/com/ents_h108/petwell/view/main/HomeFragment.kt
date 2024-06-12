@@ -8,12 +8,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.Utils.setupLocation
+import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -22,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var promoAdapter: PromoAdapter
     private lateinit var articleAdapter: ArticleAdapter
     private val viewModel: MainViewModel by viewModel()
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +39,31 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        setupUI()
         setupAdapters()
         setupRecyclerViews()
         observeArticleData()
         setupNavigation()
+    }
+
+    private fun setupUI() {
+        setupLocation(requireContext(), fusedLocationProviderClient) { city ->
+            binding.locationTitle.text = city
+        }
+        viewModel.fetchUserProfile().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    binding.profileUserName.text = result.data.username
+                    binding.profileImage.load(result.data.username)
+                }
+                is Result.Error -> {
+                    showToast(requireContext(), "Error Authentication")
+                }
+                is Result.Loading -> {
+                }
+            }
+        }
     }
 
     private fun setupAdapters() {
@@ -69,21 +96,17 @@ class HomeFragment : Fragment() {
                     binding.promoLoading.visibility = View.VISIBLE
                     binding.rvPromo.visibility = View.GONE
                 }
-
                 is Result.Success -> {
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.VISIBLE
                     promoAdapter.submitList(result.data)
                 }
-
                 is Result.Error -> {
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
-
                 else -> {
-                    // Handle any unexpected cases or simply log them
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.GONE
                     Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
@@ -97,21 +120,17 @@ class HomeFragment : Fragment() {
                     binding.articleLoading.visibility = View.VISIBLE
                     binding.rvArticle.visibility = View.GONE
                 }
-
                 is Result.Success -> {
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
                     articleAdapter.submitList(result.data)
                 }
-
                 is Result.Error -> {
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
-
                 else -> {
-                    // Handle any unexpected cases or simply log them
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
                     Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
@@ -119,7 +138,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 
     private fun setupNavigation() {
         binding.apply {

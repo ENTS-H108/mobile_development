@@ -98,9 +98,7 @@ class OnboardingFragment : Fragment() {
                 val credential = result.credential
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
                 authViewModel.saveLoginStatus(
-                    googleIdTokenCredential.idToken,
-                    googleIdTokenCredential.displayName.toString(),
-                    googleIdTokenCredential.id
+                    googleIdTokenCredential.idToken
                 )
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
             } catch (e: GetCredentialException) {
