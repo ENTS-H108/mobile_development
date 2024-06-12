@@ -1,34 +1,26 @@
 package com.ents_h108.petwell.view.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Pet
-import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
 import com.ents_h108.petwell.utils.Result
-import com.ents_h108.petwell.utils.Utils
+import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.adapter.PetAdapter
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class ProfileFragment : Fragment() {
 
@@ -47,29 +39,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupUi()
         setupPetRecyclerView()
         setFragmentNavigation()
-    }
-
-    private fun setupUi() {
-        binding.apply {
-            lifecycleScope.launch(Dispatchers.Main) {
-                tvTitle.text = UserPreferences.getInstance(requireActivity().dataStore).getUsername().first()
-                tvDeskripsi.text = UserPreferences.getInstance(requireActivity().dataStore).getEmail().first()
-            }
-
-            btnSetting.setOnClickListener {
-                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            }
-
-            tvLogOut.setOnClickListener {
-                lifecycleScope.launch {
-                    authViewModel.logout()
-                    findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
-                }
-            }
-        }
     }
 
     private fun setupPetRecyclerView() {
@@ -105,7 +76,7 @@ class ProfileFragment : Fragment() {
                 is Result.Error -> {
                     binding.petItemLoading.visibility = View.GONE
                     setConstraintsForLoading(false)
-                    context?.let { Utils.showToast(it, result.error) }
+                    context?.let { showToast(it, result.error) }
                 }
             }
         }
@@ -113,6 +84,29 @@ class ProfileFragment : Fragment() {
 
     private fun setFragmentNavigation() {
         binding.apply {
+            mainViewModel.fetchUserProfile().observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Success -> {
+                        binding.tvDeskripsi.text = result.data.email
+                        binding.tvTitle.text = result.data.username
+                    }
+                    is Result.Error -> {
+                        showToast(requireContext(), "Error Authentication")
+                    }
+                    is Result.Loading -> {
+                        // Handle loading state if needed
+                    }
+                }
+            }
+            btnSetting.setOnClickListener {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
+            tvLogOut.setOnClickListener {
+                lifecycleScope.launch {
+                    authViewModel.logout()
+                    findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
+                }
+            }
             btnHelp.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHelpFragment())
             }

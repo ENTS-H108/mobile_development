@@ -8,6 +8,8 @@ import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
+import com.ents_h108.petwell.data.model.User
+import com.ents_h108.petwell.data.model.UserResponse
 import com.ents_h108.petwell.data.model.editPet
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -52,4 +54,13 @@ interface ApiService {
         @Path("id") id: String,
         @Header("Authorization") token: String
     ): PetResponse
+    @PUT("profile")
+    suspend fun updateProfileUser(
+        @Header("Authorization") token: String,
+        @Body body: Map<String, String>
+    ): UserResponse
+    @GET("profile")
+    suspend fun getProfileUser(
+        @Header("Authorization") token: String
+    ): User
 }
