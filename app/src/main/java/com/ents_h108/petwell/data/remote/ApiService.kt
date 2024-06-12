@@ -32,6 +32,8 @@ interface ApiService {
     @GET("/articles")
     suspend fun getArticles(
         @Query("type") type: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
         @Header("Authorization") token: String
     ): ArticleResponse
     @GET("/pets")

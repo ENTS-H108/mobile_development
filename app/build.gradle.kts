@@ -104,4 +104,7 @@ dependencies {
 
     // Gemini
     implementation(libs.generativeai)
+
+    // Paging 3
+    implementation(libs.androidx.paging.runtime.ktx)
 }

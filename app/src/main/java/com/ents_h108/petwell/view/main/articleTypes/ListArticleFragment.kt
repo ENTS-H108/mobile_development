@@ -45,18 +45,21 @@ class ListArticleFragment : Fragment() {
     }
 
     private fun observeArticles() {
-        viewModel.getArticles().observe(viewLifecycleOwner) { result ->
+        viewModel.getContent("artikel").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> binding.historyLoading.visibility = View.VISIBLE
+                is Result.Loading -> {
+                    binding.historyLoading.visibility = View.VISIBLE
+                    binding.rvArticle.visibility = View.GONE
+                }
                 is Result.Success -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
-                    articleAdapter.submitList(result.data)
+                    articleAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
-                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeArticleData() {
-        viewModel.getPromo().observe(viewLifecycleOwner) { result ->
+        viewModel.getContent("promo").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.promoLoading.visibility = View.VISIBLE
@@ -99,22 +99,16 @@ class HomeFragment : Fragment() {
                 is Result.Success -> {
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.VISIBLE
-                    promoAdapter.submitList(result.data)
+                    promoAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
                     binding.promoLoading.visibility = View.GONE
                     binding.rvPromo.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
-                else -> {
-                    binding.promoLoading.visibility = View.GONE
-                    binding.rvPromo.visibility = View.GONE
-                    Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
-                }
             }
         }
-
-        viewModel.getArticles().observe(viewLifecycleOwner) { result ->
+        viewModel.getContent("artikel").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.articleLoading.visibility = View.VISIBLE
@@ -123,17 +117,12 @@ class HomeFragment : Fragment() {
                 is Result.Success -> {
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
-                    articleAdapter.submitList(result.data)
+                    articleAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
                     binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
-                }
-                else -> {
-                    binding.articleLoading.visibility = View.GONE
-                    binding.rvArticle.visibility = View.GONE
-                    Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
                 }
             }
         }

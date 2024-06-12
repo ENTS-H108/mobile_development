@@ -2,6 +2,7 @@ package com.ents_h108.petwell.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.ItemPromoBinding
 
 class PromoAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Article, PromoAdapter.PromoViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<Article, PromoAdapter.PromoViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(item: Article)
@@ -22,7 +23,7 @@ class PromoAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: PromoViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class PromoViewHolder(private val binding: ItemPromoBinding) :
@@ -33,7 +34,9 @@ class PromoAdapter(private val listener: OnItemClickListener) :
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val promoItem = getItem(position)
-                    listener.onItemClick(promoItem)
+                    if (promoItem != null) {
+                        listener.onItemClick(promoItem)
+                    }
                 }
             }
         }
