@@ -47,8 +47,6 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
                     listener.onBtnClick(appointmentItem)
                 }
             }
-
-
         }
 
         fun bind(item: Doctor) {
@@ -58,6 +56,7 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
                 doctorType.text = item.spesialis
                 tvExperience.text = item.pengalaman
                 tvPrice.text = item.harga
+                imgDoctor.setImageResource(item.image)
 
             }
         }

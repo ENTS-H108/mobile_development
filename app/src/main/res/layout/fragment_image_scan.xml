@@ -68,14 +68,14 @@
     </LinearLayout>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_Next"
         style="@style/H4Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/btn_primary_states"
+        android:background="@drawable/btn_yellow_states"
         android:text="@string/next"
         android:textColor="@android:color/white" />
 

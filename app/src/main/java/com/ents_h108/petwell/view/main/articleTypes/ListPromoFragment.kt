@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentListPromoBinding
@@ -35,7 +35,7 @@ class ListPromoFragment : Fragment() {
     private fun setupRecyclerView() {
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                // Handle item click
+                findNavController().navigate(ListPromoFragmentDirections.actionListPromoFragmentToDetailPromoArticleFragment2())
             }
         })
         binding.rvListPromo.apply {

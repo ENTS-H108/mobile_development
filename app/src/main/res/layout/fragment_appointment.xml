@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         app:iconSize="14dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/primary_blue_light"
+        android:backgroundTint="@color/orange"
         android:text="Location"
         app:shapeAppearance="@style/CustomShapeAppearance"
         android:textColor="@android:color/white"

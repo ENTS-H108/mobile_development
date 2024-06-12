@@ -35,7 +35,7 @@ class MapsFragment : Fragment() {
             val location = LatLng(doctor.lat, doctor.lon)
             googleMap.addMarker(MarkerOptions().position(location).title(doctor.namadokter))
             googleMap.setOnMarkerClickListener {
-                findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDetailAppointmentFragment())
+                findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDokterProfileAppointmentFragment())
                 true
             }
         }

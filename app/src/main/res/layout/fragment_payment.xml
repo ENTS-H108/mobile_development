@@ -8,44 +8,51 @@
     tools:context=".view.main.featureConsultation.PaymentFragment">
 
     <!-- Consultation for Pet Layout -->
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/consultation_for_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
+        android:elevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_consultation_for"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Konsultasi untuk"
-            android:textSize="16sp" />
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="8dp">
 
-        <TextView
-            android:id="@+id/text_pet_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pet Name"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/text_consultation_for"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Konsultasi untuk"
+                android:textSize="12sp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_pet_name"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="blacky" />
 
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <!-- NestedScrollView for Payment Summary -->
 
     <!-- Fixed Bottom Button -->
 
     <!-- Bottom Section -->
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/secondWhite"
-        android:paddingHorizontal="20dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@id/bottom_section"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,6 +63,7 @@
         <!-- Payment Summary Layout -->
         <LinearLayout
             android:id="@+id/payment_summary_layout"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -64,7 +72,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
                 android:layout_marginTop="16dp"
+                android:paddingBottom="8dp"
+                android:background="@color/white"
                 android:orientation="horizontal">
 
                 <!-- Doctor Image -->
@@ -73,7 +84,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/img_promo1" />
+                    android:src="@drawable/doctor_6" />
 
                 <!-- Doctor Name and Specialization -->
                 <LinearLayout
@@ -86,7 +97,7 @@
                         android:id="@+id/text_doctor_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dr. John Doe"
+                        android:text="Drh. Andi Wijaya"
                         android:textSize="18sp" />
 
                     <TextView
@@ -95,25 +106,75 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Veterinarian"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Service Cost -->
+            <View
+                android:id="@+id/bottomSpace"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/secondWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvListPersonChat" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/text_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Biaya layanan"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/text_service_cost"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="Rp 45.000"
+                    android:textColor="@color/yellow"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/secondWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvListPersonChat" />
+            <!-- Payment Method -->
             <TextView
-                android:id="@+id/text_service_cost"
+                android:id="@+id/paymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
-                android:text="Biaya layanan: Rp 100000"
+                android:fontFamily="@font/semibold"
+                android:text="Payment Method"
+                android:textColor="@color/black"
+
                 android:textSize="16sp" />
 
-            <!-- Payment Method -->
             <RadioGroup
                 android:id="@+id/payment_method_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+
+                android:layout_marginStart="20dp"
                 android:orientation="vertical">
 
                 <RadioButton
@@ -127,6 +188,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DANA" />
+
+                <RadioButton
+                    android:id="@+id/radio_link_aja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Link Aja" />
             </RadioGroup>
 
             <!-- Total Payment -->
@@ -142,6 +209,7 @@
         android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:background="@color/white"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,27 +229,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
-                android:text="Total Pembayaran"
-                android:textSize="18sp" />
+                android:text="Payment Total"
+                android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/text_total_payment_amount"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_payment_total"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:fontFamily="@font/bold"
-                android:text="Rp 100000"
-                android:textSize="16sp" />
+                android:fontFamily="@font/semibold"
+                android:text="Rp 45.000"
+                android:textColor="@color/primary_blue"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <!-- Payment Button -->
         <Button
-            android:layout_marginEnd="20dp"
             android:id="@+id/button_pay_confirm"
-            android:layout_marginBottom="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/regular"
             android:text="@string/bayar_n_konfirmasi" />
     </LinearLayout>

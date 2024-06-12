@@ -53,6 +53,7 @@ class AppointmentAdapter(private val listener: OnItemClickListener) :
                     tvLocation.text = root.context.getString(R.string.location_format, street ?: "", number ?: "")
                 }
                 tvPrice.text = item.harga
+                imgDoctor.setImageResource(item.image)
             }
         }
     }
