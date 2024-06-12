@@ -28,7 +28,6 @@ class MainRepository(
     private val pref: UserPreferences,
     private val apiService: ApiService
 ) {
-
     fun getArticles(type: String, coroutine: CoroutineScope): LiveData<Result<PagingData<Article>>> = liveData {
         emit(Result.Loading)
         try {
@@ -78,6 +77,21 @@ class MainRepository(
         try {
             val token = pref.getToken().first()
             val response = apiService.editPet(id, "Bearer $token", editPet(name, species))
+            emit(Result.Success(response.pets))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, PetResponse::class.java)
+            emit(Result.Error(errorBody.error.toString()))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getPet(id: String): LiveData<Result<Pet>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = pref.getToken().first()
+            val response = apiService.getPet(id, "Bearer $token")
             emit(Result.Success(response.pets))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()

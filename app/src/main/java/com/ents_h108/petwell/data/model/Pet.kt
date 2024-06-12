@@ -13,6 +13,13 @@ data class PetResponse(
 )
 
 @Keep
+data class SinglePetResponse(
+    val pets: Pet,
+    val error: Boolean,
+    val message: String
+)
+
+@Keep
 @Parcelize
 data class Pet(
     @SerializedName("_id") val id: String,
@@ -20,6 +27,8 @@ data class Pet(
     val species: String,
     val age: Int,
     val owner: String,
+    val thumbnail: String?,
+    val history: List<String> // Adjust type if needed
 ) : Parcelable
 
 data class editPet(

@@ -46,6 +46,7 @@ class ProfileFragment : Fragment() {
     private fun setupPetRecyclerView() {
         petAdapter = PetAdapter(object : PetAdapter.OnItemClickListener {
             override fun onItemClick(item: Pet) {
+                mainViewModel.setPetActive(item.id)
             }
 
             override fun onEditProfileClick(item: Pet) {

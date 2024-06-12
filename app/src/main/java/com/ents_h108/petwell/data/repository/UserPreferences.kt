@@ -12,6 +12,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     private val TOKEN_KEY = stringPreferencesKey("token")
     private val STATE_KEY = booleanPreferencesKey("state")
+    private val pet_active = stringPreferencesKey("pet")
 
     suspend fun logout() {
         dataStore.edit { preferences ->
@@ -27,6 +28,12 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    suspend fun setPetActive(id: String) {
+        dataStore.edit { preferences ->
+            preferences[pet_active] = id
+        }
+    }
+
     fun getToken(): Flow<String?> {
         return dataStore.data.map { preferences ->
             preferences[TOKEN_KEY]
@@ -36,6 +43,12 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getLoginStatus(): Flow<Boolean?> {
         return dataStore.data.map { preferences ->
             preferences[STATE_KEY]
+        }
+    }
+
+    fun getPetActive(): Flow<String?> {
+        return dataStore.data.map { preferences ->
+            preferences[pet_active]
         }
     }
 

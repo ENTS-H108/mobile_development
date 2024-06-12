@@ -1,15 +1,21 @@
 package com.ents_h108.petwell.view.main
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.ents_h108.petwell.data.model.Article
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentHomeBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.setupLocation
@@ -19,7 +25,13 @@ import com.ents_h108.petwell.view.adapter.PromoAdapter
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class HomeFragment : Fragment() {
 
@@ -28,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var articleAdapter: ArticleAdapter
     private val viewModel: MainViewModel by viewModel()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +74,24 @@ class HomeFragment : Fragment() {
                     showToast(requireContext(), "Error Authentication")
                 }
                 is Result.Loading -> {
+                }
+            }
+        }
+        coroutineScope.launch {
+            val petActive = UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+            if (petActive != null) {
+                viewModel.getPet(petActive).observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Loading -> {}
+                        is Result.Success -> {
+                            Log.d("HomeFragment", "Pet Name: ${result.data}")
+                            binding.petName.text = result.data.name
+                            binding.petRace.text = result.data.species
+                        }
+                        is Result.Error -> {
+                            Log.d("HomeFragment", "Pet Name: ${result.error}")
+                        }
+                    }
                 }
             }
         }
