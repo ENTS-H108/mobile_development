@@ -58,9 +58,9 @@
                                 android:id="@+id/iv_profile"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/img_promo1"
+                                android:background="@drawable/bg_score_green"
                                 android:backgroundTint="@color/black"
-                                android:src="@drawable/img_promo2" />
+                                android:src="@drawable/doctor_2" />
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cv_active"
@@ -95,9 +95,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/semibold"
-                                android:text="Setiyo Purwanto, S.Psi.,M.Si."
+                                android:text="Drh. Ahmad Santoso"
                                 android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                android:textSize="14sp" />
 
 
                             <LinearLayout
@@ -119,9 +119,9 @@
                                     android:layout_marginStart="4dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/medium"
-                                    android:text="Family Psychologist"
+                                    android:text="Veterinarian"
                                     android:textColor="@color/black"
-                                    android:textSize="10sp" />
+                                    android:textSize="12sp" />
 
 
                             </LinearLayout>
@@ -138,11 +138,11 @@
                         android:fontFamily="@font/bold"
                         android:text="Location"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:gravity="top">
 
 
@@ -165,7 +165,7 @@
                                 android:fontFamily="@font/medium"
                                 android:text="Jl.Soreang Banjaran, Soreang, Kab.Bandung, Jawa Barat 40911"
                                 android:textColor="@color/black"
-                                android:textSize="10sp" />
+                                android:textSize="12sp" />
 
 
 
@@ -175,12 +175,7 @@
                         </LinearLayout>
 
 
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/img_onboarding" />
+
 
 
                     </LinearLayout>
@@ -191,7 +186,7 @@
                         android:fontFamily="@font/bold"
                         android:text="Schedule"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="vertical"
@@ -204,7 +199,7 @@
                             android:fontFamily="@font/medium"
                             android:text="Rabu, 23 juni 2023"
                             android:textColor="@color/black"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
                         <TextView
                             android:id="@+id/time"
                             android:layout_width="match_parent"
@@ -212,16 +207,16 @@
                             android:fontFamily="@font/medium"
                             android:text="Time 09:00 - 11:00"
                             android:textColor="@color/black"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                     <TextView
-                        android:id="@+id/price"
+                        android:id="@+id/tv_price"
+                        android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
                         android:fontFamily="@font/medium"
-                        tools:text="Consultation fee: Rp250.00,00"
-                        android:textColor="#FF7A00"
+                        android:text="Consultation fee: Rp 250.000"
+                        android:textColor="@color/yellow"
                         android:textSize="14sp" />
 
 
@@ -262,7 +257,7 @@
                         android:fontFamily="@font/bold"
                         android:text="Information regarding this appointment will be sent to the cell phone number and email below :"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -271,7 +266,7 @@
                         android:fontFamily="@font/medium"
                         android:text="Your Mobile Number"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_phone_number"
@@ -281,7 +276,7 @@
                         android:fontFamily="@font/medium"
                         android:text="083824369420"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -290,7 +285,7 @@
                         android:fontFamily="@font/medium"
                         android:text="Your email"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_email"
@@ -300,7 +295,7 @@
                         android:fontFamily="@font/medium"
                         android:text="pastimapan@gmail.com"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -309,7 +304,7 @@
                         android:fontFamily="@font/medium"
                         android:text="Your Full Name"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tv_orderer_name"
@@ -319,13 +314,13 @@
                         android:fontFamily="@font/medium"
                         android:text="John Doe"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/btn_make_appointment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/medium"
+                        android:fontFamily="@font/semibold"
                         android:layout_marginBottom="5dp"
                         android:paddingVertical="10dp"
                         android:background="@drawable/btn_primary_states"

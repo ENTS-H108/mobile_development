@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    app:cardCornerRadius="8dp"
     android:layout_margin="12dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
     <RelativeLayout
@@ -16,12 +16,12 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgDoctor"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +63,7 @@
             android:fontFamily="@font/regular"
             android:text="@string/pet_race"
             android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/ic_hospital"
@@ -82,12 +82,14 @@
             android:layout_below="@+id/doctorType"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:layout_toEndOf="@+id/ic_hospital"
             android:ellipsize="end"
             android:fontFamily="@font/regular"
+            android:lines="1"
             android:text="@string/pet_race"
             android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/icLocation"
@@ -108,10 +110,12 @@
             android:layout_marginTop="4dp"
             android:layout_toEndOf="@+id/ic_doctor"
             android:ellipsize="end"
+            android:lines="1"
+            android:paddingEnd="8dp"
             android:fontFamily="@font/regular"
             android:text="@string/pet_race"
             android:textColor="@color/grey"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,14 +161,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="@string/appointment"
-                android:textSize="12sp"
+                android:backgroundTint="@color/primary_blue_light"
                 android:fontFamily="@font/bold"
+                android:text="@string/appointment"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/primary_blue_dark"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

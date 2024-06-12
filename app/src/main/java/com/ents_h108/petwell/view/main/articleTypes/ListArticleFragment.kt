@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentListArticleBinding
@@ -34,6 +35,7 @@ class ListArticleFragment : Fragment() {
         articleAdapter = ArticleWideAdapter(object : ArticleWideAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
                 // Handle item click
+                findNavController().navigate(ListArticleFragmentDirections.actionListArticleFragmentToDetailPromoArticleFragment2())
             }
         })
         binding.rvArticle.apply {

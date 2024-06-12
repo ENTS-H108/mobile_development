@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd, _ ->
             binding.apply {
                 when (nd.id) {
-                    R.id.registerFragment, R.id.loginFragment, R.id.mapsFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment, R.id.chatFragment -> {
+                    R.id.registerFragment, R.id.loginFragment, R.id.mapsFragment, R.id.onboardingFragment, R.id.forgotPasswordFragment, R.id.editProfileFragment, R.id.editPetFragment, R.id.chatFragment , R.id.statusFragment-> {
                         topAppBar.visibility = View.GONE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.GONE
@@ -65,6 +65,15 @@ class MainActivity : AppCompatActivity() {
                             else -> getString(R.string.app_name)
                         }
                     }
+
+                    // Detail Article
+                    R.id.listPromoFragment,R.id.listArticleFragment -> {
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.GONE
+                        locationDetail.visibility = View.GONE
+                        topAppBar.title = "Detail Aricle "
+                    }
                     // Fitur Scan
                     R.id.chosePetFragment, R.id.imageScanFragment, R.id.instructionScanFragment, R.id.resultScanFragment, R.id.tabularFragment -> {
                         topAppBar.visibility = View.VISIBLE
@@ -74,13 +83,28 @@ class MainActivity : AppCompatActivity() {
                         topAppBar.title = "Fitur Scan"
                     }
                     // Fitur Appointment
-                    R.id.appointmentFragment, R.id.detailAppointment -> {
+                    R.id.appointmentFragment -> {
                         topAppBar.visibility = View.VISIBLE
                         bottomNavigation.visibility = View.GONE
                         userDetail.visibility = View.VISIBLE
                         locationDetail.visibility = View.VISIBLE
                         topAppBar.title = null
                     }
+                    // Fitur Appointment without user detail n location
+                    R.id.dokterProfileAppointmentFragment, R.id.invoiceAppointmentFragment,  ->{
+                        topAppBar.visibility = View.VISIBLE
+                        bottomNavigation.visibility = View.GONE
+                        userDetail.visibility = View.GONE
+                        locationDetail.visibility = View.GONE
+                        topAppBar.title = when (nd.id) {
+                            R.id.dokterProfileAppointmentFragment -> "Doctor Profile"
+                            R.id.invoiceAppointmentFragment -> "Invoice"
+                            R.id.invoiceAppointmentFragment -> ""
+                            else -> getString(R.string.app_name)
+                        }
+                    }
+
+
                     // Fitur Chat
                     R.id.consultationFragment, R.id.paymentFragment -> {
                         topAppBar.visibility = View.VISIBLE

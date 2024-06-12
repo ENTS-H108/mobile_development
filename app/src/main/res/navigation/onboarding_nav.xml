@@ -179,14 +179,11 @@
         android:label="fragment_appointment"
         tools:layout="@layout/fragment_appointment" >
         <action
-            android:id="@+id/action_appointmentFragment_to_detailAppointment"
-            app:destination="@id/detailAppointment" />
-        <action
-            android:id="@+id/action_appointmentFragment_to_detailAppointment2"
-            app:destination="@id/detailAppointment" />
-        <action
             android:id="@+id/action_appointmentFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_appointmentFragment_to_dokterProfileAppointmentFragment"
+            app:destination="@id/dokterProfileAppointmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/instructionScanFragment"
@@ -237,12 +234,20 @@
         android:id="@+id/listArticleFragment"
         android:name="com.ents_h108.petwell.view.main.articleTypes.ListArticleFragment"
         android:label="fragment_list_article"
-        tools:layout="@layout/fragment_list_article" />
+        tools:layout="@layout/fragment_list_article" >
+        <action
+            android:id="@+id/action_listArticleFragment_to_detailPromoArticleFragment2"
+            app:destination="@id/detailPromoArticleFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/listPromoFragment"
         android:name="com.ents_h108.petwell.view.main.articleTypes.ListPromoFragment"
         android:label="fragment_list_promo"
-        tools:layout="@layout/fragment_list_promo" />
+        tools:layout="@layout/fragment_list_promo" >
+        <action
+            android:id="@+id/action_listPromoFragment_to_detailPromoArticleFragment2"
+            app:destination="@id/detailPromoArticleFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.ents_h108.petwell.view.main.profile.EditProfileFragment"
@@ -276,11 +281,6 @@
             app:destination="@id/instructionScanFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailAppointment"
-        android:name="com.ents_h108.petwell.view.main.featureAppointment.DetailAppointmentFragment"
-        android:label="fragment_detail_appointment"
-        tools:layout="@layout/fragment_detail_appointment" />
-    <fragment
         android:id="@+id/chatFragment"
         android:name="com.ents_h108.petwell.view.main.featureConsultation.ChatFragment"
         android:label="fragment_chat"
@@ -300,8 +300,46 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps">
         <action
-            android:id="@+id/action_mapsFragment_to_detailAppointmentFragment"
-            app:destination="@id/detailAppointment" />
+            android:id="@+id/action_mapsFragment_to_dokterProfileAppointmentFragment"
+            app:destination="@id/dokterProfileAppointmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dokterProfileAppointmentFragment"
+        android:name="com.ents_h108.petwell.view.main.featureAppointment.DokterProfileAppointmentFragment"
+        android:label="fragment_dokter_profile_appointment"
+        tools:layout="@layout/fragment_dokter_profile_appointment" >
+        <action
+            android:id="@+id/action_dokterProfileAppointmentFragment_to_invoiceAppointmentFragment"
+            app:destination="@id/invoiceAppointmentFragment" />
+        <action
+            android:id="@+id/action_dokterProfileAppointmentFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailPromoArticleFragment2"
+        android:name="com.ents_h108.petwell.view.main.articleTypes.DetailPromoArticleFragment"
+        android:label="fragment_detail_promo_article"
+        tools:layout="@layout/fragment_detail_promo_article" />
+    <fragment
+        android:id="@+id/invoiceAppointmentFragment"
+        android:name="com.ents_h108.petwell.view.main.featureAppointment.InvoiceAppointmentFragment"
+        android:label="fragment_invoice_appointment"
+        tools:layout="@layout/fragment_invoice_appointment" >
+        <action
+            android:id="@+id/action_invoiceAppointmentFragment_to_statusFragment"
+            app:destination="@id/statusFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusFragment"
+        android:name="com.ents_h108.petwell.view.main.featureAppointment.StatusFragment"
+        android:label="fragment_status"
+        tools:layout="@layout/fragment_status" >
+        <action
+            android:id="@+id/action_statusFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_statusFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 
 

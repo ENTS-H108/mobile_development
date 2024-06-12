@@ -50,7 +50,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cat"
                 style="@style/H4Bold"
-
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center"/>
         </LinearLayout>
@@ -85,9 +84,9 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                style="@style/H4Bold"
                 android:layout_height="wrap_content"
                 android:text="@string/dog"
+                style="@style/H4Bold"
                 android:layout_marginTop="8dp"
                 android:layout_gravity="center"/>
         </LinearLayout>
@@ -100,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="@drawable/btn_primary_states"
+        android:background="@drawable/btn_yellow_disable"
         android:fontFamily="@font/semibold"
         android:text="@string/next"
         android:textAllCaps="false"

@@ -152,13 +152,13 @@
         android:text="@string/descriptionSix"
         android:layout_marginTop="4dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_letGo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/btn_primary_states"
+        android:background="@drawable/btn_yellow_states"
         android:text="@string/let_s_go"
         style="@style/H4Bold"
         android:textColor="@android:color/white" />

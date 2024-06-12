@@ -81,6 +81,13 @@ class HomeFragment : Fragment() {
                     binding.rvPromo.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
+
+                else -> {
+                    // Handle any unexpected cases or simply log them
+                    binding.promoLoading.visibility = View.GONE
+                    binding.rvPromo.visibility = View.GONE
+                    Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -102,9 +109,17 @@ class HomeFragment : Fragment() {
                     binding.rvArticle.visibility = View.GONE
                     Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
                 }
+
+                else -> {
+                    // Handle any unexpected cases or simply log them
+                    binding.articleLoading.visibility = View.GONE
+                    binding.rvArticle.visibility = View.GONE
+                    Toast.makeText(context, "Unexpected error occurred", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
+
 
     private fun setupNavigation() {
         binding.apply {

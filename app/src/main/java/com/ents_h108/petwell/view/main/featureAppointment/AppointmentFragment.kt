@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +39,7 @@ class AppointmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupLocation()
+        setupScrollListener()
     }
 
     private fun setupRecyclerView() {
@@ -47,7 +49,7 @@ class AppointmentFragment : Fragment() {
             }
 
             override fun onBtnClick(item: Doctor) {
-                // Handle button click
+             findNavController().navigate(AppointmentFragmentDirections.actionAppointmentFragmentToDokterProfileAppointmentFragment())
             }
         })
 
@@ -84,14 +86,88 @@ class AppointmentFragment : Fragment() {
 
     private fun filterDoctorsByDistance(userLat: Double, userLon: Double): List<Doctor> {
         val doctors = listOf(
-            Doctor("Dr. John Doe", "Animal Clinic A", "Veterinarian", " 8 Year", "Dokter kucing", "200.000", -7.44, 112.7183),
-            Doctor("Dr. Jane Smith", "Animal Clinic B", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -7.34, 112.7183),
-            Doctor("Dr. Emily Johnson", "Animal Clinic C", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -7.36, 112.71),
-            Doctor("Dr. Michael Brown", "Animal Clinic D", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -7.40, 112.713),
-            Doctor("Dr. Sarah Davis", "Animal Clinic E", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -7.5, 112.783),
-            Doctor("Dr. Chris Wilson", "Animal Clinic F", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -8.0, 112.7188),
-            Doctor("Dr. Jessica Martinez", "Animal Clinic G", "Veterinarian", "8 Year", "Dokter kucing", "200.000", -7.0, 112.7)
+            Doctor(
+                "7",
+                R.drawable.doctor_7,
+                "Dr. Dwi Putra",
+                "RS Hewan Makmur", // Updated hospital name
+                "Dokter Hewan",
+                "2 Tahun",
+                "Rp 30.000",
+                -7.0,
+                112.7 // Updated latitude and longitude
+            ),
+            Doctor(
+                "2",
+                R.drawable.doctor_2,
+                "Dr. Ahmad Santoso", // Male doctor
+                "RS Hewan Senang Hati", // Updated hospital name
+                "Dokter Hewan",
+                "32 Tahun",
+                "Rp 220.000",
+                -7.34,
+                112.7183 // Updated latitude and longitude
+            ),
+
+            Doctor(
+                "4",
+                R.drawable.doctor_4,
+                "Dr. Rina Hartati", // Female doctor
+                "RS Hewan Ceria", // Updated hospital name
+                "Dokter Hewan",
+                "7 Tahun",
+                "Rp 280.000",
+                -7.40,
+                112.713 // Updated latitude and longitude
+            ),
+            Doctor(
+                "5",
+                R.drawable.doctor_5,
+                "Dr. Eko Saputra", // Male doctor
+                "RS Hewan Bahagia", // Updated hospital name
+                "Dokter Hewan",
+                "11 Tahun",
+                "Rp 190.000",
+                -7.5,
+                112.783 // Updated latitude and longitude
+            ),
+            Doctor(
+                "6",
+                R.drawable.doctor_6,
+                "Dr. Andi Wijaya",
+                "RS Hewan Sejahtera", // Updated hospital name
+                "Dokter Hewan",
+                "13 Tahun",
+                "Rp 200.000",
+                -8.0,
+                112.7188 // Updated latitude and longitude
+            ),
+
+            Doctor(
+                "3",
+                R.drawable.doctor_3,
+                "Dr. Budi Prasetyo", // Male doctor
+                "RS Hewan Cinta Kasih", // Updated hospital name
+                "Dokter Hewan",
+                "8 Tahun",
+                "Rp 260.000",
+                -7.36,
+                112.71 // Updated latitude and longitude
+            ),
+            Doctor(
+                "1", // ID
+                R.drawable.doctor_1, // Image resource
+                "Dr. Siti Rahmawati", // Female doctor
+                "RS Hewan Harapan Baru", // Updated hospital name
+                "Dokter Hewan",
+                "4 Tahun",
+                "Rp 250.000",
+                -7.44,
+                112.7183 // Updated latitude and longitude
+            ),
         )
+
+
 
         return doctors.filter { doctor ->
             val distance = calculateDistance(userLat, userLon, doctor.lat, doctor.lon)
@@ -112,6 +188,23 @@ class AppointmentFragment : Fragment() {
             putParcelableArrayList("doctors", ArrayList(doctors))
         }
         findNavController().navigate(R.id.action_appointmentFragment_to_mapsFragment, bundle)
+    }
+
+    private fun setupScrollListener() {
+        val fab = binding.extFloatingActionButton
+        val nestedScrollView = binding.nestedScrollView
+
+        nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY + 12 && fab.isExtended) {
+                fab.shrink()
+            } else if (scrollY < oldScrollY - 12 && !fab.isExtended) {
+                fab.extend()
+            }
+
+            if (scrollY == 0) {
+                fab.extend()
+            }
+        })
     }
 
     companion object {

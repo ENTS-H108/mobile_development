@@ -18,6 +18,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://petwell-api-wmaq4jxv4a-et.a.run.app/\"")
+        buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyBfOKTbtibzUquGjhS4OXiFBMaYkYRj-k0\"")
         buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"346975805406-lemndt4g4qs63ri355v4k1pkl4fqfmn4.apps.googleusercontent.com\"")
     }
 

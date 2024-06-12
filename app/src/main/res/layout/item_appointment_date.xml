@@ -21,6 +21,6 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="3"
-        tools:listitem="@layout/item_consultation_hour" />
+        tools:listitem="@layout/item_appointment_hour" />
 
 </LinearLayout>
