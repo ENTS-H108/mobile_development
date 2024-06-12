@@ -79,6 +79,9 @@ class HomeFragment : Fragment() {
         }
         coroutineScope.launch {
             val petActive = UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+            val petToken = UserPreferences.getInstance(requireActivity().dataStore).getToken().first()
+            Log.d("HomeFragment","pet id" + petActive.toString())
+            Log.d("HomeFragment","pet token" + petToken.toString())
             if (petActive != null) {
                 viewModel.getPet(petActive).observe(viewLifecycleOwner) { result ->
                     when (result) {

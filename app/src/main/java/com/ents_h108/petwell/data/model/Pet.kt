@@ -14,7 +14,7 @@ data class PetResponse(
 
 @Keep
 data class SinglePetResponse(
-    val pets: Pet,
+    val pet: Pet,
     val error: Boolean,
     val message: String
 )

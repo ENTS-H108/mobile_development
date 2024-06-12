@@ -1,5 +1,6 @@
 package com.ents_h108.petwell.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.Pager
@@ -22,6 +23,7 @@ import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
 
 class MainRepository(
@@ -92,7 +94,8 @@ class MainRepository(
         try {
             val token = pref.getToken().first()
             val response = apiService.getPet(id, "Bearer $token")
-            emit(Result.Success(response.pets))
+            emit(Result.Success(response.pet))
+            Log.d("MainRepository",Result.Success(response.pet).toString())
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, PetResponse::class.java)
