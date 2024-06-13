@@ -7,7 +7,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.liveData
 import com.ents_h108.petwell.data.ArticlePagingSource
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.data.model.ArticleResponse
@@ -15,7 +14,8 @@ import com.ents_h108.petwell.data.model.Pet
 import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.User
 import com.ents_h108.petwell.data.model.UserResponse
-import com.ents_h108.petwell.data.model.editPet
+import com.ents_h108.petwell.data.model.EditPet
+import com.ents_h108.petwell.data.model.History
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
 import com.google.gson.Gson
@@ -23,7 +23,6 @@ import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
-import retrofit2.Response
 import java.io.IOException
 
 class MainRepository(
@@ -78,7 +77,7 @@ class MainRepository(
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.editPet(id, "Bearer $token", editPet(name, species))
+            val response = apiService.editPet(id, "Bearer $token", EditPet(name, species))
             emit(Result.Success(response.pets))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -94,8 +93,7 @@ class MainRepository(
         try {
             val token = pref.getToken().first()
             val response = apiService.getPet(id, "Bearer $token")
-            emit(Result.Success(response.pet))
-            Log.d("MainRepository",Result.Success(response.pet).toString())
+            emit(Result.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, PetResponse::class.java)
@@ -109,7 +107,7 @@ class MainRepository(
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.addPet("Bearer $token", editPet(name, species))
+            val response = apiService.addPet("Bearer $token", EditPet(name, species))
             emit(Result.Success(response.pets))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -155,6 +153,20 @@ class MainRepository(
         try {
             val token = pref.getToken().first()
             val response = apiService.getProfileUser("Bearer $token")
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(Result.Error(errorBody ?: "Unknown error occurred"))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message ?: "Unknown error occurred"))
+        }
+    }
+
+    fun addHistory(id: String, type: Int, timestamp: String): LiveData<Result<History>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = pref.getToken().first()
+            val response = apiService.addHistory("Bearer $token", id, History(type, timestamp))
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

@@ -33,7 +33,7 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val appointmentItem = getItem(position)
                     listener.onItemClick(appointmentItem)
@@ -41,7 +41,7 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
             }
 
             binding.btnChat.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val appointmentItem = getItem(position)
                     listener.onBtnClick(appointmentItem)
@@ -64,17 +64,11 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doctor>() {
-            override fun areItemsTheSame(
-                oldItem: Doctor,
-                newItem: Doctor
-            ): Boolean {
+            override fun areItemsTheSame(oldItem: Doctor, newItem: Doctor ): Boolean {
                 return oldItem.namadokter == newItem.namadokter && oldItem.tempatbekerja == newItem.tempatbekerja
             }
 
-            override fun areContentsTheSame(
-                oldItem: Doctor,
-                newItem: Doctor
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: Doctor, newItem: Doctor): Boolean {
                 return oldItem == newItem
             }
         }

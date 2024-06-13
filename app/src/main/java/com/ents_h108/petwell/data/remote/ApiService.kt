@@ -8,10 +8,11 @@ import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
 import com.ents_h108.petwell.data.model.SignUpResponse
-import com.ents_h108.petwell.data.model.SinglePetResponse
 import com.ents_h108.petwell.data.model.User
 import com.ents_h108.petwell.data.model.UserResponse
-import com.ents_h108.petwell.data.model.editPet
+import com.ents_h108.petwell.data.model.EditPet
+import com.ents_h108.petwell.data.model.History
+import com.ents_h108.petwell.data.model.Pet
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -45,17 +46,17 @@ interface ApiService {
     suspend fun editPet(
         @Path("id") id: String,
         @Header("Authorization") token: String,
-        @Body editpet: editPet
+        @Body editpet: EditPet
     ): PetResponse
     @GET("pets/{id}")
     suspend fun getPet(
         @Path("id") id: String,
         @Header("Authorization") token: String
-    ): SinglePetResponse
+    ): Pet
     @POST("pets")
     suspend fun addPet(
         @Header("Authorization") token: String,
-        @Body editpet: editPet
+        @Body editpet: EditPet
     ): PetResponse
     @DELETE("pets/{id}")
     suspend fun deletePet(
@@ -71,4 +72,10 @@ interface ApiService {
     suspend fun getProfileUser(
         @Header("Authorization") token: String
     ): User
+    @POST("pets/{id}/addhistory")
+    suspend fun addHistory(
+        @Header("Authorization") token: String,
+        @Path("id") id: String,
+        @Body history: History
+    ): History
 }

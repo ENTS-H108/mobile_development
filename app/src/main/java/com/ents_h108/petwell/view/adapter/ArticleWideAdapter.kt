@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.data.model.Article
@@ -31,7 +30,7 @@ class ArticleWideAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                @Suppress("DEPRECATION") val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val articleItem = getItem(position)
                     if (articleItem != null) {

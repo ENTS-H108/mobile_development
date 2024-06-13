@@ -35,4 +35,6 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
     fun deletePet(id: String) = mainRepository.deletePet(id)
 
     fun editProfile(username: String, profilepict: String) = mainRepository.editProfile(username, profilepict)
+
+    fun addHistory(id: String, type: Int, timestamp: String) = mainRepository.addHistory(id, type, timestamp)
 }

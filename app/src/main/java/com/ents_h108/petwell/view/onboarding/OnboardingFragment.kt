@@ -2,6 +2,7 @@ package com.ents_h108.petwell.view.onboarding
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,6 +101,7 @@ class OnboardingFragment : Fragment() {
                 authViewModel.saveLoginStatus(
                     googleIdTokenCredential.idToken
                 )
+                Log.d("OnboardingFragment", "Google ID Token: ${googleIdTokenCredential.idToken}")
                 findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
             } catch (e: GetCredentialException) {
                 showToast(requireContext(), "Failed to retrieve credentials. Please try again.")

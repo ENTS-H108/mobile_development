@@ -10,10 +10,10 @@ import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Pet
 import com.ents_h108.petwell.databinding.ItemPetBinding
 
-class PetAdapter(private val listener: OnItemClickListener) :
+class PetAdapter(private val listener: OnItemClickListener, private var selectedPetId: String?) :
     ListAdapter<Pet, PetAdapter.PetViewHolder>(DIFF_CALLBACK) {
 
-    private var selectedPosition = RecyclerView.NO_POSITION
+    private var previousSelectedPosition: Int = RecyclerView.NO_POSITION
 
     interface OnItemClickListener {
         fun onItemClick(item: Pet)
@@ -26,7 +26,10 @@ class PetAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
-        holder.bind(getItem(position), position == selectedPosition)
+        holder.bind(getItem(position), getItem(position).id == selectedPetId)
+        if (getItem(position).id == selectedPetId) {
+            previousSelectedPosition = holder.bindingAdapterPosition
+        }
     }
 
     inner class PetViewHolder(private val binding: ItemPetBinding) :
@@ -34,17 +37,21 @@ class PetAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    selectedPosition = position
-                    notifyDataSetChanged()
                     val petItem = getItem(position)
+                    selectedPetId = petItem.id
+                    if (previousSelectedPosition != RecyclerView.NO_POSITION) {
+                        notifyItemChanged(previousSelectedPosition)
+                    }
+                    notifyItemChanged(position)
+                    previousSelectedPosition = position
                     listener.onItemClick(petItem)
                 }
             }
 
             binding.tvEditPet.setOnClickListener {
-                val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val petItem = getItem(position)
                     listener.onEditProfileClick(petItem)
@@ -53,15 +60,12 @@ class PetAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(item: Pet, isSelected: Boolean) {
-            binding.imgPet.load(item.name)
-            binding.tvPetName.text = item.name
-            binding.tvRace.text = item.species
-            if (isSelected) {
-                binding.cardPet.setBackgroundResource(R.drawable.card_pet_active)
-                binding.tvStatus.text = itemView.context.getString(R.string.active)
-            } else {
-                binding.cardPet.setBackgroundResource(android.R.color.white)
-                binding.tvStatus.text = ""
+            binding.apply {
+                tvPetName.text = item.name
+                tvRace.text = item.species
+                imgPet.load(if (item.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
+                cardPet.setBackgroundResource(if (isSelected) R.drawable.card_pet_active else android.R.color.white)
+                tvStatus.text = if (isSelected) itemView.context.getString(R.string.active) else ""
             }
         }
     }

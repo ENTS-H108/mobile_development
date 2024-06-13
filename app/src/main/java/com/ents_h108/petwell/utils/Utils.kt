@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import com.ents_h108.petwell.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.security.MessageDigest
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import java.util.UUID
 import kotlin.math.acos
@@ -97,6 +99,11 @@ object Utils {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             LOCATION_PERMISSION_REQUEST_CODE
         )
+    }
+
+    fun getCurrentTime(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 
     private const val LOCATION_PERMISSION_REQUEST_CODE = 100
