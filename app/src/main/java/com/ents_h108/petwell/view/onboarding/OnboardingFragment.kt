@@ -18,6 +18,7 @@ import com.ents_h108.petwell.BuildConfig
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentOnboardingBinding
+import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
@@ -98,11 +99,20 @@ class OnboardingFragment : Fragment() {
                 val result = credentialManager.getCredential(request = request, context = requireContext())
                 val credential = result.credential
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                authViewModel.saveLoginStatus(
-                    googleIdTokenCredential.idToken
-                )
-                Log.d("OnboardingFragment", "Google ID Token: ${googleIdTokenCredential.idToken}")
-                findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
+                authViewModel.googleAuth(googleIdTokenCredential.idToken).observe(viewLifecycleOwner) {
+                    when (it) {
+                        is Result.Loading -> {
+
+                        }
+                        is Result.Success -> {
+                            authViewModel.saveLoginStatus(it.data.user.token)
+                            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
+                        }
+                        is Result.Error -> {
+                            showToast(requireContext(), it.error)
+                        }
+                    }
+                }
             } catch (e: GetCredentialException) {
                 showToast(requireContext(), "Failed to retrieve credentials. Please try again.")
             } catch (e: GoogleIdTokenParsingException) {

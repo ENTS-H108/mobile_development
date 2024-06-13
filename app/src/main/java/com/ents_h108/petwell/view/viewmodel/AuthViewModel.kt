@@ -31,4 +31,7 @@ class AuthViewModel(private val authRepository: AuthRepository, private val pref
             pref.saveToken(token)
         }
     }
+
+    fun googleAuth(token: String) =
+        authRepository.googleAuth(token)
 }

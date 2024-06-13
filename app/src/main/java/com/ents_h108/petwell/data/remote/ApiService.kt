@@ -78,4 +78,8 @@ interface ApiService {
         @Path("id") id: String,
         @Body history: History
     ): History
+    @POST("auth/google")
+    suspend fun googleAuth(
+        @Body body: Map<String, String>
+    ): LoginResponse
 }

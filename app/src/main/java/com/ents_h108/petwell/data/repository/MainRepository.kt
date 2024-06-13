@@ -95,11 +95,10 @@ class MainRepository(
             val response = apiService.getPet(id, "Bearer $token")
             emit(Result.Success(response))
         } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, PetResponse::class.java)
-            emit(Result.Error(errorBody.error.toString()))
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(Result.Error(errorBody ?: "Unknown error occurred"))
         } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
+            emit(Result.Error(e.message ?: "Unknown error occurred"))
         }
     }
 

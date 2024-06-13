@@ -65,4 +65,18 @@ class AuthRepository(private val apiService: ApiService) {
             emit(Result.Error(e.message.toString()))
         }
     }
+
+    fun googleAuth(token: String): LiveData<Result<LoginResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.googleAuth(mapOf("token" to token))
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
+            emit(Result.Error(errorBody.message))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
 }
