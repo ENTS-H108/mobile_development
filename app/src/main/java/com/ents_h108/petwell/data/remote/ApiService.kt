@@ -76,7 +76,7 @@ interface ApiService {
     suspend fun addHistory(
         @Header("Authorization") token: String,
         @Path("id") id: String,
-        @Body history: History
+        @Body history: Map<String, Int>
     ): History
     @POST("auth/google")
     suspend fun googleAuth(

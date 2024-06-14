@@ -1,6 +1,5 @@
 package com.ents_h108.petwell.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.Pager
@@ -161,11 +160,11 @@ class MainRepository(
         }
     }
 
-    fun addHistory(id: String, type: Int, timestamp: String): LiveData<Result<History>> = liveData {
+    fun addHistory(id: String, type: Int): LiveData<Result<History>> = liveData {
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.addHistory("Bearer $token", id, History(type, timestamp))
+            val response = apiService.addHistory("Bearer $token", id, mapOf("type" to type))
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

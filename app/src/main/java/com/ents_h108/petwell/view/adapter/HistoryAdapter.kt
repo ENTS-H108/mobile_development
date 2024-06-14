@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.History
 import com.ents_h108.petwell.databinding.ItemHistoryBinding
+import com.ents_h108.petwell.utils.Utils
+import java.util.TimeZone
 
 class HistoryAdapter(private val listener: OnItemClickListener) :
     ListAdapter<History, HistoryAdapter.HistoryViewHolder>(DIFF_CALLBACK) {
@@ -55,9 +57,8 @@ class HistoryAdapter(private val listener: OnItemClickListener) :
                         imgHistory.setImageResource(R.drawable.ic_scan)
                     }
                 }
-                tvTanggal.text = item.timestamp
+                tvTanggal.text = Utils.formatDate(item.timestamp, TimeZone.getDefault().id)
             }
-
         }
     }
 

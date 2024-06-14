@@ -34,10 +34,21 @@
             style="@style/H3Bold"/>
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_timestamp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:text="@string/dummy_timestamp"
+            android:textColor="@color/grey"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Medium12"/>
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_timestamp"
             android:text="@string/desc_article"
             android:textColor="@color/black"
             android:layout_marginTop="16dp"

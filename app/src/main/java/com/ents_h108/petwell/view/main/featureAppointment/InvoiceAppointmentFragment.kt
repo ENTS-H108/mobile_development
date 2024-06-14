@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.ents_h108.petwell.utils.Result
-import com.ents_h108.petwell.utils.Utils.getCurrentTime
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
@@ -44,7 +43,7 @@ class InvoiceAppointmentFragment : Fragment() {
         }
         binding.btnMakeAppointment.setOnClickListener {
             if (petActive != null) {
-                viewModel.addHistory(petActive, 2, getCurrentTime()).observe(viewLifecycleOwner) { result ->
+                viewModel.addHistory(petActive, 2).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Loading ->  {
 

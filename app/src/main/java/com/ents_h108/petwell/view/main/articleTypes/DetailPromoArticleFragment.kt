@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import coil.load
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentDetailPromoArticleBinding
+import com.ents_h108.petwell.utils.Utils
+import java.util.TimeZone
 
 class DetailPromoArticleFragment : Fragment() {
 
@@ -36,6 +38,7 @@ class DetailPromoArticleFragment : Fragment() {
                 tvTitle.text = article.title
                 tvDescription.text = article.desc
                 ivThumbnail.load(article.thumbnail)
+                tvTimestamp.text = Utils.formatDate(article.timestamp, TimeZone.getDefault().id)
             }
         }
     }

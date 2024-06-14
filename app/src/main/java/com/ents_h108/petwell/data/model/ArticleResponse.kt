@@ -19,5 +19,6 @@ data class Article(
     val title: String,
     val desc: String,
     val thumbnail: String,
-    val type: String
+    val type: String,
+    val timestamp: String
 ) : Parcelable

@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentTabularBinding
 import com.ents_h108.petwell.utils.Result
-import com.ents_h108.petwell.utils.Utils.getCurrentTime
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -46,7 +45,7 @@ class TabularFragment : Fragment() {
         val uri = arguments?.getString("uri") ?: return
         binding.btnScan.setOnClickListener {
             if (petActive != null) {
-                viewModel.addHistory(petActive, 3, getCurrentTime()).observe(viewLifecycleOwner) { result ->
+                viewModel.addHistory(petActive, 3).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Loading -> {
                             // Handle loading state if needed
