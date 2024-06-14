@@ -34,7 +34,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="15dp"
                         android:fontFamily="@font/bold"
-                        android:text="Your Doctor of Choice"
+                        android:text="@string/your_doctor_of_choice"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -112,7 +112,7 @@
                                     android:layout_marginStart="4dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/medium"
-                                    android:text="Veterinarian"
+                                    android:text="@string/veterinarian"
                                     android:textColor="@color/black"
                                     android:textSize="12sp" />
 
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Location"
+                        android:text="@string/location"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -156,7 +156,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="4dp"
                                 android:fontFamily="@font/medium"
-                                android:text="Jl.Soreang Banjaran, Soreang, Kab.Bandung, Jawa Barat 40911"
+                                android:text="Jalan Wisma Menanggal III 36, Surabaya"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -190,7 +190,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="Rabu, 23 juni 2023"
+                            android:text="Wednesday, June 23, 2023"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                         <TextView
@@ -198,7 +198,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="Time 09:00 - 11:00"
+                            android:text="Time 09:00 - 11:00 "
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -248,28 +248,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Information regarding this appointment will be sent to the cell phone number and email below :"
+                        android:text="Information regarding this appointment will be sent to your email below :"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:fontFamily="@font/medium"
-                        android:text="Your Mobile Number"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
 
-                    <TextView
-                        android:id="@+id/tv_orderer_phone_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/medium"
-                        android:text="083824369420"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
+
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -286,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/medium"
-                        android:text="pastimapan@gmail.com"
+                        android:text="bangkitIncubation@gmail.com"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -305,7 +290,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/medium"
-                        android:text="John Doe"
+                        android:text="Luqyana"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 

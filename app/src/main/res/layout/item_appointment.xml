@@ -61,7 +61,7 @@
             android:layout_toEndOf="@+id/ic_doctor"
             android:ellipsize="end"
             android:fontFamily="@font/regular"
-            android:text="@string/pet_race"
+            android:text="@string/doctor_type"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 
@@ -87,7 +87,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/regular"
             android:lines="1"
-            android:text="@string/pet_race"
+            android:text="@string/hospital_name"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 
@@ -113,7 +113,7 @@
             android:lines="1"
             android:paddingEnd="8dp"
             android:fontFamily="@font/regular"
-            android:text="@string/pet_race"
+            android:text="@string/address"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 

@@ -76,12 +76,12 @@
     <string name="save_changes" translatable="false">Save Changes</string>
     <string name="active">Active</string>
     <string name="add_new_pet">Add New Pet</string>
-    <string name="tvEdtRace">Pet Race</string>
+    <string name="tvEdtRace">Pet Type</string>
     <string name="delete_pet">Delete Pet</string>
     <string name="add_pet_btn">Add Pet Profile</string>
     <string name="appointment">Appointment</string>
     <string name="price">Rp. 100.000</string>
-    <string name="biaya_konsultasi">Biaya Konsultasi</string>
+    <string name="biaya_konsultasi">Consultation Fee</string>
     <string name="answer_questione">Answer Questione</string>
     <string name="start_scan">Start Scan</string>
     <string name="numberOne">1.</string>
@@ -110,13 +110,48 @@
     <string name="bayar_n_konfirmasi"><![CDATA[Pay & \n Confirm]]></string>
     <string name="time" translatable="false">10:32 AM</string>
     <string-array name="pet_types">
-        <item>anjing</item>
-        <item>kucing</item>
+        <item>Dog</item>
+        <item>Cat</item>
     </string-array>
-    <string translatable="false" name="location_format">%s %s</string>
+    <string name="location_format" translatable="false">%s %s</string>
     <string name="city_not_found">Unknown City</string>
     <string name="permission_denied">Permission Denied</string>
     <string name="maps" translatable="false">AIzaSyBXN3C5I34UTl8P-dA_2jkFZAMlAES6tS8</string>
+    <string name="pet_age">Pet Age (years) </string>
+    <string name="name">Name</string>
+    <string name="example_hour_appointment" translatable="false">09.00 - 12.00</string>
+    <string name="dummy_date">Monday, January 16 2023</string>
+    <string name="address">address</string>
+    <string name="hospital_name">Hospital Name</string>
+    <string name="doctor_type">doctor type</string>
+    <string name="tabular_question1">1. Does your pet have symptoms of dry crusts on the skin?</string>
+    <string name="tabular_option_none">None</string>
+    <string name="tabular_option_not_dominant">Not Dominant</string>
+    <string name="tabular_option_dominant">Dominant</string>
+    <string name="tabular_option_worse">Worse</string>
+    <string name="tabular_question2">2. Does your pet have symptoms of dry crusts on the skin?</string>
+    <string name="tabular_question4">4. Does your pet have a round ring (ring-shaped rash on the skin) on the skin?</string>
+    <string name="tabular_question3">3. Does your pet have scabby skin symptoms?</string>
+    <string name="appointment_status_desc">Your appointment was successfully completed, and you can now view the details and confirmation of this appointment in the history section for your reference.</string>
+    <string name="succes">Succes</string>
+    <string name="result">Result</string>
+    <string name="ask_a_doctor">Ask a Doctor</string>
+    <string name="service_fee">Service fee</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="gopay" translatable="false">GoPay</string>
+    <string name="dana" translatable="false">DANA</string>
+    <string name="link_aja" translatable="false">Link Aja</string>
+    <string name="payment_total">Payment Total</string>
+    <string name="veterinarian">Veterinarian</string>
+    <string name="consultation_for">Consultation for</string>
+    <string name="location">Location</string>
+    <string name="your_doctor_of_choice">Your Doctor of Choice</string>
+    <string name="educational_background">Educational Background</string>
+    <string name="doctor_profile">Doctor Profile</string>
+    <string name="consultation_fee">Consultation fee: %s</string>
+    <string name="title_article">Title article</string>
+    <string name="desc_article">desc Article</string>
+    <string name="type_a_messege">type a messege</string>
 
 
 </resources>
