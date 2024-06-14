@@ -2,6 +2,7 @@ package com.ents_h108.petwell.view.onboarding
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -101,6 +102,7 @@ class OnboardingFragment : Fragment() {
                 val result = credentialManager.getCredential(request = request, context = requireContext())
                 val credential = result.credential
                 val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                Log.d("Google ID Token", googleIdTokenCredential.idToken)
                 authViewModel.googleAuth(googleIdTokenCredential.idToken).observe(viewLifecycleOwner) {
                     when (it) {
                         is Result.Loading -> {

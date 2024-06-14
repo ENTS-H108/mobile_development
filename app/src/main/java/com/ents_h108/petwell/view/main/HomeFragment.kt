@@ -51,44 +51,83 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        setupUI()
         setupAdapters()
         setupRecyclerViews()
-        observeArticleData()
         setupNavigation()
+        setupUI()
     }
 
     private fun setupUI() {
-        setupLocation(requireContext(), fusedLocationProviderClient) { city ->
-            binding.locationTitle.text = city
-        }
-        viewModel.fetchUserProfile().observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.profileUserName.text = result.data.username
-                    binding.profileImage.load(result.data.profilePict)
-                }
-                is Result.Error -> {
-                    showToast(requireContext(), "Error Authentication")
-                }
-                is Result.Loading -> {
-                }
+        binding.apply {
+            setupLocation(requireContext(), fusedLocationProviderClient) { city ->
+                locationTitle.text = city
             }
-        }
-        val petActive = runBlocking {
-            UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
-        }
-        if (petActive != null) {
-            viewModel.getPet(petActive).observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Loading -> {}
-                    is Result.Success -> {
-                        binding.petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
-                        binding.petName.text = result.data.name
-                        binding.petRace.text = result.data.species
+            val petActive = runBlocking {
+                UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+            }
+            with(viewModel){
+                fetchUserProfile().observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            profileUserName.text = result.data.username
+                            profileImage.load(result.data.profilePict)
+                        }
+                        is Result.Error -> {
+                            showToast(requireContext(), "Error Authentication")
+                        }
+                        is Result.Loading -> {
+                        }
                     }
-                    is Result.Error -> {
-                        Log.d("HomeFragment", "Pet Name: ${result.error}")
+                }
+                getContent("promo").observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            promoLoading.visibility = View.VISIBLE
+                            rvPromo.visibility = View.GONE
+                        }
+                        is Result.Success -> {
+                            promoLoading.visibility = View.GONE
+                            rvPromo.visibility = View.VISIBLE
+                            promoAdapter.submitData(lifecycle, result.data)
+                        }
+                        is Result.Error -> {
+                            promoLoading.visibility = View.GONE
+                            rvPromo.visibility = View.GONE
+                            Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                getContent("artikel").observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            articleLoading.visibility = View.VISIBLE
+                            rvArticle.visibility = View.GONE
+                        }
+                        is Result.Success -> {
+                            articleLoading.visibility = View.GONE
+                            rvArticle.visibility = View.VISIBLE
+                            articleAdapter.submitData(lifecycle, result.data)
+                        }
+                        is Result.Error -> {
+                            articleLoading.visibility = View.GONE
+                            rvArticle.visibility = View.GONE
+                            Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                petActive?.let { petId ->
+                    getPet(petId).observe(viewLifecycleOwner) { result ->
+                        when (result) {
+                            is Result.Loading -> {}
+                            is Result.Success -> {
+                                petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
+                                petName.text = result.data.name
+                                petRace.text = result.data.species
+                            }
+                            is Result.Error -> {
+                                Log.d("HomeFragment", "Pet Name: ${result.error}")
+                            }
+                        }
                     }
                 }
             }
@@ -110,62 +149,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerViews() {
-        binding.rvPromo.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = promoAdapter
-        }
-        binding.rvArticle.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = articleAdapter
-        }
-    }
-
-    private fun observeArticleData() {
-        viewModel.getContent("promo").observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.promoLoading.visibility = View.VISIBLE
-                    binding.rvPromo.visibility = View.GONE
-                }
-                is Result.Success -> {
-                    binding.promoLoading.visibility = View.GONE
-                    binding.rvPromo.visibility = View.VISIBLE
-                    promoAdapter.submitData(lifecycle, result.data)
-                }
-                is Result.Error -> {
-                    binding.promoLoading.visibility = View.GONE
-                    binding.rvPromo.visibility = View.GONE
-                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
-                }
+        binding.apply {
+            rvPromo.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = promoAdapter
             }
-        }
-        viewModel.getContent("artikel").observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.articleLoading.visibility = View.VISIBLE
-                    binding.rvArticle.visibility = View.GONE
-                }
-                is Result.Success -> {
-                    binding.articleLoading.visibility = View.GONE
-                    binding.rvArticle.visibility = View.VISIBLE
-                    articleAdapter.submitData(lifecycle, result.data)
-                }
-                is Result.Error -> {
-                    binding.articleLoading.visibility = View.GONE
-                    binding.rvArticle.visibility = View.GONE
-                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
-                }
+            rvArticle.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = articleAdapter
             }
         }
     }
 
     private fun setupNavigation() {
         binding.apply {
-            tvPromoMore.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(0)) }
-            tvArticleMore.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(1)) }
-            btnConsultation.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment()) }
-            btnScan.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChosePetFragment()) }
-            btnAppointment.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment()) }
+            with(findNavController()) {
+                tvPromoMore.setOnClickListener { navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(0)) }
+                tvArticleMore.setOnClickListener { navigate(HomeFragmentDirections.actionHomeFragmentToPromoFragment(1)) }
+                btnConsultation.setOnClickListener { navigate(HomeFragmentDirections.actionHomeFragmentToConsultationFragment()) }
+                btnScan.setOnClickListener { navigate(HomeFragmentDirections.actionHomeFragmentToChosePetFragment()) }
+                btnAppointment.setOnClickListener { navigate(HomeFragmentDirections.actionHomeFragmentToAppointmentFragment()) }
+            }
         }
     }
 }

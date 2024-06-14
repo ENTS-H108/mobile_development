@@ -43,16 +43,19 @@ class TabularFragment : Fragment() {
         val petActive = runBlocking {
             UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
         }
+        val uri = arguments?.getString("uri") ?: return
         binding.btnScan.setOnClickListener {
             if (petActive != null) {
                 viewModel.addHistory(petActive, 3, getCurrentTime()).observe(viewLifecycleOwner) { result ->
                     when (result) {
-                        is Result.Loading ->  {
-
+                        is Result.Loading -> {
+                            // Handle loading state if needed
                         }
-                        is Result.Success -> findNavController().navigate(TabularFragmentDirections.actionTabularFragmentToResultScanFragment())
+                        is Result.Success -> {
+                            findNavController().navigate(TabularFragmentDirections.actionTabularFragmentToResultScanFragment(uri))
+                        }
                         is Result.Error -> {
-
+                            // Handle error state if needed
                         }
                     }
                 }

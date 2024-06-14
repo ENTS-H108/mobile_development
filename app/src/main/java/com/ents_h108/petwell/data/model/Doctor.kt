@@ -6,13 +6,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Keep
-data class DoctorResponse(
-    val pets: List<Pet>,
-    val error: Boolean,
-    val message: String
-)
-
-@Keep
 @Parcelize
 data class Doctor(
     @SerializedName("_id")

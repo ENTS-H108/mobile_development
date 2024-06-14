@@ -62,7 +62,7 @@
         android:weightSum="2">
 
         <Button
-            android:id="@+id/btnBackToHomne"
+            android:id="@+id/btnBackToHome"
             style="@style/H4Bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

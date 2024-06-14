@@ -24,8 +24,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private const val CAMERA_PERMISSION_REQUEST_CODE = 101
-
 class ImageScanFragment : Fragment() {
 
     private var currentImageUri: Uri? = null
@@ -39,6 +37,20 @@ class ImageScanFragment : Fragment() {
             showImage()
         } else {
             Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private val launcherCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            showImage()
+        }
+    }
+
+    private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+        if (isGranted) {
+            openCamera()
+        } else {
+            Log.d("Camera Permission", "Permission denied")
         }
     }
 
@@ -58,31 +70,28 @@ class ImageScanFragment : Fragment() {
     }
 
     private fun startCamera() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
-            openCamera() else requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openCamera()
+        } else {
+            requestCameraPermission.launch(Manifest.permission.CAMERA)
+        }
     }
 
     private fun openCamera() {
         createImageFile()?.let { file ->
             currentImageUri = FileProvider.getUriForFile(requireContext(), "com.ents_h108.project.fileprovider", file)
-            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply { putExtra(MediaStore.EXTRA_OUTPUT, currentImageUri) }
-            startActivityForResult(cameraIntent, CAMERA_PERMISSION_REQUEST_CODE)
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+                putExtra(MediaStore.EXTRA_OUTPUT, currentImageUri)
+            }
+            launcherCamera.launch(cameraIntent)
         }
     }
 
     private fun createImageFile(): File? {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File? = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir).apply { currentImageUri = Uri.fromFile(this) }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            currentImageUri?.let { uri ->
-                binding.imagePreview.setImageURI(uri)
-            }
+        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir).apply {
+            currentImageUri = Uri.fromFile(this)
         }
     }
 
@@ -92,15 +101,14 @@ class ImageScanFragment : Fragment() {
 
     private fun showImage() {
         currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
             binding.imagePreview.setImageURI(it)
+            binding.tvImage.visibility = View.GONE
         }
     }
 
     private fun navigateToNext() {
-        findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment())
-    }
-
-    companion object {
+        currentImageUri?.let {
+            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment(it.toString()))
+        }
     }
 }

@@ -42,14 +42,22 @@ class HistoryAdapter(private val listener: OnItemClickListener) :
         fun bind(item: History) {
             binding.apply {
                 when (item.type) {
-                    1 -> tvHistoryType.text =
-                        root.context.getString(R.string.consultation_title)
-                    2 -> tvHistoryType.text =
-                        root.context.getString(R.string.appointment_title)
-                    else -> tvHistoryType.text = root.context.getString(R.string.scan_title)
+                    1 -> {
+                        tvHistoryType.text = root.context.getString(R.string.consultation_title)
+                        imgHistory.setImageResource(R.drawable.ic_chat)
+                    }
+                    2 -> {
+                        tvHistoryType.text = root.context.getString(R.string.appointment_title)
+                        imgHistory.setImageResource(R.drawable.ic_schedule)
+                    }
+                    else -> {
+                        tvHistoryType.text = root.context.getString(R.string.scan_title)
+                        imgHistory.setImageResource(R.drawable.ic_scan)
+                    }
                 }
                 tvTanggal.text = item.timestamp
             }
+
         }
     }
 
