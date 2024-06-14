@@ -31,7 +31,7 @@
         app:iconSize="14dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/orange"
-        android:text="Location"
+        android:text="@string/location"
         app:shapeAppearance="@style/CustomShapeAppearance"
         android:textColor="@android:color/white"
         app:icon="@drawable/ic_location"

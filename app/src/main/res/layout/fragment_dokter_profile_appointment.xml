@@ -91,7 +91,7 @@
                                     android:layout_marginStart="4dp"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/medium"
-                                    android:text="Veterinarian"
+                                    android:text="@string/veterinarian"
                                     android:textColor="@color/black"
                                     android:textSize="12sp" />
 
@@ -130,7 +130,7 @@
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Location"
+                        android:text="@string/location"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -155,7 +155,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/medium"
-                                android:text="Jl.Soreang Banjaran, Soreang, Kab.Bandung, Jawa Barat 40911"
+                                android:text="Jalan Wisma Menanggal III 36, Surabaya"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -164,7 +164,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/medium"
-                                android:text="Consultation fee: Rp 250.000"
+                                android:text="@string/consultation_fee"
                                 android:textColor="@color/yellow"
                                 android:textSize="12sp" />
 
@@ -226,7 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bold"
-                        android:text="Doctor Profile"
+                        android:text="@string/doctor_profile"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -236,7 +236,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/medium"
-                        android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
+                        android:text="@string/dummy_subtitle"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -245,91 +245,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_medical_treatment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:id="@+id/ll_medical_treatment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:id="@+id/tv_medical_treatment_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bold"
-                        android:text="Medical Treatment"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_medical_treatment_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/medium"
-                        android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_practical_experience"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="15dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:id="@+id/ll_practical_experience"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
-                        android:id="@+id/tv_practical_experience_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bold"
-                        android:text="Practical Experience"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_practical_experience_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/medium"
-                        android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:visibility="gone" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_educational_background"
@@ -354,7 +269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bold"
-                        android:text="Educational Background"
+                        android:text="@string/educational_background"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -364,7 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/medium"
-                        android:text="I provide professional services and am known for my friendliness and patience with patients. The focus of my field is dealing with family-related problems ranging from counseling, hypnotherapy, to mindfulness therapy."
+                        android:text="@string/dummy_subtitle"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:visibility="gone" />
@@ -378,12 +293,12 @@
                 android:id="@+id/btn_make_appointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/semibold"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="5dp"
-                android:paddingVertical="10dp"
                 android:background="@drawable/btn_primary_states"
+                android:fontFamily="@font/semibold"
+                android:paddingVertical="10dp"
                 android:text="Make an Appointment Now" />
 
         </LinearLayout>

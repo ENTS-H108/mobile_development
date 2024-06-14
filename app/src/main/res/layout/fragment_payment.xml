@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Konsultasi untuk"
+                android:text="@string/consultation_for"
                 android:textSize="12sp" />
 
             <TextView
@@ -36,7 +36,7 @@
                 style="@style/H4Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="blacky" />
+                android:text="@string/pet_name" />
 
 
         </LinearLayout>
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Veterinarian"
+                        android:text="@string/veterinarian"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -131,18 +131,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
-                    android:text="Biaya layanan"
+                    android:text="@string/service_fee"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/text_service_cost"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/semibold"
-                    android:text="Rp 45.000"
+                    android:text="@string/price"
                     android:textColor="@color/yellow"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -164,7 +163,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/semibold"
-                android:text="Payment Method"
+                android:text="@string/payment_method"
                 android:textColor="@color/black"
 
                 android:textSize="16sp" />
@@ -181,19 +180,19 @@
                     android:id="@+id/radio_gopay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GoPay" />
+                    android:text="@string/gopay" />
 
                 <RadioButton
                     android:id="@+id/radio_dana"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DANA" />
+                    android:text="@string/dana" />
 
                 <RadioButton
                     android:id="@+id/radio_link_aja"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Link Aja" />
+                    android:text="@string/link_aja" />
             </RadioGroup>
 
             <!-- Total Payment -->
@@ -217,7 +216,7 @@
 
         <!-- Total Payment -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity=""
             android:layout_weight="1"
@@ -229,7 +228,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
-                android:text="Payment Total"
+                android:text="@string/payment_total"
                 android:textSize="14sp" />
 
             <TextView
@@ -237,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/semibold"
-                android:text="Rp 45.000"
+                android:text="@string/price"
                 android:textColor="@color/primary_blue"
                 android:textSize="18sp" />
         </LinearLayout>
