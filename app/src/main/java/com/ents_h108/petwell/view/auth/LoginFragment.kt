@@ -13,6 +13,8 @@ import com.ents_h108.petwell.utils.Utils.resetError
 import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -71,8 +73,9 @@ class LoginFragment : Fragment() {
                 is Result.Success -> {
                     binding.loading.visibility = View.GONE
                     showToast(requireContext(), result.data.message)
-                    result.data.user.let {
-                        authViewModel.saveLoginStatus(it.token)
+                    authViewModel.saveLoginStatus(result.data.token)
+                    runBlocking {
+                        delay(2000)
                         findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                 }

@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
             R.id.profileFragment -> "Profile"
             R.id.promoFragment -> "Promo"
             R.id.historyFragment -> "History"
-            R.id.listPromoFragment, R.id.listArticleFragment -> "Detail Article"
             R.id.chosePetFragment, R.id.imageScanFragment, R.id.instructionScanFragment,
             R.id.resultScanFragment, R.id.tabularFragment -> "Scan"
             R.id.dokterProfileAppointmentFragment -> "Doctor Profile"

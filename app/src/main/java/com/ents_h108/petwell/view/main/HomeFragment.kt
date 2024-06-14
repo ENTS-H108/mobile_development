@@ -98,11 +98,13 @@ class HomeFragment : Fragment() {
     private fun setupAdapters() {
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailArticlePromoFragment(item))
             }
         })
 
         articleAdapter = ArticleAdapter(object : ArticleAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailArticlePromoFragment(item))
             }
         })
     }

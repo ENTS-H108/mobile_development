@@ -22,7 +22,10 @@ class ArticleWideAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        val item = getItem(position)
+        if (item != null) {
+            holder.bind(item)
+        }
     }
 
     inner class ArticleViewHolder(private val binding: ItemArticleWideBinding) :

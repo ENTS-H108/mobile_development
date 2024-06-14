@@ -43,7 +43,7 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
         fun bind(item: Article) {
             binding.itemThumbnail.load(item.thumbnail)
             binding.articleTitle.text = item.title
-            binding.articleDesc.text = item.description
+            binding.articleDesc.text = item.desc
         }
     }
 

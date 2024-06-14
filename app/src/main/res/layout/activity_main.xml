@@ -40,7 +40,7 @@
         android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/appBarCard"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/onboarding_nav" />
+        app:navGraph="@navigation/onboarding_nav"/>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

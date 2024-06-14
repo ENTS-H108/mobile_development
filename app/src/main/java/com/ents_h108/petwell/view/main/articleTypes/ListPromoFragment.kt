@@ -13,6 +13,7 @@ import com.ents_h108.petwell.databinding.FragmentListPromoBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.adapter.PromoAdapter
+import com.ents_h108.petwell.view.main.PromoFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,7 +37,7 @@ class ListPromoFragment : Fragment() {
     private fun setupRecyclerView() {
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                findNavController().navigate(ListPromoFragmentDirections.actionListPromoFragmentToDetailPromoArticleFragment2())
+                findNavController().navigate(PromoFragmentDirections.actionPromoFragmentToDetailPromoArticleFragment(item))
             }
         })
         binding.rvListPromo.apply {

@@ -2,7 +2,6 @@ package com.ents_h108.petwell.view.onboarding
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +20,7 @@ import com.ents_h108.petwell.databinding.FragmentOnboardingBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.utils.Utils.showToast
+import com.ents_h108.petwell.view.auth.LoginFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
@@ -28,8 +28,10 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingExcept
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -105,8 +107,11 @@ class OnboardingFragment : Fragment() {
 
                         }
                         is Result.Success -> {
-                            authViewModel.saveLoginStatus(it.data.user.token)
-                            findNavController().navigate(OnboardingFragmentDirections.actionOnboardingToHome())
+                            authViewModel.saveLoginStatus(it.data.token)
+                            runBlocking {
+                                delay(1000)
+                                findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
+                            }
                         }
                         is Result.Error -> {
                             showToast(requireContext(), it.error)
