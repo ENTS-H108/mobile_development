@@ -37,4 +37,6 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
     fun editProfile(username: String, profilepict: String) = mainRepository.editProfile(username, profilepict)
 
     fun addHistory(id: String, type: Int) = mainRepository.addHistory(id, type)
+
+    fun changePassword(currPw: String, newPw: String) = mainRepository.changePassword(currPw, newPw)
 }

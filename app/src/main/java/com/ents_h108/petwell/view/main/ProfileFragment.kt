@@ -123,6 +123,9 @@ class ProfileFragment : Fragment() {
                     findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
                 }
             }
+            changePw.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment())
+            }
             btnHelp.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHelpFragment())
             }

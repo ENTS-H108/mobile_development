@@ -82,4 +82,9 @@ interface ApiService {
     suspend fun googleAuth(
         @Body body: Map<String, String>
     ): LoginResponse
+    @PUT("profile/change-password")
+    suspend fun changePassword(
+        @Header("Authorization") token: String,
+        @Body body: Map<String, String>
+    ): LoginResponse
 }

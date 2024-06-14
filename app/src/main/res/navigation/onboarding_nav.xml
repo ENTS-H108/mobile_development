@@ -145,6 +145,9 @@
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
         <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
             android:id="@+id/action_profileFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
         <action
@@ -351,5 +354,11 @@
         <action
             android:id="@+id/action_statusFragment_to_historyFragment"
             app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ents_h108.petwell.view.main.profile.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password">
     </fragment>
 </navigation>

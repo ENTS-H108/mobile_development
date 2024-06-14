@@ -15,6 +15,7 @@ import com.ents_h108.petwell.data.model.User
 import com.ents_h108.petwell.data.model.UserResponse
 import com.ents_h108.petwell.data.model.EditPet
 import com.ents_h108.petwell.data.model.History
+import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.remote.ApiService
 import com.ents_h108.petwell.utils.Result
 import com.google.gson.Gson
@@ -165,6 +166,20 @@ class MainRepository(
         try {
             val token = pref.getToken().first()
             val response = apiService.addHistory("Bearer $token", id, mapOf("type" to type))
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            emit(Result.Error(errorBody ?: "Unknown error occurred"))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message ?: "Unknown error occurred"))
+        }
+    }
+
+    fun changePassword(currPw: String, newPw: String): LiveData<Result<LoginResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = pref.getToken().first()
+            val response = apiService.changePassword("Bearer $token", mapOf("currPassword" to currPw, "newPassword" to newPw))
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
