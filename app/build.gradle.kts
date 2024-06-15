@@ -112,5 +112,5 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
 
     // Desugaring
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 }

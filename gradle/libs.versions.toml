@@ -4,6 +4,7 @@ circleimageview = "3.1.0"
 coil = "2.6.0"
 coreSplashscreen = "1.0.1"
 credentials = "1.2.2"
+desugar_jdk_libs = "2.0.4"
 generativeai = "0.7.0"
 koinAndroid = "3.5.6"
 koinCore = "3.5.5"
@@ -44,6 +45,7 @@ androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx",
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
+desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
