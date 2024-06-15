@@ -170,6 +170,7 @@
     <string name="navigation">navigation</string>
     <string name="promo_image">promo image</string>
     <string name="current_password">Current Password</string>
+    <string name="change_password">Change Password</string>
 
 
 </resources>

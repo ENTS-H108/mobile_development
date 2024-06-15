@@ -164,5 +164,6 @@
     <string name="navigation">navigasi</string>
     <string name="promo_image">gambar promo </string>
     <string name="current_password">Password Sekarang</string>
+    <string name="change_password">Ubah Password</string>
 
 </resources>
