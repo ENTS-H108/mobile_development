@@ -66,7 +66,7 @@ Language
 
 
 ### Localization
-    * **Multi-Language App**, In this app, we also provide in two languages, there are Indonesian
+* **Multi-Language App**, In this app, we also provide in two languages, there are Indonesian
       and English
 
 ### Getting Started Application
