@@ -33,6 +33,11 @@ class ChangePassword : Fragment() {
     }
 
     private fun resetPassword() {
+        if (!binding.etNewPassword.isPasswordValid) {
+            showToast(requireContext(), getString(R.string.incorrect_pw_format))
+            return
+        }
+
         if (binding.etNewPassword.text.toString() != binding.etConfirmPassword.text.toString()) {
             showError(binding.etCurrentPassword, requireContext())
             showToast(requireContext(), getString(R.string.cpassword_not_match))
