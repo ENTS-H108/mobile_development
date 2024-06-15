@@ -68,7 +68,7 @@ val credentialManagerModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get())}
+    viewModel { MainViewModel(get(), get())}
     viewModel { AuthViewModel(get(), get()) }
     viewModel { ChatViewModel() }
 }

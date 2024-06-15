@@ -45,7 +45,7 @@
 
                 <!-- Nama Dokter -->
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgHistory"
+                    android:id="@+id/imgProfile"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginVertical="24dp"
@@ -63,8 +63,8 @@
                     android:text="@string/doctor_name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toEndOf="@id/imgHistory"
-                    app:layout_constraintTop_toTopOf="@id/imgHistory" />
+                    app:layout_constraintStart_toEndOf="@id/imgProfile"
+                    app:layout_constraintTop_toTopOf="@id/imgProfile" />
 
                 <!-- Deskripsi -->
                 <TextView
@@ -78,7 +78,7 @@
                     android:text="@string/pet_race"
                     android:textColor="@color/grey"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/imgHistory"
+                    app:layout_constraintStart_toEndOf="@id/imgProfile"
                     app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
 
@@ -108,8 +108,7 @@
             tools:itemCount="2"
             tools:layout_editor_absoluteX="20dp"
             tools:listitem="@layout/item_pet"
-            android:visibility="visible"
-            />
+            android:visibility="gone"/>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/pet_item_loading"
@@ -142,6 +141,28 @@
             app:layout_constraintTop_toBottomOf="@id/rvPet"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/changePw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:drawableStart="@drawable/ic_add"
+            android:drawableEnd="@drawable/ic_profile_right"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/medium"
+            android:paddingHorizontal="12dp"
+            android:text="Ubah Password"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleOther" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addPet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -159,8 +180,9 @@
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitleOther" />
+            app:layout_constraintTop_toBottomOf="@id/changePw" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnHistory"

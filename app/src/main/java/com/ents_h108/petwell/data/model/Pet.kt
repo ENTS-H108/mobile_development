@@ -20,9 +20,19 @@ data class Pet(
     val species: String,
     val age: Int,
     val owner: String,
+    val thumbnail: String?,
+    val history: List<History>?
 ) : Parcelable
 
-data class editPet(
+@Keep
+@Parcelize
+data class History(
+    val type: Int,
+    val timestamp: String
+) : Parcelable
+
+@Keep
+data class EditPet(
     val name: String,
     val species: String,
     val age: Int = 5

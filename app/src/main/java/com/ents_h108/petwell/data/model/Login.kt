@@ -6,14 +6,8 @@ data class LoginRequest(
 )
 
 data class LoginResponse(
-    val message: String,
-    val user: Login
+    val message: String?,
+    val token: String?,
+    val error: String?
 )
 
-data class Login(
-    val token: String,
-    val provider: String,
-    val email: String,
-    val username: String,
-    val profilePict: String
-)

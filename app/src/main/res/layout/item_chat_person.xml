@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
@@ -23,6 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="17dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/doctor_profile"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +51,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/doctor_type"
             android:src="@drawable/ic_doctor" />
 
         <TextView
@@ -74,6 +77,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/hospital_name"
             android:src="@drawable/ic_hospital" />
 
         <TextView
@@ -90,7 +94,8 @@
             android:lines="1"
             android:text="@string/pet_race"
             android:textColor="@color/grey"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry" />
 
         <ImageView
             android:id="@+id/icLocation"
@@ -100,6 +105,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/experience"
             android:src="@drawable/ic_clock" />
 
         <TextView
@@ -112,7 +118,7 @@
             android:layout_toEndOf="@+id/ic_doctor"
             android:ellipsize="end"
             android:fontFamily="@font/regular"
-            android:text="Experience"
+            android:text="@string/experience"
             android:textColor="@color/grey"
             android:textSize="12sp" />
 
@@ -142,7 +148,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/bold"
-            android:text="Chat"
+            android:text="@string/chat"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

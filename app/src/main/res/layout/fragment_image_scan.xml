@@ -24,12 +24,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/imageUpload"
         android:scaleType="centerCrop"
         android:src="@drawable/upload_image"
         app:layout_constraintDimensionRatio="1:1" />
 
     <TextView
         style="@style/H3Bold"
+        android:id="@+id/tv_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/imagePreview"

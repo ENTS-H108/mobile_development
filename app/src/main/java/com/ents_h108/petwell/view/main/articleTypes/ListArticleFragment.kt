@@ -12,6 +12,7 @@ import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentListArticleBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.view.adapter.ArticleWideAdapter
+import com.ents_h108.petwell.view.main.PromoFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,8 +35,7 @@ class ListArticleFragment : Fragment() {
     private fun setupRecyclerView() {
         articleAdapter = ArticleWideAdapter(object : ArticleWideAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                // Handle item click
-                findNavController().navigate(ListArticleFragmentDirections.actionListArticleFragmentToDetailPromoArticleFragment2())
+                findNavController().navigate(PromoFragmentDirections.actionPromoFragmentToDetailPromoArticleFragment(item))
             }
         })
         binding.rvArticle.apply {
@@ -45,18 +45,21 @@ class ListArticleFragment : Fragment() {
     }
 
     private fun observeArticles() {
-        viewModel.getArticles().observe(viewLifecycleOwner) { result ->
+        viewModel.getContent("artikel").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> binding.historyLoading.visibility = View.VISIBLE
+                is Result.Loading -> {
+                    binding.historyLoading.visibility = View.VISIBLE
+                    binding.rvArticle.visibility = View.GONE
+                }
                 is Result.Success -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
-                    articleAdapter.submitList(result.data)
+                    articleAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
-                    Toast.makeText(context, result.error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }

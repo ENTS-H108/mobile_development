@@ -42,6 +42,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="99dp"
+                android:contentDescription="@string/cat"
                 android:src="@drawable/ic_cat"
                 android:layout_gravity="center"/>
 
@@ -79,6 +80,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="99dp"
+                android:contentDescription="@string/dog"
                 android:src="@drawable/ic_dog"
                 android:layout_gravity="center"/>
 

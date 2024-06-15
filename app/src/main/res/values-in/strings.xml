@@ -109,5 +109,60 @@
     <string name="bayar_n_konfirmasi"><![CDATA[Bayar & \n Konfirmasi]]></string>
     <string name="city_not_found">Lokasi Tidak Ditemukan</string>
     <string name="permission_denied">Akses Ditolak</string>
+    <string-array name="pet_types">
+        <item>Anjing</item>
+        <item>Kucing</item>
+    </string-array>
+
+    <!--    //sdf-->
+    <string name="pet_age">Usia Hewan Peliharaan (tahun) </string>
+    <string name="name">Nama</string>
+    <string name="dummy_date">Senin, 16 Januari 2023</string>
+    <string name="address">alamat</string>
+    <string name="hospital_name">Nama Rumah Sakit</string>
+    <string name="doctor_type">tipe dokter</string>
+    <string name="tabular_question1">1. Apakah hewan peliharaan Anda memiliki gejala kerak kering pada kulit?</string>
+    <string name="tabular_option_none">Tidak ada</string>
+    <string name="tabular_option_not_dominant">Tidak Dominan</string>
+    <string name="tabular_option_dominant">Dominan</string>
+    <string name="tabular_option_worse">Parah</string>
+    <string name="tabular_question2">2. Apakah hewan peliharaan Anda memiliki gejala kerak kering pada kulit?</string>
+    <string name="tabular_question4">4. Apakah hewan peliharaan Anda memiliki cincin bundar (ruam berbentuk cincin pada kulit) pada kulitnya?</string>
+    <string name="tabular_question3">3. Apakah hewan peliharaan Anda mengalami gejala kulit kudis?</string>
+    <string name="appointment_status_desc">Janji temu Anda berhasil diselesaikan, dan sekarang Anda dapat melihat detail dan konfirmasi janji temu ini di bagian riwayat untuk referensi Anda.</string>
+    <string name="succes">Berhasil</string>
+    <string name="result">Berhasil</string>
+    <string name="ask_a_doctor">Tanya Dokter</string>
+    <string name="service_fee">Biaya layanan</string>
+    <string name="payment_method">Metode pembayaran</string>
+    <string name="payment_total">Total Pembayaran</string>
+    <string name="veterinarian">Dokter Hewan</string>
+    <string name="consultation_for">Konsultasi untuk</string>
+    <string name="location">Lokasi</string>
+    <string name="your_doctor_of_choice">Dokter yang anda pilih</string>
+    <string name="educational_background">Latar Belakang Pendidikan</string>
+    <string name="doctor_profile">Profil Dokter</string>
+    <string name="consultation_fee">Biaya konsultasi: %s</string>
+    <string name="title_article">Judul artikel</string>
+    <string name="desc_article">Deskripsi artikel</string>
+    <string name="type_a_messege">ketik pesan</string>
+
+
+    <string name="chat">Mulai Chat</string>
+    <string name="experience">Pengalaman</string>
+    <string name="image_result">gambar hasil</string>
+    <string name="make_an_appointment_now">Booking Sekarang</string>
+    <string name="your_name">Nama Anda</string>
+    <string name="user_gmail">bangkitIncubation@gmail.com</string>
+    <string name="your_email">Email Anda</string>
+    <string name="inform_ordered_data">Informasi mengenai janji temu ini akan dikirimkan ke email Anda di bawah ini:</string>
+    <string name="orderer_data">Data Pemesan</string>
+    <string name="appointment_date">Rabu, 23 Juni 2023</string>
+    <string name="schedule">jadwal</string>
+    <string name="step2_scan_image">step2 scan gambar</string>
+    <string name="step1_scann_image">step1 scann gambar</string>
+    <string name="navigation">navigasi</string>
+    <string name="promo_image">gambar promo </string>
+    <string name="current_password">Password Sekarang</string>
 
 </resources>

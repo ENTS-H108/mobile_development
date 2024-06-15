@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.FragmentAppointmentBinding
-import com.ents_h108.petwell.utils.Utils.calculateDistance
+import com.ents_h108.petwell.utils.Utils.filterDoctorsWithinRadius
 import com.ents_h108.petwell.utils.Utils.requestLocationPermission
 import com.ents_h108.petwell.utils.Utils.setupLocation
 import com.ents_h108.petwell.view.adapter.AppointmentAdapter
@@ -71,7 +71,16 @@ class AppointmentFragment : Fragment() {
         ) {
             fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
                 location?.let {
-                    val filteredDoctors = filterDoctorsByDistance(it.latitude, it.longitude)
+                    val doctors = listOf(
+                        Doctor("7", R.drawable.doctor_7, "Drh. Dwi Putra", "RS Hewan Makmur", "Veterinarian", "2 Tahun", "Rp 30.000", -7.0, 112.7),
+                        Doctor("2", R.drawable.doctor_2, "Drh. Ahmad Santoso", "RS Hewan Senang Hati", "Veterinarian", "32 Tahun", "Rp 250.000", -7.34, 112.7183),
+                        Doctor("4", R.drawable.doctor_4, "Drh. Rina Hartati", "RS Hewan Ceria", "Veterinarian", "7 Tahun", "Rp 280.000", -7.40, 112.713),
+                        Doctor("5", R.drawable.doctor_5, "Drh. Eko Saputra", "RS Hewan Bahagia", "Veterinarian", "11 Tahun", "Rp 190.000", -7.5, 112.783),
+                        Doctor("6", R.drawable.doctor_6, "Drh. Andi Wijaya", "RS Hewan Sejahtera", "Veterinarian", "13 Tahun", "Rp 200.000", -8.0, 112.7188),
+                        Doctor("3", R.drawable.doctor_3, "Drh. Budi Prasetyo", "RS Hewan Cinta Kasih", "Veterinarian", "8 Tahun", "Rp 260.000", -7.36, 112.71),
+                        Doctor("1", R.drawable.doctor_1, "Drh. Siti Rahmawati", "RS Hewan Harapan Baru", "Veterinarian", "4 Tahun", "Rp 250.000", -7.44, 112.7183)
+                    )
+                    val filteredDoctors = filterDoctorsWithinRadius(doctors, it.latitude, it.longitude)
                     binding.extFloatingActionButton.setOnClickListener {
                         navigateToMaps(filteredDoctors)
                     }
@@ -82,23 +91,6 @@ class AppointmentFragment : Fragment() {
             }
         } else {
             requestLocationPermission(requireActivity())
-        }
-    }
-
-    private fun filterDoctorsByDistance(userLat: Double, userLon: Double): List<Doctor> {
-        val doctors = listOf(
-            Doctor("7", R.drawable.doctor_7, "Drh. Dwi Putra", "RS Hewan Makmur", "Dokter Hewan", "2 Tahun", "Rp 30.000", -7.0, 112.7),
-            Doctor("2", R.drawable.doctor_2, "Drh. Ahmad Santoso", "RS Hewan Senang Hati", "Dokter Hewan", "32 Tahun", "Rp 220.000", -7.34, 112.7183),
-            Doctor("4", R.drawable.doctor_4, "Drh. Rina Hartati", "RS Hewan Ceria", "Dokter Hewan", "7 Tahun", "Rp 280.000", -7.40, 112.713),
-            Doctor("5", R.drawable.doctor_5, "Drh. Eko Saputra", "RS Hewan Bahagia", "Dokter Hewan", "11 Tahun", "Rp 190.000", -7.5, 112.783),
-            Doctor("6", R.drawable.doctor_6, "Drh. Andi Wijaya", "RS Hewan Sejahtera", "Dokter Hewan", "13 Tahun", "Rp 200.000", -8.0, 112.7188),
-            Doctor("3", R.drawable.doctor_3, "Drh. Budi Prasetyo", "RS Hewan Cinta Kasih", "Dokter Hewan", "8 Tahun", "Rp 260.000", -7.36, 112.71),
-            Doctor("1", R.drawable.doctor_1, "Drh. Siti Rahmawati", "RS Hewan Harapan Baru", "Dokter Hewan", "4 Tahun", "Rp 250.000", -7.44, 112.7183)
-        )
-
-        return doctors.filter { doctor ->
-            val distance = calculateDistance(userLat, userLon, doctor.lat, doctor.lon)
-            distance <= 30
         }
     }
 

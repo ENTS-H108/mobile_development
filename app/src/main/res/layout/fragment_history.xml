@@ -20,9 +20,6 @@
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp">
 
-            <!-- Nama Fiona -->
-
-            <!-- Jenis Kelamin Perempuan -->
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"

@@ -1,21 +1,35 @@
 package com.ents_h108.petwell.view.main
 
-import HistoryAdapter
-import HistoryItem
+import com.ents_h108.petwell.view.adapter.HistoryAdapter
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.data.model.History
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentHistoryBinding
+import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentHistoryBinding
+    private val viewModel: MainViewModel by viewModel()
+
     private val historyAdapter = HistoryAdapter(object : HistoryAdapter.OnItemClickListener {
-        override fun onItemClick(item: HistoryItem) {
-            // Handle item click
+        override fun onItemClick(item: History) {
         }
     })
 
@@ -30,6 +44,29 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupUI()
+    }
+
+    private fun setupUI() {
+        val petActive = runBlocking {
+            UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+        }
+        if (petActive != null) {
+            viewModel.getPet(petActive).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {binding.historyLoading.visibility = View.VISIBLE}
+                    is Result.Success -> {
+                        binding.historyLoading.visibility = View.GONE
+                        binding.tvName.text = result.data.name
+                        binding.tvGender.text = result.data.species
+                        historyAdapter.submitList(result.data.history)
+                    }
+                    is Result.Error -> {
+                        binding.historyLoading.visibility = View.GONE
+                    }
+                }
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -37,16 +74,6 @@ class HistoryFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = historyAdapter
         }
-
-        val historyList = listOf(
-            HistoryItem(1, "url_gambar_1", "Dr. Repabdonad", "veterinarians", "2024-06-01"),
-            HistoryItem(2, "url_gambar_2", "Vaccine Calicivirus", "rumah sakit hewan jaya raya", "2024-06-02"),
-            HistoryItem(3, "url_gambar_3", "Folikulitis", "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....", "2024-06-03"),
-            HistoryItem(1, "url_gambar_1", "Dr. Repabdonad", "veterinarians", "2024-06-01"),
-            HistoryItem(2, "url_gambar_2", "Vaccine Calicivirus", "rumah sakit hewan jaya raya", "2024-06-02"),
-            HistoryItem(3, "url_gambar_3", "Folikulitis", "Folikulitis bakteri superfisial adalah infeksi yang menyebabkan luka.....", "2024-06-03")
-        )
-
-        historyAdapter.submitList(historyList)
+        binding.rvHistory.visibility = View.VISIBLE
     }
 }

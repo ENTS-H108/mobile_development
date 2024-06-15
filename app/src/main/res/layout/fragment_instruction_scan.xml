@@ -11,6 +11,7 @@
         android:id="@+id/firstInstruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/step1_scann_image"
         android:src="@drawable/instruction_satu"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
@@ -76,13 +77,13 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberthree"
         android:layout_below="@id/firstInstructionNumberTwo"
-        android:layout_weight="1"
         android:text="@string/descriptionThree"
         android:layout_marginTop="4dp" />
     <ImageView
         android:id="@+id/secondInstruction"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:contentDescription="@string/step2_scan_image"
         android:src="@drawable/instruction_dua"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
@@ -106,7 +107,6 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberFour"
         android:layout_below="@id/secondInstruction"
-        android:layout_weight="1"
         android:text="@string/descriptionFour"
         android:layout_marginTop="8dp" />
 
@@ -127,7 +127,6 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberFive"
         android:layout_below="@id/secondInstructionNumberFour"
-        android:layout_weight="1"
         android:text="@string/descriptionFive"
         android:layout_marginTop="4dp" />
 
@@ -148,7 +147,6 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/numberSix"
         android:layout_below="@id/secondInstructionNumberFive"
-        android:layout_weight="1"
         android:text="@string/descriptionSix"
         android:layout_marginTop="4dp" />
 

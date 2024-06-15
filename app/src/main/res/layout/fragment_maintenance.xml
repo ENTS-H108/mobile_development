@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
-    tools:context=".view.main.featureAppointment.MaintenanceFragment">
+    tools:context=".view.main.MaintenanceFragment">
 
     <ImageView
+        android:contentDescription="@string/maintenance"
         android:paddingHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
         android:text="@string/maintenanceDesc"
         android:textAlignment="center"
         android:fontFamily="@font/regular"
-        android:textSize="14dp"/>
+        android:textSize="14sp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/reset_btn"

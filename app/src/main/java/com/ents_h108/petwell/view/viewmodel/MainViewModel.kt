@@ -1,19 +1,32 @@
 package com.ents_h108.petwell.view.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.data.repository.MainRepository
+import com.ents_h108.petwell.data.repository.UserPreferences
+import com.ents_h108.petwell.utils.Result
+import kotlinx.coroutines.launch
 
-class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
-    fun getPromo() =
-        mainRepository.getArticles("promo")
+class MainViewModel(private val mainRepository: MainRepository, private val pref: UserPreferences) : ViewModel() {
 
-    fun getArticles() =
-        mainRepository.getArticles("artikel")
+    fun setPetActive(id: String) {
+        viewModelScope.launch {
+            pref.setPetActive(id)
+        }
+    }
+
+    fun getContent(type: String): LiveData<Result<PagingData<Article>>> = mainRepository.getArticles(type, viewModelScope)
 
     fun getPets() =
         mainRepository.getPets()
 
     fun fetchUserProfile() = mainRepository.getProfileUser()
+
+    fun getPet(id: String) = mainRepository.getPet(id)
 
     fun editPet(id: String, name: String, species: String) = mainRepository.editPets(id, name, species)
 
@@ -22,4 +35,8 @@ class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
     fun deletePet(id: String) = mainRepository.deletePet(id)
 
     fun editProfile(username: String, profilepict: String) = mainRepository.editProfile(username, profilepict)
+
+    fun addHistory(id: String, type: Int) = mainRepository.addHistory(id, type)
+
+    fun changePassword(currPw: String, newPw: String) = mainRepository.changePassword(currPw, newPw)
 }

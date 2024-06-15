@@ -31,18 +31,7 @@ private lateinit var binding: FragmentDokterProfileAppointmentBinding
                 binding.llDoctorProfile
             )
         }
-        binding.cvMedicalTreatment.setOnClickListener { view ->
-            accordionToggle(
-                binding.tvMedicalTreatmentDescription,
-                binding.llMedicalTreatment
-            )
-        }
-        binding.cvPracticalExperience.setOnClickListener { view ->
-            accordionToggle(
-                binding.tvPracticalExperienceDescription,
-                binding.llPracticalExperience
-            )
-        }
+
         binding.cvEducationalBackground.setOnClickListener { view ->
             accordionToggle(
                 binding.tvEducationalBackgroundDescription,

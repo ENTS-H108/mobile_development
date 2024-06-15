@@ -18,6 +18,8 @@ class PasswordCustomView : TextInputEditText {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     private var isPasswordVisible = false
+    var isPasswordValid = false
+        private set
 
     init {
         updateIcon()
@@ -70,8 +72,9 @@ class PasswordCustomView : TextInputEditText {
     }
 
     private fun validatePassword(password: String) {
+        isPasswordValid = password.length >= 8
         when {
-            password.length < 8 -> {
+            !isPasswordValid -> {
                 error = context.getString(R.string.incorrect_pw_format)
                 setTextColor(Color.RED)
                 setBackgroundResource(R.drawable.rounded_et_error)

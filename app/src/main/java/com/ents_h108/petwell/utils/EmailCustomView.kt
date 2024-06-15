@@ -12,10 +12,11 @@ import com.ents_h108.petwell.R
 class EmailCustomView : AppCompatEditText {
 
     constructor(context: Context) : super(context)
-
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+    var isEmailValid = false
+        private set
 
     init {
         addTextChangedListener(object : TextWatcher {
@@ -25,9 +26,9 @@ class EmailCustomView : AppCompatEditText {
 
             override fun afterTextChanged(s: Editable?) {
                 val input = s.toString().trim()
-                val isValidEmail = Patterns.EMAIL_ADDRESS.matcher(input).matches()
+                isEmailValid = Patterns.EMAIL_ADDRESS.matcher(input).matches()
 
-                if (!isValidEmail) {
+                if (!isEmailValid) {
                     setBackgroundResource(R.drawable.rounded_et_error)
                     error = context.getString(R.string.incorrect_email_format)
                     setTextColor(Color.RED)

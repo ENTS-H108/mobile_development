@@ -1,26 +1,35 @@
 package com.ents_h108.petwell.view.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.ents_h108.petwell.data.model.Pet
+import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentProfileBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.adapter.PetAdapter
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
 
 class ProfileFragment : Fragment() {
 
@@ -44,14 +53,20 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupPetRecyclerView() {
+        val petActive = runBlocking {
+            UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+        }
         petAdapter = PetAdapter(object : PetAdapter.OnItemClickListener {
             override fun onItemClick(item: Pet) {
+                mainViewModel.setPetActive(item.id)
             }
 
             override fun onEditProfileClick(item: Pet) {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment(item))
+                item.id.let {
+                    findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToEditPetFragment(item))
+                }
             }
-        })
+        }, petActive)
 
         binding.rvPet.apply {
             layoutManager = LinearLayoutManager(context)
@@ -89,6 +104,7 @@ class ProfileFragment : Fragment() {
                     is Result.Success -> {
                         binding.tvDeskripsi.text = result.data.email
                         binding.tvTitle.text = result.data.username
+                        binding.imgProfile.load(result.data.profilePict)
                     }
                     is Result.Error -> {
                         showToast(requireContext(), "Error Authentication")
@@ -106,6 +122,9 @@ class ProfileFragment : Fragment() {
                     authViewModel.logout()
                     findNavController().navigate(ProfileFragmentDirections.actionProfileToLogin())
                 }
+            }
+            changePw.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment())
             }
             btnHelp.setOnClickListener {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToHelpFragment())

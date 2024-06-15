@@ -32,14 +32,14 @@ class AppointmentAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(getItem(adapterPosition))
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(getItem(bindingAdapterPosition))
                 }
             }
 
             binding.btnAppointment.setOnClickListener {
-                if (adapterPosition != RecyclerView.NO_POSITION) {
-                    listener.onBtnClick(getItem(adapterPosition))
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    listener.onBtnClick(getItem(bindingAdapterPosition))
                 }
             }
         }

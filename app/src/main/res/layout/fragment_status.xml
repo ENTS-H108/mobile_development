@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/succes"
         android:paddingHorizontal="10dp"
         android:src="@drawable/ic_succes" />
 
@@ -18,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Succes"
+        android:text="@string/succes"
         android:textAlignment="center"
         android:textColor="@color/primary_blue" />
 
@@ -26,9 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
-        android:text="Your appointment was successfully completed, and you can now view the details and confirmation of this appointment in the history section for your reference."
+        android:text="@string/appointment_status_desc"
         android:textAlignment="center"
-        android:textSize="14dp" />
+        android:textSize="14sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -50,7 +51,7 @@
             android:background="@drawable/btn_secondary_states"
             android:fontFamily="@font/semibold"
             android:paddingHorizontal="20dp"
-            android:text="History"
+            android:text="@string/history"
             android:textColor="@color/primary_blue" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -62,7 +63,7 @@
             android:background="@drawable/btn_primary_states"
             android:fontFamily="@font/semibold"
             android:paddingHorizontal="20dp"
-            android:text="Home"
+            android:text="@string/home"
             android:textColor="@color/white" />
 
     </LinearLayout>

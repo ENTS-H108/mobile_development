@@ -55,8 +55,8 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_1, // Image resource
                 "Dr. Siti Rahmawati", // Female doctor
                 "RS Hewan Harapan Baru", // Updated hospital name
-                "Dokter Hewan",
-                "4 Tahun",
+                "Veterinarian",
+                "4 Years",
                 "Rp 50.000",
                 -7.44,
                 112.7183 // Updated latitude and longitude
@@ -66,9 +66,9 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_2,
                 "Dr. Ahmad Santoso", // Male doctor
                 "RS Hewan Senang Hati", // Updated hospital name
-                "Dokter Hewan",
-                "32 Tahun",
-                "Rp 70.000",
+                "Veterinarian",
+                "32 Years",
+                "Rp 50.000",
                 -7.34,
                 112.7183 // Updated latitude and longitude
             ),
@@ -77,9 +77,9 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_3,
                 "Dr. Budi Prasetyo", // Male doctor
                 "RS Hewan Cinta Kasih", // Updated hospital name
-                "Dokter Hewan",
-                "8 Tahun",
-                "Rp 60.000",
+                "Veterinarian",
+                "8 Years",
+                "Rp 30.000",
                 -7.36,
                 112.71 // Updated latitude and longitude
             ),
@@ -88,9 +88,9 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_4,
                 "Dr. Rina Hartati", // Female doctor
                 "RS Hewan Ceria", // Updated hospital name
-                "Dokter Hewan",
-                "7 Tahun",
-                "Rp 80.000",
+                "Veterinarian",
+                "7 Years",
+                "Rp 40.000",
                 -7.40,
                 112.713 // Updated latitude and longitude
             ),
@@ -99,9 +99,9 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_5,
                 "Dr. Eko Saputra", // Male doctor
                 "RS Hewan Bahagia", // Updated hospital name
-                "Dokter Hewan",
-                "11 Tahun",
-                "Rp 90.000",
+                "Veterinarian",
+                "11 Years",
+                "Rp 50.000",
                 -7.5,
                 112.783 // Updated latitude and longitude
             ),
@@ -110,9 +110,9 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_6,
                 "Dr. Andi Wijaya",
                 "RS Hewan Sejahtera", // Updated hospital name
-                "Dokter Hewan",
-                "13 Tahun",
-                "Rp 100.000",
+                "Veterinarian",
+                "13 Years",
+                "Rp 45.000",
                 -8.0,
                 112.7188 // Updated latitude and longitude
             ),
@@ -121,8 +121,8 @@ class ConsultationFragment : Fragment() {
                 R.drawable.doctor_7,
                 "Dr. Dwi Putra",
                 "RS Hewan Makmur", // Updated hospital name
-                "Dokter Hewan",
-                "2 Tahun",
+                "Veterinarian",
+                "2 Years",
                 "Rp 30.000",
                 -7.0,
                 112.7 // Updated latitude and longitude

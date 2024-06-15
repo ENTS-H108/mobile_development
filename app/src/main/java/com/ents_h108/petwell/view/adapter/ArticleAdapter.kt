@@ -2,15 +2,15 @@ package com.ents_h108.petwell.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.ItemArticleBinding
 
 class ArticleAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Article, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<Article, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(item: Article)
@@ -22,7 +22,7 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
@@ -30,10 +30,12 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                @Suppress("DEPRECATION") val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val articleItem = getItem(position)
-                    listener.onItemClick(articleItem)
+                    if (articleItem != null) {
+                        listener.onItemClick(articleItem)
+                    }
                 }
             }
         }
@@ -41,7 +43,7 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
         fun bind(item: Article) {
             binding.itemThumbnail.load(item.thumbnail)
             binding.articleTitle.text = item.title
-            binding.articleDesc.text = item.description
+            binding.articleDesc.text = item.desc
         }
     }
 

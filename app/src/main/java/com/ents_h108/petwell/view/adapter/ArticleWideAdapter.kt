@@ -2,15 +2,15 @@ package com.ents_h108.petwell.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.ItemArticleWideBinding
 
 class ArticleWideAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Article, ArticleWideAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<Article, ArticleWideAdapter.ArticleViewHolder>(DIFF_CALLBACK) {
 
     interface OnItemClickListener {
         fun onItemClick(item: Article)
@@ -22,7 +22,10 @@ class ArticleWideAdapter(private val listener: OnItemClickListener) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        if (item != null) {
+            holder.bind(item)
+        }
     }
 
     inner class ArticleViewHolder(private val binding: ItemArticleWideBinding) :
@@ -30,10 +33,12 @@ class ArticleWideAdapter(private val listener: OnItemClickListener) :
 
         init {
             binding.root.setOnClickListener {
-                @Suppress("DEPRECATION") val position = adapterPosition
+                val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val articleItem = getItem(position)
-                    listener.onItemClick(articleItem)
+                    if (articleItem != null) {
+                        listener.onItemClick(articleItem)
+                    }
                 }
             }
         }

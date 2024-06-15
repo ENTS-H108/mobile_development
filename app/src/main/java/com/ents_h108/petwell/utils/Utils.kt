@@ -10,9 +10,16 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.Doctor
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.security.MessageDigest
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 import java.util.UUID
 import kotlin.math.acos
 import kotlin.math.cos
@@ -38,21 +45,24 @@ object Utils {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
-        val theta = lon1 - lon2
-        var dist = sin(Math.toRadians(lat1)) * sin(Math.toRadians(lat2)) +
-                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * cos(Math.toRadians(theta))
-        dist = acos(dist)
-        dist = Math.toDegrees(dist)
-        dist *= 60.0 * 1.1515
-        return dist * 1.609344
+    fun filterDoctorsWithinRadius(doctors: List<Doctor>, userLat: Double, userLon: Double, radiusKm: Double = 30.0): List<Doctor> {
+        return doctors.filter { doctor ->
+            val theta = userLon - doctor.lon
+            var dist = sin(Math.toRadians(userLat)) * sin(Math.toRadians(doctor.lat)) +
+                    cos(Math.toRadians(userLat)) * cos(Math.toRadians(doctor.lat)) * cos(Math.toRadians(theta))
+            dist = acos(dist)
+            dist = Math.toDegrees(dist)
+            dist *= 60.0 * 1.1515
+            dist *= 1.609344
+            dist <= radiusKm
+        }
     }
 
     fun getAddressFromLocation(
         context: Context,
         latitude: Double,
         longitude: Double,
-        callback: (String?, String?, String?) -> Unit // Modify the callback to return street name and number
+        callback: (String?, String?, String?) -> Unit
     ) {
         val geocoder = Geocoder(context, Locale.getDefault())
         val addresses = geocoder.getFromLocation(latitude, longitude, 1)
@@ -97,6 +107,12 @@ object Utils {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             LOCATION_PERMISSION_REQUEST_CODE
         )
+    }
+
+    fun formatDate(currentTime: String, timeZone: String): String {
+        val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy | HH:mm")
+            .withZone(ZoneId.of(timeZone))
+        return formatter.format(Instant.parse(currentTime))
     }
 
     private const val LOCATION_PERMISSION_REQUEST_CODE = 100

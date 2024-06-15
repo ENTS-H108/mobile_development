@@ -5,6 +5,6 @@ data class NewPassword(
     val token: String
 )
 
-data class ResetPasswordResponse(
+data class MessageResponse(
     val message: String
 )

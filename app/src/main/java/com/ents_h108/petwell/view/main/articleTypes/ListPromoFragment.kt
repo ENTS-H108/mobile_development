@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.ents_h108.petwell.databinding.FragmentListPromoBinding
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.adapter.PromoAdapter
+import com.ents_h108.petwell.view.main.PromoFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +37,7 @@ class ListPromoFragment : Fragment() {
     private fun setupRecyclerView() {
         promoAdapter = PromoAdapter(object : PromoAdapter.OnItemClickListener {
             override fun onItemClick(item: Article) {
-                findNavController().navigate(ListPromoFragmentDirections.actionListPromoFragmentToDetailPromoArticleFragment2())
+                findNavController().navigate(PromoFragmentDirections.actionPromoFragmentToDetailPromoArticleFragment(item))
             }
         })
         binding.rvListPromo.apply {
@@ -45,18 +47,21 @@ class ListPromoFragment : Fragment() {
     }
 
     private fun observePromo() {
-        viewModel.getPromo().observe(viewLifecycleOwner) { result ->
+        viewModel.getContent("promo").observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> binding.historyLoading.visibility = View.VISIBLE
+                is Result.Loading -> {
+                    binding.historyLoading.visibility = View.VISIBLE
+                    binding.rvListPromo.visibility = View.GONE
+                }
                 is Result.Success -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvListPromo.visibility = View.VISIBLE
-                    promoAdapter.submitList(result.data)
+                    promoAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
                     binding.historyLoading.visibility = View.GONE
                     binding.rvListPromo.visibility = View.GONE
-                    context?.let { Utils.showToast(it, result.error) }
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }
