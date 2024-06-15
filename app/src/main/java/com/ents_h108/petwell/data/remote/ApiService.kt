@@ -5,13 +5,12 @@ import com.ents_h108.petwell.data.model.LoginRequest
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.NewPassword
 import com.ents_h108.petwell.data.model.PetResponse
-import com.ents_h108.petwell.data.model.ResetPasswordResponse
 import com.ents_h108.petwell.data.model.SignUpRequest
-import com.ents_h108.petwell.data.model.SignUpResponse
 import com.ents_h108.petwell.data.model.User
 import com.ents_h108.petwell.data.model.UserResponse
 import com.ents_h108.petwell.data.model.EditPet
 import com.ents_h108.petwell.data.model.History
+import com.ents_h108.petwell.data.model.MessageResponse
 import com.ents_h108.petwell.data.model.Pet
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -26,11 +25,11 @@ interface ApiService {
     @POST("login")
     suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
     @POST("signup")
-    suspend fun register(@Body request: SignUpRequest): SignUpResponse
+    suspend fun register(@Body request: SignUpRequest): MessageResponse
     @POST("forgot-password")
-    suspend fun reqToken(@Body body: Map<String, String>): ResetPasswordResponse
+    suspend fun reqToken(@Body body: Map<String, String>): MessageResponse
     @POST("reset-password")
-    suspend fun resetPassword(@Body request: NewPassword): ResetPasswordResponse
+    suspend fun resetPassword(@Body request: NewPassword): MessageResponse
     @GET("/articles")
     suspend fun getArticles(
         @Query("type") type: String,

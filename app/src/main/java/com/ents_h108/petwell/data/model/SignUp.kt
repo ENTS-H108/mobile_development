@@ -5,8 +5,3 @@ data class SignUpRequest(
     val username: String,
     val password: String
 )
-
-data class SignUpResponse(
-    val message: String,
-    val error: String
-)

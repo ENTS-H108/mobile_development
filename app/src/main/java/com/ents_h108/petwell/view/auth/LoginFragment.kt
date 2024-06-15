@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentLoginBinding
@@ -14,7 +15,7 @@ import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -38,78 +39,74 @@ class LoginFragment : Fragment() {
     private fun setupUI() {
         binding.apply {
             logBtn.setOnClickListener { validateAndLogin() }
-            regBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToRegister()) }
-            backBtn.setOnClickListener { findNavController().navigate(LoginFragmentDirections.actionLoginToOnboarding()) }
+            regBtn.setOnClickListener {findNavController().navigate(LoginFragmentDirections.actionLoginToRegister())}
+            backBtn.setOnClickListener {findNavController().navigate(LoginFragmentDirections.actionLoginToOnboarding())}
             forgotPw.setOnClickListener { handleForgotPassword() }
         }
     }
 
     private fun validateAndLogin() {
-        val fields = listOf(binding.etEmail, binding.etPassword)
-        val allFieldsFilled = fields.all { editText ->
-            val value = editText.text.toString().trim()
-            if (value.isEmpty()) {
-                showError(editText, requireContext())
-                false
-            } else {
-                resetError(editText, requireContext())
-                true
-            }
-        }
-
-        if (allFieldsFilled) {
-            handleLogin()
-        } else {
-            showToast(requireContext(), getString(R.string.field_empty))
-        }
-    }
-
-    private fun handleLogin() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            showToast(requireContext(), getString(R.string.field_empty))
+            return
+        }
+
+        if (!binding.etEmail.isEmailValid) {
+            showToast(requireContext(), getString(R.string.incorrect_email_format))
+            return
+        }
+
+        if (!binding.etPassword.isPasswordValid) {
+            showToast(requireContext(), getString(R.string.incorrect_pw_format))
+            return
+        }
+
+        handleLogin(email, password)
+    }
+
+    private fun handleLogin(email: String, password: String) {
         authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
+            binding.loading.visibility = View.GONE
             when (result) {
                 is Result.Loading -> binding.loading.visibility = View.VISIBLE
                 is Result.Success -> {
-                    binding.loading.visibility = View.GONE
-                    showToast(requireContext(), result.data.message)
-                    authViewModel.saveLoginStatus(result.data.token)
-                    runBlocking {
+                    showToast(requireContext(), result.data.message ?: "Login berhasil")
+                    result.data.token?.let { authViewModel.saveLoginStatus(it) }
+                    lifecycleScope.launch {
                         delay(2000)
                         findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                 }
-
-                is Result.Error -> {
-                    binding.loading.visibility = View.GONE
-                    showToast(requireContext(), result.error)
-                }
+                is Result.Error -> showToast(requireContext(), result.error)
             }
         }
     }
 
     private fun handleForgotPassword() {
         val email = binding.etEmail.text.toString().trim()
+
+        if (!binding.etEmail.isEmailValid) {
+            showToast(requireContext(), getString(R.string.incorrect_email_format))
+            return
+        }
+
         if (email.isEmpty()) {
             showError(binding.etEmail, requireContext())
             showToast(requireContext(), getString(R.string.field_empty))
-        } else {
-            resetError(binding.etEmail, requireContext())
-            authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
-                when (result) {
-                    is Result.Loading -> binding.loading.visibility = View.VISIBLE
-                    is Result.Success -> {
-                        binding.loading.visibility = View.GONE
-                        showToast(requireContext(), result.data.message)
-                    }
+            return
+        }
 
-                    is Result.Error -> {
-                        binding.loading.visibility = View.GONE
-                        showToast(requireContext(), getString(R.string.email_not_found))
-                    }
-                }
+        resetError(binding.etEmail, requireContext())
+        authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
+            binding.loading.visibility = View.GONE
+            when (result) {
+                is Result.Success -> showToast(requireContext(), result.data.message)
+                is Result.Error -> showToast(requireContext(), getString(R.string.email_not_found))
+                is Result.Loading -> binding.loading.visibility = View.VISIBLE
             }
         }
     }
 }
-

@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.utils.Result
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.MessageResponse
 import com.ents_h108.petwell.databinding.FragmentRegisterBinding
 import com.ents_h108.petwell.utils.Utils.resetError
 import com.ents_h108.petwell.utils.Utils.showError
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.viewmodel.AuthViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterFragment : Fragment() {
 
@@ -36,60 +37,75 @@ class RegisterFragment : Fragment() {
     private fun setupUI() {
         binding.apply {
             regBtn.setOnClickListener { handleRegister() }
-            logBtn.setOnClickListener { findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin()) }
-            backBtn.setOnClickListener { findNavController().navigate(RegisterFragmentDirections.actionRegisterToOnboarding()) }
+            logBtn.setOnClickListener { navigateToLogin() }
+            backBtn.setOnClickListener { navigateToOnboarding() }
         }
+    }
+
+    private fun navigateToLogin() {
+        findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
+    }
+
+    private fun navigateToOnboarding() {
+        findNavController().navigate(RegisterFragmentDirections.actionRegisterToOnboarding())
     }
 
     private fun handleRegister() {
-        with(binding) {
-            val fields = mapOf(
-                etUsername to etUsername.text.toString().trim(),
-                etEmail to etEmail.text.toString().trim(),
-                etPassword to etPassword.text.toString().trim(),
-                etCpassword to etCpassword.text.toString().trim()
-            )
+        val fields = mapOf(
+            binding.etUsername to binding.etUsername.text.toString().trim(),
+            binding.etEmail to binding.etEmail.text.toString().trim(),
+            binding.etPassword to binding.etPassword.text.toString().trim(),
+            binding.etCpassword to binding.etCpassword.text.toString().trim()
+        )
 
-            if (fields.values.any { it.isEmpty() }) {
-                fields.forEach { (editText, value) ->
-                    if (value.isEmpty()) showError(editText, requireContext()) else resetError(editText, requireContext())
-                }
-                showToast(requireContext(), getString(R.string.field_empty))
-                return
+        if (fields.any { it.value.isEmpty() }) {
+            fields.forEach { (editText, value) ->
+                if (value.isEmpty()) showError(editText, requireContext()) else resetError(editText, requireContext())
             }
+            showToast(requireContext(), getString(R.string.field_empty))
+            return
+        }
 
-            if (etPassword.text.toString() != etCpassword.text.toString()) {
-                showError(etCpassword, requireContext())
-                showToast(requireContext(), getString(R.string.cpassword_not_match))
-                return
-            }
+        if (!binding.etEmail.isEmailValid) {
+            showToast(requireContext(), getString(R.string.incorrect_email_format))
+            return
+        }
 
-            authViewModel.register(fields.getValue(etEmail), fields.getValue(etUsername), fields.getValue(etPassword))
-                .observe(viewLifecycleOwner) { result ->
-                    when (result) {
-                        is Result.Loading -> loading.visibility = View.VISIBLE
-                        is Result.Success -> handleRegistrationSuccess(fields.getValue(etEmail))
-                        is Result.Error -> handleRegistrationError(result.error)
-                    }
-                }
+        if (!binding.etPassword.isPasswordValid) {
+            showToast(requireContext(), getString(R.string.incorrect_pw_format))
+            return
+        }
+
+        if (binding.etPassword.text.toString() != binding.etCpassword.text.toString()) {
+            showError(binding.etCpassword, requireContext())
+            showToast(requireContext(), getString(R.string.cpassword_not_match))
+            return
+        }
+
+        authViewModel.register(
+            fields.getValue(binding.etUsername),
+            fields.getValue(binding.etEmail),
+            fields.getValue(binding.etPassword)
+        ).observe(viewLifecycleOwner) { result ->
+            handleRegistrationResult(result)
         }
     }
 
-    private fun handleRegistrationSuccess(email: String) {
-        with(binding) {
-            loading.visibility = View.GONE
-            showToast(requireContext(), getString(R.string.email_verification_sent, email))
-            findNavController().navigate(RegisterFragmentDirections.actionRegisterToLogin())
+    private fun handleRegistrationResult(result: Result<MessageResponse>) {
+        binding.loading.visibility = View.GONE
+        when (result) {
+            is Result.Success -> showToast(requireContext(), result.data.message)
+            is Result.Error -> {
+                showToast(requireContext(), result.error)
+                resetFields()
+            }
+            is Result.Loading -> binding.loading.visibility = View.VISIBLE
         }
     }
 
-    private fun handleRegistrationError(error: String) {
-        with(binding) {
-            loading.visibility = View.GONE
-            showToast(requireContext(), error)
-            etEmail.text?.clear()
-            etPassword.text?.clear()
-            etCpassword.text?.clear()
-        }
+    private fun resetFields() {
+        binding.etEmail.text?.clear()
+        binding.etPassword.text?.clear()
+        binding.etCpassword.text?.clear()
     }
 }

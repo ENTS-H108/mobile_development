@@ -54,14 +54,15 @@ class HistoryFragment : Fragment() {
         if (petActive != null) {
             viewModel.getPet(petActive).observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is Result.Loading -> {}
+                    is Result.Loading -> {binding.historyLoading.visibility = View.VISIBLE}
                     is Result.Success -> {
+                        binding.historyLoading.visibility = View.GONE
                         binding.tvName.text = result.data.name
                         binding.tvGender.text = result.data.species
                         historyAdapter.submitList(result.data.history)
                     }
                     is Result.Error -> {
-                        Log.d("HomeFragment", "Pet Name: ${result.error}")
+                        binding.historyLoading.visibility = View.GONE
                     }
                 }
             }

@@ -18,48 +18,49 @@ class AuthRepository(private val apiService: ApiService) {
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-            emit(Result.Error(errorBody.message))
+            emit(Result.Error(errorBody.error ?: "Unknown error"))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
     }
 
-    fun registerUser(name: String, email: String, password: String): LiveData<Result<SignUpResponse>> = liveData {
+
+    fun registerUser(name: String, email: String, password: String): LiveData<Result<MessageResponse>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.register(SignUpRequest(email, name, password))
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, SignUpResponse::class.java)
-            emit(Result.Error(errorBody.error))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-    }
-
-    fun requestToken(email: String): LiveData<Result<ResetPasswordResponse>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.reqToken(mapOf("email" to email))
-            emit(Result.Success(response))
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ResetPasswordResponse::class.java)
+            val errorBody = Gson().fromJson(jsonInString, MessageResponse::class.java)
             emit(Result.Error(errorBody.message))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
     }
 
-    fun resetPassword(newPassword: String, token: String): LiveData<Result<ResetPasswordResponse>> = liveData {
+    fun requestToken(email: String): LiveData<Result<MessageResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.reqToken(mapOf("email" to email))
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, MessageResponse::class.java)
+            emit(Result.Error(errorBody.message))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun resetPassword(newPassword: String, token: String): LiveData<Result<MessageResponse>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.resetPassword(NewPassword(newPassword, token))
             emit(Result.Success(response))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ResetPasswordResponse::class.java)
+            val errorBody = Gson().fromJson(jsonInString, MessageResponse::class.java)
             emit(Result.Error(errorBody.message))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -74,7 +75,7 @@ class AuthRepository(private val apiService: ApiService) {
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-            emit(Result.Error(errorBody.message))
+            emit(Result.Error(errorBody.error ?: "Unknown error"))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }

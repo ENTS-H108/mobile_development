@@ -108,8 +108,7 @@
             tools:itemCount="2"
             tools:layout_editor_absoluteX="20dp"
             tools:listitem="@layout/item_pet"
-            android:visibility="visible"
-            />
+            android:visibility="gone"/>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/pet_item_loading"

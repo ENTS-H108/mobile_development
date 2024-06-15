@@ -46,7 +46,7 @@ class ChangePassword : Fragment() {
                 }
                 is Result.Success -> {
                     binding.loading.visibility = View.GONE
-                    showToast(requireContext(), result.data.message)
+                    showToast(requireContext(), result.data.message ?: "Berhasil ubah password")
                     findNavController().popBackStack()
                 }
                 is Result.Error -> {
