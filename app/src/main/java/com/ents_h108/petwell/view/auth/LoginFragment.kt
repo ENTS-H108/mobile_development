@@ -69,10 +69,10 @@ class LoginFragment : Fragment() {
 
     private fun handleLogin(email: String, password: String) {
         authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
-            binding.loading.visibility = View.GONE
             when (result) {
                 is Result.Loading -> binding.loading.visibility = View.VISIBLE
                 is Result.Success -> {
+                    binding.loading.visibility = View.GONE
                     showToast(requireContext(), result.data.message ?: "Login berhasil")
                     result.data.token?.let { authViewModel.saveLoginStatus(it) }
                     lifecycleScope.launch {
@@ -80,7 +80,10 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(LoginFragmentDirections.actionLoginToHome())
                     }
                 }
-                is Result.Error -> showToast(requireContext(), result.error)
+                is Result.Error -> {
+                    binding.loading.visibility = View.GONE
+                    showToast(requireContext(), result.error)
+                }
             }
         }
     }

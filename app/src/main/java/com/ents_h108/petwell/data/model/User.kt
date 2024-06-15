@@ -2,7 +2,7 @@ package com.ents_h108.petwell.data.model
 
 data class UserResponse(
     val message: String,
-    val user: List<User>
+    val user: User
 )
 
 data class User(

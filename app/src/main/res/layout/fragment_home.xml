@@ -268,7 +268,7 @@
                     android:layout_below="@id/section_2"
                     android:layout_marginTop="10dp"
                     app:shimmer_auto_start="true"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
@@ -340,7 +340,7 @@
                     android:layout_below="@id/section_3"
                     android:layout_marginTop="10dp"
                     app:shimmer_auto_start="true"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"

@@ -51,15 +51,16 @@ class EditPetFragment : Fragment() {
                 binding.btnDeletePet.visibility = View.GONE
                 binding.saveBtn.text = getString(R.string.add_pet_btn)
                 binding.saveBtn.setOnClickListener {
-                    mainViewModel.addPet(etPetName.text.toString(), binding.spinnerPetType.selectedItem.toString())
+                    mainViewModel.addPet(etPetName.text.toString(), binding.spinnerPetType.selectedItem.toString(), etPetAge.text.toString().toInt())
                         .observe(viewLifecycleOwner) { handleResult(it) }
                 }
             } else {
                 pet?.let { pet ->
-                    binding.imgPet.load(pet.name)
+                    binding.imgPet.setImageResource(if (pet.name == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
                     etPetName.setText(pet.name)
+                    etPetAge.setText(pet.age.toString())
                     binding.saveBtn.setOnClickListener {
-                        mainViewModel.editPet(pet.id, etPetName.text.toString(), binding.spinnerPetType.selectedItem.toString())
+                        mainViewModel.editPet(pet.id, etPetName.text.toString(), binding.spinnerPetType.selectedItem.toString(), etPetAge.text.toString().toInt())
                             .observe(viewLifecycleOwner) { handleResult(it) }
                     }
                     binding.btnDeletePet.setOnClickListener {
