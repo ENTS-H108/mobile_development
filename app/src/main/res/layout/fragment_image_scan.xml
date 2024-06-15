@@ -24,6 +24,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/imageUpload"
         android:scaleType="centerCrop"
         android:src="@drawable/upload_image"
         app:layout_constraintDimensionRatio="1:1" />

@@ -152,6 +152,24 @@
     <string name="title_article">Title article</string>
     <string name="desc_article">desc Article</string>
     <string name="type_a_messege">type a messege</string>
+    <string name="chat">Start Chat</string>
+    <string name="experience">Experience</string>
+    <string name="image_result">image result</string>
+    <string name="make_an_appointment_now">Make an Appointment Now</string>
+    <string name="your_name">Your Name</string>
+    <string name="user_gmail">bangkitIncubation@gmail.com</string>
+    <string name="your_email">Your email</string>
+    <string name="inform_ordered_data">Information regarding this appointment will be sent to your email below :</string>
+    <string name="orderer_data">Orderer Data</string>
+    <string name="appointment_time" translatable="false">09:00 - 11:00</string>
+    <string name="appointment_date">Wednesday, June 23, 2023</string>
+    <string name="schedule">Schedule</string>
+    <string name="step2_scan_image">step2 scan image</string>
+    <string name="step1_scann_image">step1 scann image</string>
+    <string name="dropdown" translatable="false">dropdown</string>
+    <string name="navigation">navigation</string>
+    <string name="promo_image">promo image</string>
+    <string name="current_password">Current Password</string>
 
 
 </resources>

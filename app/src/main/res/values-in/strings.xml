@@ -146,4 +146,23 @@
     <string name="title_article">Judul artikel</string>
     <string name="desc_article">Deskripsi artikel</string>
     <string name="type_a_messege">ketik pesan</string>
+
+
+    <string name="chat">Mulai Chat</string>
+    <string name="experience">Pengalaman</string>
+    <string name="image_result">gambar hasil</string>
+    <string name="make_an_appointment_now">Booking Sekarang</string>
+    <string name="your_name">Nama Anda</string>
+    <string name="user_gmail">bangkitIncubation@gmail.com</string>
+    <string name="your_email">Email Anda</string>
+    <string name="inform_ordered_data">Informasi mengenai janji temu ini akan dikirimkan ke email Anda di bawah ini:</string>
+    <string name="orderer_data">Data Pemesan</string>
+    <string name="appointment_date">Rabu, 23 Juni 2023</string>
+    <string name="schedule">jadwal</string>
+    <string name="step2_scan_image">step2 scan gambar</string>
+    <string name="step1_scann_image">step1 scann gambar</string>
+    <string name="navigation">navigasi</string>
+    <string name="promo_image">gambar promo </string>
+    <string name="current_password">Password Sekarang</string>
+
 </resources>

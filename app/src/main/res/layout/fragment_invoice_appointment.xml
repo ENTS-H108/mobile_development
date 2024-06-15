@@ -88,7 +88,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/semibold"
-                                android:text="Drh. Ahmad Santoso"
+                                android:text="@string/doctor_name"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
 
@@ -133,16 +133,13 @@
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top">
+
 
 
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:layout_marginEnd="4dp"
@@ -154,9 +151,8 @@
                                 android:id="@+id/location"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="4dp"
                                 android:fontFamily="@font/medium"
-                                android:text="Jalan Wisma Menanggal III 36, Surabaya"
+                                android:text="@string/address"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -165,7 +161,6 @@
 
 
 
-                        </LinearLayout>
 
 
 
@@ -177,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Schedule"
+                        android:text="@string/schedule"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
                     <LinearLayout
@@ -186,32 +181,31 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/date"
+                            android:id="@+id/tv_apppointment_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="Wednesday, June 23, 2023"
+                            android:text="@string/appointment_date"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                         <TextView
-                            android:id="@+id/time"
+                            android:id="@+id/tv_appointment_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="Time 09:00 - 11:00 "
+                            android:text="@string/appointment_time"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
+
                     <TextView
-                        android:id="@+id/tv_price"
                         android:layout_marginTop="4dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/medium"
-                        android:text="Consultation fee: Rp 250.000"
+                        android:text="@string/consultation_fee"
                         android:textColor="@color/yellow"
                         android:textSize="14sp" />
-
 
 
                 </LinearLayout>
@@ -239,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Orderer Data"
+                        android:text="@string/orderer_data"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
@@ -248,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/bold"
-                        android:text="Information regarding this appointment will be sent to your email below :"
+                        android:text="@string/inform_ordered_data"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -261,7 +255,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/medium"
-                        android:text="Your email"
+                        android:text="@string/your_email"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -271,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/medium"
-                        android:text="bangkitIncubation@gmail.com"
+                        android:text="@string/user_gmail"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -280,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="2dp"
                         android:fontFamily="@font/medium"
-                        android:text="Your Full Name"
+                        android:text="@string/your_name"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -290,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/medium"
-                        android:text="Luqyana"
+                        android:text="@string/username"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
 
@@ -302,7 +296,7 @@
                         android:layout_marginBottom="5dp"
                         android:paddingVertical="10dp"
                         android:background="@drawable/btn_primary_states"
-                        android:text="Make an Appointment Now" />
+                        android:text="@string/make_an_appointment_now" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

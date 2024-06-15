@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/succes"
         android:paddingHorizontal="10dp"
         android:src="@drawable/ic_succes" />
 
@@ -28,7 +29,7 @@
         android:fontFamily="@font/regular"
         android:text="@string/appointment_status_desc"
         android:textAlignment="center"
-        android:textSize="14dp" />
+        android:textSize="14sp" />
 
     <Space
         android:layout_width="match_parent"

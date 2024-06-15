@@ -69,7 +69,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="8dp"
                                 android:fontFamily="@font/semibold"
-                                android:text="Drh . Ahmad Santoso"
+                                android:text="@string/doctor_name"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
 
@@ -82,6 +82,7 @@
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:contentDescription="@string/doctor_type"
                                     android:src="@drawable/ic_doctor" />
 
                                 <TextView
@@ -155,7 +156,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/medium"
-                                android:text="Jalan Wisma Menanggal III 36, Surabaya"
+                                android:text="@string/address"
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
 
@@ -171,22 +172,17 @@
 
                         </LinearLayout>
 
-                        <androidx.cardview.widget.CardView
+                        <ImageView
+                            android:id="@+id/iv_navigation"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
+                            android:layout_gravity="center"
                             android:layout_marginVertical="15dp"
                             android:layout_marginEnd="14dp"
-                            app:cardCornerRadius="5dp"
-                            app:cardElevation="4dp">
+                            android:contentDescription="@string/navigation"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_navigation" />
 
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/img_onboarding" />
-
-                        </androidx.cardview.widget.CardView>
 
                     </LinearLayout>
 
@@ -299,7 +295,7 @@
                 android:background="@drawable/btn_primary_states"
                 android:fontFamily="@font/semibold"
                 android:paddingVertical="10dp"
-                android:text="Make an Appointment Now" />
+                android:text="@string/make_an_appointment_now" />
 
         </LinearLayout>
 

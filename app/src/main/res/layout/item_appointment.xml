@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
@@ -49,6 +50,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/doctor_type"
             android:src="@drawable/ic_doctor" />
 
         <TextView
@@ -73,6 +75,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/hospital_name"
             android:src="@drawable/ic_hospital" />
 
         <TextView
@@ -99,6 +102,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/imgDoctor"
+            android:contentDescription="@string/address"
             android:src="@drawable/ic_location" />
 
         <TextView
@@ -115,7 +119,8 @@
             android:fontFamily="@font/regular"
             android:text="@string/address"
             android:textColor="@color/grey"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="RtlSymmetry" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
