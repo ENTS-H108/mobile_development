@@ -48,16 +48,16 @@ class ListArticleFragment : Fragment() {
         viewModel.getContent("artikel").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
-                    binding.historyLoading.visibility = View.VISIBLE
+                    binding.articleLoading.visibility = View.VISIBLE
                     binding.rvArticle.visibility = View.GONE
                 }
                 is Result.Success -> {
-                    binding.historyLoading.visibility = View.GONE
+                    binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
                     articleAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
-                    binding.historyLoading.visibility = View.GONE
+                    binding.articleLoading.visibility = View.GONE
                     binding.rvArticle.visibility = View.GONE
                     Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }

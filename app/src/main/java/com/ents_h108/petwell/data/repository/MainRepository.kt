@@ -73,11 +73,11 @@ class MainRepository(
         }
     }
 
-    fun editPets(id: String, name: String, species: String): LiveData<Result<List<Pet>>> = liveData {
+    fun editPets(id: String, name: String, species: String, age: Int): LiveData<Result<List<Pet>>> = liveData {
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.editPet(id, "Bearer $token", EditPet(name, species))
+            val response = apiService.editPet(id, "Bearer $token", EditPet(name, species, age))
             emit(Result.Success(response.pets))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -102,11 +102,11 @@ class MainRepository(
         }
     }
 
-    fun addPets(name: String, species: String): LiveData<Result<List<Pet>>> = liveData {
+    fun addPets(name: String, species: String, age: Int): LiveData<Result<List<Pet>>> = liveData {
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.addPet("Bearer $token", EditPet(name, species))
+            val response = apiService.addPet("Bearer $token", EditPet(name, species, age))
             emit(Result.Success(response.pets))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -132,11 +132,14 @@ class MainRepository(
         }
     }
 
-    fun editProfile(username: String, profilepict: String): LiveData<Result<List<User>>> = liveData {
+    fun editProfile(username: String, profilePict: String?): LiveData<Result<User>> = liveData {
         emit(Result.Loading)
         try {
             val token = pref.getToken().first()
-            val response = apiService.updateProfileUser("Bearer $token", mapOf("username" to username, "profilePict" to profilepict))
+            val body = mutableMapOf<String, String>()
+            body["username"] = username
+            profilePict?.let { body["profilePict"] = it }
+            val response = apiService.updateProfileUser("Bearer $token", body)
             emit(Result.Success(response.user))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()

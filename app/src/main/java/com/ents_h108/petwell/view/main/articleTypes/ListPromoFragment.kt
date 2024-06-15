@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.databinding.FragmentListPromoBinding
 import com.ents_h108.petwell.utils.Result
-import com.ents_h108.petwell.utils.Utils
 import com.ents_h108.petwell.view.adapter.PromoAdapter
 import com.ents_h108.petwell.view.main.PromoFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
@@ -50,16 +49,16 @@ class ListPromoFragment : Fragment() {
         viewModel.getContent("promo").observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
-                    binding.historyLoading.visibility = View.VISIBLE
+                    binding.promoLoading.visibility = View.VISIBLE
                     binding.rvListPromo.visibility = View.GONE
                 }
                 is Result.Success -> {
-                    binding.historyLoading.visibility = View.GONE
+                    binding.promoLoading.visibility = View.GONE
                     binding.rvListPromo.visibility = View.VISIBLE
                     promoAdapter.submitData(lifecycle, result.data)
                 }
                 is Result.Error -> {
-                    binding.historyLoading.visibility = View.GONE
+                    binding.promoLoading.visibility = View.GONE
                     binding.rvListPromo.visibility = View.GONE
                     Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }

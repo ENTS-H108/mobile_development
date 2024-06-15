@@ -11,6 +11,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -27,7 +28,7 @@ import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
@@ -61,9 +62,6 @@ class HomeFragment : Fragment() {
         binding.apply {
             setupLocation(requireContext(), fusedLocationProviderClient) { city ->
                 locationTitle.text = city
-            }
-            val petActive = runBlocking {
-                UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
             }
             with(viewModel){
                 fetchUserProfile().observe(viewLifecycleOwner) { result ->
@@ -115,17 +113,20 @@ class HomeFragment : Fragment() {
                         }
                     }
                 }
-                petActive?.let { petId ->
-                    getPet(petId).observe(viewLifecycleOwner) { result ->
-                        when (result) {
-                            is Result.Loading -> {}
-                            is Result.Success -> {
-                                petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
-                                petName.text = result.data.name
-                                petRace.text = result.data.species
-                            }
-                            is Result.Error -> {
-                                Log.d("HomeFragment", "Pet Name: ${result.error}")
+                lifecycleScope.launch {
+                    val petActive = UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
+                    petActive?.let { petId ->
+                        getPet(petId).observe(viewLifecycleOwner) { result ->
+                            when (result) {
+                                is Result.Loading -> {}
+                                is Result.Success -> {
+                                    petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
+                                    petName.text = result.data.name
+                                    petRace.text = result.data.species
+                                }
+                                is Result.Error -> {
+                                    Log.d("HomeFragment", "Pet Name: ${result.error}")
+                                }
                             }
                         }
                     }
