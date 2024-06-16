@@ -6,6 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.liveData
 import com.ents_h108.petwell.data.ArticlePagingSource
 import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.data.model.ArticleResponse
@@ -29,23 +30,11 @@ class MainRepository(
     private val pref: UserPreferences,
     private val apiService: ApiService
 ) {
-    fun getArticles(type: String, coroutine: CoroutineScope): LiveData<Result<PagingData<Article>>> = liveData {
-        emit(Result.Loading)
-        try {
-            val pager = Pager(
-                config = PagingConfig(pageSize = 3, initialLoadSize = 3),
-                pagingSourceFactory = {ArticlePagingSource(apiService, pref, type)}
-            )
-            pager.flow.cachedIn(coroutine).collect{
-                emit(Result.Success(it))
-            }
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ArticleResponse::class.java)
-            emit(Result.Error(errorBody.message))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+    fun getArticles(type: String): LiveData<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 3, initialLoadSize = 3),
+            pagingSourceFactory = {ArticlePagingSource(apiService, pref, type)}
+        ).liveData
     }
 
     fun getPets(): LiveData<Result<List<Pet>>> = liveData {
