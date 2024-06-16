@@ -2,6 +2,7 @@ package com.ents_h108.petwell.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.ents_h108.petwell.data.repository.MainRepository
 import com.ents_h108.petwell.data.repository.UserPreferences
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
         }
     }
 
-    fun getContent(type: String) = mainRepository.getArticles(type, viewModelScope)
+    fun getContent(type: String) = mainRepository.getArticles(type).cachedIn(viewModelScope)
 
     fun getPets() =
         mainRepository.getPets()
