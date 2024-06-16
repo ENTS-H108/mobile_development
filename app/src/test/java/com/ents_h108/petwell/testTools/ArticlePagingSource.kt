@@ -1,0 +1,21 @@
+package com.ents_h108.petwell.testTools
+
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+import com.ents_h108.petwell.data.model.Article
+
+class ArticlePagingSource : PagingSource<Int, LiveData<List<Article>>>() {
+    companion object {
+        fun snapshot(items: List<Article>): PagingData<Article> {
+            return PagingData.from(items)
+        }
+    }
+    override fun getRefreshKey(state: PagingState<Int, LiveData<List<Article>>>): Int {
+        return 0
+    }
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LiveData<List<Article>>> {
+        return LoadResult.Page(emptyList(), 0, 1)
+    }
+}
