@@ -41,7 +41,7 @@ class PromoAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(item: Article) {
-            binding.itemThumbnail.load(item.title)
+            binding.itemThumbnail.load(item.thumbnail)
         }
     }
 
