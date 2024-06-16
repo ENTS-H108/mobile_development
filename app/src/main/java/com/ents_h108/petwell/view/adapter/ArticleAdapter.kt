@@ -48,7 +48,7 @@ class ArticleAdapter(private val listener: OnItemClickListener) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
             override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
                 return oldItem.id == newItem.id
             }

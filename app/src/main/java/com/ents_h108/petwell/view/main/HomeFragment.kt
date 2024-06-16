@@ -42,8 +42,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var promoAdapter: PromoAdapter
     private lateinit var articleAdapter: ArticleAdapter
-    private val viewModel: MainViewModel by viewModel()
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,7 +97,8 @@ class HomeFragment : Fragment() {
                             Toast.makeText(context, errorState.error.localizedMessage, Toast.LENGTH_SHORT).show()
                         }
                     }
-
+                }
+                lifecycleScope.launch {
                     promoAdapter.loadStateFlow.collectLatest { loadStateArticle ->
                         binding.promoLoading.isVisible = loadStateArticle.refresh is LoadState.Loading
                         binding.rvPromo.isVisible = loadStateArticle.refresh is LoadState.NotLoading
@@ -107,7 +108,8 @@ class HomeFragment : Fragment() {
                             Toast.makeText(context, errorState.error.localizedMessage, Toast.LENGTH_SHORT).show()
                         }
                     }
-
+                }
+                lifecycleScope.launch {
                     val petActive = UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
                     petActive?.let { petId ->
                         getPet(petId).observe(viewLifecycleOwner) { result ->
