@@ -21,12 +21,16 @@ import retrofit2.http.Query
 interface ApiService {
     @POST("login")
     suspend fun login(@Body request: Map<String, String>): LoginResponse
+
     @POST("signup")
     suspend fun register(@Body request: Map<String, String>): MessageResponse
+
     @POST("forgot-password")
     suspend fun reqToken(@Body body: Map<String, String>): MessageResponse
+
     @POST("reset-password")
     suspend fun resetPassword(@Body request: Map<String, String>): MessageResponse
+
     @GET("/articles")
     suspend fun getArticles(
         @Query("type") type: String,
@@ -34,50 +38,60 @@ interface ApiService {
         @Query("size") size: Int,
         @Header("Authorization") token: String
     ): ArticleResponse
+
     @GET("/pets")
     suspend fun getPets(
         @Header("Authorization") token: String
     ): PetResponse
+
     @PUT("pets/{id}")
     suspend fun editPet(
         @Path("id") id: String,
         @Header("Authorization") token: String,
         @Body editpet: EditPet
     ): PetResponse
+
     @GET("pets/{id}")
     suspend fun getPet(
         @Path("id") id: String,
         @Header("Authorization") token: String
     ): Pet
+
     @POST("pets")
     suspend fun addPet(
         @Header("Authorization") token: String,
         @Body editpet: EditPet
     ): PetResponse
+
     @DELETE("pets/{id}")
     suspend fun deletePet(
         @Path("id") id: String,
         @Header("Authorization") token: String
     ): PetResponse
+
     @PUT("profile")
     suspend fun updateProfileUser(
         @Header("Authorization") token: String,
         @Body body: Map<String, String>
     ): UserResponse
+
     @GET("profile")
     suspend fun getProfileUser(
         @Header("Authorization") token: String
     ): User
+
     @POST("pets/{id}/addhistory")
     suspend fun addHistory(
         @Header("Authorization") token: String,
         @Path("id") id: String,
         @Body history: Map<String, Int>
     ): History
+
     @POST("auth/google")
     suspend fun googleAuth(
         @Body body: Map<String, String>
     ): LoginResponse
+
     @PUT("profile/change-password")
     suspend fun changePassword(
         @Header("Authorization") token: String,
