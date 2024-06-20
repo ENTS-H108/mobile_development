@@ -9,19 +9,23 @@ import com.ents_h108.petwell.testTools.ArticlePagingSource
 import com.ents_h108.petwell.testTools.DataDummy
 import com.ents_h108.petwell.testTools.MainDispatcherRule
 import com.ents_h108.petwell.data.model.Article
+import com.ents_h108.petwell.data.model.User
 import com.ents_h108.petwell.data.repository.MainRepository
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.testTools.getOrAwaitValue
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
+import com.ents_h108.petwell.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
@@ -33,8 +37,14 @@ class MainViewModelTest {
     val mainDispatcherRules = MainDispatcherRule()
     @Mock
     private lateinit var mainRepository: MainRepository
+    private lateinit var mainViewModel: MainViewModel
     @Mock
     private lateinit var preferences: UserPreferences
+
+    @Before
+    fun setUp() {
+        mainViewModel = MainViewModel(mainRepository, preferences)
+    }
 
     @Test
     fun `when Get Content Should Not Null and Return Data`() = runTest {
@@ -42,9 +52,8 @@ class MainViewModelTest {
         val data: PagingData<Article> = ArticlePagingSource.snapshot(dummyContent)
         val expectedQuote = MutableLiveData<PagingData<Article>>()
         expectedQuote.value = data
-        Mockito.`when`(mainRepository.getArticles("artikel")).thenReturn(expectedQuote)
+        `when`(mainRepository.getArticles("artikel")).thenReturn(expectedQuote)
 
-        val mainViewModel = MainViewModel(mainRepository, preferences)
         val actualQuote: PagingData<Article> = mainViewModel.getContent("artikel").getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
@@ -64,9 +73,8 @@ class MainViewModelTest {
         val data: PagingData<Article> = PagingData.from(emptyList())
         val expectedQuote = MutableLiveData<PagingData<Article>>()
         expectedQuote.value = data
-        Mockito.`when`(mainRepository.getArticles("artikel")).thenReturn(expectedQuote)
+        `when`(mainRepository.getArticles("artikel")).thenReturn(expectedQuote)
 
-        val mainViewModel = MainViewModel(mainRepository, preferences)
         val actualQuote: PagingData<Article> = mainViewModel.getContent("artikel").getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
@@ -77,6 +85,40 @@ class MainViewModelTest {
         differ.submitData(actualQuote)
 
         assertEquals(0, differ.snapshot().size)
+    }
+
+    @Test
+    fun `when Fetch UserProfile Should Not Null and Return Success`() {
+        val dummyUser = DataDummy.generateDummyDataUser()
+        val expectedUser = MutableLiveData<Result<User>>()
+        expectedUser.value = Result.Success(dummyUser)
+        `when`(mainRepository.getProfileUser()).thenReturn(expectedUser)
+        val actualUser = mainViewModel.fetchUserProfile().getOrAwaitValue()
+        Mockito.verify(mainRepository).getProfileUser()
+        assertNotNull(actualUser)
+        assertTrue(actualUser is Result.Success)
+        assertEquals(dummyUser, (actualUser as Result.Success).data)
+    }
+
+    @Test
+    fun `when Get UserProfile Error Should Return Error`() {
+        val user = MutableLiveData<Result<User>>()
+        user.value = Result.Error("Error")
+        `when`(mainRepository.getProfileUser()).thenReturn(user)
+        val actualUser = mainViewModel.fetchUserProfile().getOrAwaitValue()
+        Mockito.verify(mainRepository).getProfileUser()
+        assertNotNull(actualUser)
+        assertTrue(actualUser is Result.Error)
+    }
+
+    @Test
+    fun `when Get Pet Should Not Null and Return Success`() {
+        // Create Unit Test
+    }
+
+    @Test
+    fun `when Get Pet Error Should Return Error`() {
+        // Create Unit Test
     }
 }
 

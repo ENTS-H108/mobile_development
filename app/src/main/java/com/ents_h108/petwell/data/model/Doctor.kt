@@ -8,8 +8,7 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class Doctor(
-    @SerializedName("_id")
-    val id: String,
+    @SerializedName("_id")val id: String,
     val image: Int,
     val namadokter: String,
     val tempatbekerja: String,

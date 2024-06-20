@@ -1,6 +1,7 @@
 package com.ents_h108.petwell.testTools
 
 import com.ents_h108.petwell.data.model.Article
+import com.ents_h108.petwell.data.model.User
 
 object DataDummy {
     fun generateDummyDataArticle(): List<Article> {
@@ -17,5 +18,13 @@ object DataDummy {
             articleList.add(article)
         }
         return articleList
+    }
+
+    fun generateDummyDataUser(): User {
+        return User(
+            "email",
+            "username",
+            "https://lh3.googleusercontent.com/d/1zfpAAt0H61JrxuuuIAhpkFvnxJyRxPqm"
+        )
     }
 }

@@ -1,6 +1,7 @@
 package com.ents_h108.petwell.data.remote
 
 import com.ents_h108.petwell.data.model.ArticleResponse
+import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.User
@@ -9,6 +10,7 @@ import com.ents_h108.petwell.data.model.EditPet
 import com.ents_h108.petwell.data.model.History
 import com.ents_h108.petwell.data.model.MessageResponse
 import com.ents_h108.petwell.data.model.Pet
+import com.ents_h108.petwell.data.model.TabularModelResponse
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -83,4 +85,13 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body body: Map<String, String>
     ): LoginResponse
+    @GET("null")
+    suspend fun getAllDoctor(
+        @Header("Authorization") token: String
+    ): Doctor
+    @GET("null")
+    suspend fun getTabularResponse(
+        @Header("Authorization") token: String,
+        @Body request: List<Any>
+    ): TabularModelResponse
 }
