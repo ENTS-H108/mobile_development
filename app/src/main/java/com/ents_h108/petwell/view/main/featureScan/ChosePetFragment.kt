@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentChosePetBinding
@@ -42,8 +41,7 @@ class ChosePetFragment : Fragment() {
 
         binding.btnNext.setOnClickListener {
             selectedPet?.let {
-                viewModel.setSelectedPet(it) // Set the selected pet before navigation
-                findNavController().navigate(ChosePetFragmentDirections.actionChosePetFragmentToInstructionScanFragment())
+                findNavController().navigate(ChosePetFragmentDirections.actionChosePetFragmentToInstructionScanFragment(it))
             }
         }
     }

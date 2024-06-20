@@ -42,16 +42,5 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
     fun changePassword(currPw: String, newPw: String) = mainRepository.changePassword(currPw, newPw)
 
 
-    //    selected pet
-    private val _selectedPet = MutableLiveData<String>()
-    val selectedPet: LiveData<String> get() = _selectedPet
-    fun setSelectedPet(pet: String) {
-        _selectedPet.value = pet
-    }
 
-    private val _imageUri = MutableLiveData<String>()
-    val imageUri: LiveData<String> get() = _imageUri
-    fun setImageUri(uri: String) {
-        _imageUri.value = uri
-    }
 }
