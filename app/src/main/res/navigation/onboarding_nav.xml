@@ -217,12 +217,15 @@
         android:name="com.ents_h108.petwell.view.main.featureScan.TabularFragment"
         android:label="fragment_tabular"
         tools:layout="@layout/fragment_tabular" >
+<!--        <argument-->
+<!--            android:name="uri"-->
+<!--            app:argType="string" />-->
         <action
-            android:id="@+id/action_tabularFragment_to_resultScanFragment"
-            app:destination="@id/resultScanFragment" />
-        <argument
-            android:name="uri"
-            app:argType="string" />
+            android:id="@+id/action_tabularFragment_to_tabularCatFragment"
+            app:destination="@id/tabularCatFragment" />
+        <action
+            android:id="@+id/action_tabularFragment_to_tabularDogFragment"
+            app:destination="@id/tabularDogFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultScanFragment"
@@ -241,9 +244,7 @@
         <action
             android:id="@+id/action_resultScanFragment_to_consultationFragment2"
             app:destination="@id/consultationFragment" />
-        <argument
-            android:name="uri"
-            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/listArticleFragment"
@@ -360,5 +361,23 @@
         android:name="com.ents_h108.petwell.view.main.profile.ChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password">
+    </fragment>
+    <fragment
+        android:id="@+id/tabularCatFragment"
+        android:name="com.ents_h108.petwell.view.main.featureScan.TabularCatFragment"
+        android:label="fragment_tabular_cat"
+        tools:layout="@layout/fragment_tabular_cat" >
+        <action
+            android:id="@+id/action_tabularCatFragment_to_resultScanFragment2"
+            app:destination="@id/resultScanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabularDogFragment"
+        android:name="com.ents_h108.petwell.view.main.featureScan.TabularDogFragment"
+        android:label="fragment_tabular_dog"
+        tools:layout="@layout/fragment_tabular_dog" >
+        <action
+            android:id="@+id/action_tabularDogFragment_to_resultScanFragment"
+            app:destination="@id/resultScanFragment" />
     </fragment>
 </navigation>

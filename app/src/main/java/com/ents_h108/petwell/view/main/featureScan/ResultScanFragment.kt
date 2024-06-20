@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentResultScanBinding
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ResultScanFragment : Fragment() {
     private lateinit var binding: FragmentResultScanBinding
+    private val viewModel: MainViewModel by viewModel()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +29,12 @@ class ResultScanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigation()
-        val uriString = arguments?.getString("uri") ?: return
-        Log.d("ResultScanFragment", "URI: $uriString")
-        val uri = Uri.parse(uriString)
-        binding.imagePreview.setImageURI(uri)
+        viewModel.imageUri.observe(viewLifecycleOwner) { uriString ->
+            val uri = Uri.parse(uriString)
+            binding.imagePreview.setImageURI(uri)
+            Log.d("ResultScanFragment", "URI: $uriString")
+        }
+
     }
 
     private fun navigation() {

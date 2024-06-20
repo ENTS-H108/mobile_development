@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -35,26 +36,74 @@ class TabularFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigation()
+        setupObservers()
+
+        SecondNavigation()
+    }
+
+    private fun setupObservers() {
+        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
+            Toast.makeText(requireContext(), "Selected Pet: $selectedPet", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+
+    private fun SecondNavigation() {
+        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
+            if (selectedPet == "cat") {
+                findNavController().navigate(
+                    TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
+                )
+            } else if (selectedPet == "dog") {
+                findNavController().navigate(
+                    TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
+                )
+            } else {
+                findNavController().navigate(
+                    TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
+                )
+            }
+        }
     }
 
     private fun navigation() {
         val petActive = runBlocking {
             UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
         }
-        val uri = arguments?.getString("uri") ?: return
-        binding.btnScan.setOnClickListener {
+
+        binding.btnNextTabular.setOnClickListener {
+            findNavController().navigate(
+                TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
+            )
             if (petActive != null) {
                 viewModel.addHistory(petActive, 3).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Loading -> {
-                            // Handle loading state if needed
+                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
+
                         }
+
                         is Result.Success -> {
-                            findNavController().navigate(TabularFragmentDirections.actionTabularFragmentToResultScanFragment(uri))
+                            viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
+                                if (selectedPet == "cat") {
+                                    findNavController().navigate(
+                                        TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
+                                    )
+                                } else if (selectedPet == "dog") {
+                                    findNavController().navigate(
+                                        TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
+                                    )
+                                } else {
+                                    findNavController().navigate(
+                                        TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
+                                    )
+                                }
+                            }
                         }
+
                         is Result.Error -> {
-                            // Handle error state if needed
+                            Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
