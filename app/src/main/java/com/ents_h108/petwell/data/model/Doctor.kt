@@ -15,13 +15,13 @@ data class DoctorResponse(
 @Keep
 @Parcelize
 data class Doctor(
-    @SerializedName("_id")val id: String,
+    val id: String,
     val name: String,
     val type: String,
-    val profpict: String,
-    val profile: String,
-    val experiences: String,
-    val year: String,
+    val profpict: String?,
+    val profile: String?,
+    val experiences: String?,
+    val year: String?,
     val lat: Double,
     val long: Double,
     val price: String,

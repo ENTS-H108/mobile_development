@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.FragmentDokterProfileAppointmentBinding
 import com.ents_h108.petwell.utils.Utils.getAddressFromLocation
-import com.ents_h108.petwell.view.main.featureConsultation.PaymentFragmentArgs
 
 class DokterProfileAppointmentFragment : Fragment() {
 
@@ -30,8 +28,9 @@ class DokterProfileAppointmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val args: DokterProfileAppointmentFragmentArgs by navArgs()
-        doctor = args.doctor!!
+        arguments?.let {
+            doctor = DokterProfileAppointmentFragmentArgs.fromBundle(it).doctor
+        }
 
         binding.tvDoctorName.text = doctor.name
         binding.tvDoctorProfileDescription.text = doctor.profile

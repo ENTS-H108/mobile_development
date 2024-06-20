@@ -302,8 +302,7 @@
             app:destination="@id/chatFragment" />
         <argument
             android:name="doctor"
-            app:argType="com.ents_h108.petwell.data.model.Doctor"
-            app:nullable="true"/>
+            app:argType="com.ents_h108.petwell.data.model.Doctor"/>
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -327,8 +326,7 @@
             app:destination="@id/mapsFragment" />
         <argument
             android:name="doctor"
-            app:argType="com.ents_h108.petwell.data.model.Doctor"
-            app:nullable="true"/>
+            app:argType="com.ents_h108.petwell.data.model.Doctor"/>
     </fragment>
     <fragment
         android:id="@+id/detailPromoArticleFragment"
