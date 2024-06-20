@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.fragment.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,17 +26,17 @@ import com.google.android.gms.tasks.Task
 
 class MapsFragment : Fragment() {
 
-    private lateinit var doctors: List<Doctor>
+    private var doctors: List<Doctor> = emptyList()
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var googleMap: GoogleMap
 
     private val callback = OnMapReadyCallback { map ->
         googleMap = map
         doctors.forEach { doctor ->
-            val location = LatLng(doctor.lat, doctor.lon)
-            googleMap.addMarker(MarkerOptions().position(location).title(doctor.namadokter))
+            val location = LatLng(doctor.lat, doctor.long)
+            googleMap.addMarker(MarkerOptions().position(location).title(doctor.name))
             googleMap.setOnMarkerClickListener {
-                findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDokterProfileAppointmentFragment())
+                findNavController().navigate(MapsFragmentDirections.actionMapsFragmentToDokterProfileAppointmentFragment(doctor))
                 true
             }
         }

@@ -163,7 +163,7 @@ class MainRepository(
         }
     }
 
-    fun getDoctorList(): LiveData<Result<Doctor>> = liveData {
+    fun getDoctorList(): LiveData<Result<List<Doctor>>> = liveData {
         emit(Result.Loading)
         try {
             val token = getToken()

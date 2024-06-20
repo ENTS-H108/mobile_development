@@ -13,13 +13,10 @@ import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.google.android.gms.location.FusedLocationProviderClient
 import java.security.MessageDigest
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
-import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import java.util.UUID
 import kotlin.math.acos
 import kotlin.math.cos
@@ -47,7 +44,7 @@ object Utils {
 
     fun filterDoctorsWithinRadius(doctors: List<Doctor>, userLat: Double, userLon: Double, radiusKm: Double = 30.0): List<Doctor> {
         return doctors.filter { doctor ->
-            val theta = userLon - doctor.lon
+            val theta = userLon - doctor.long
             var dist = sin(Math.toRadians(userLat)) * sin(Math.toRadians(doctor.lat)) +
                     cos(Math.toRadians(userLat)) * cos(Math.toRadians(doctor.lat)) * cos(Math.toRadians(theta))
             dist = acos(dist)

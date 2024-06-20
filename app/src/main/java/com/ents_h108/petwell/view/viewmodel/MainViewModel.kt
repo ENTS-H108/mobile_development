@@ -41,6 +41,8 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
 
     fun changePassword(currPw: String, newPw: String) = mainRepository.changePassword(currPw, newPw)
 
+    fun getAllDoctor() = mainRepository.getDoctorList()
+
 
     //    selected pet
     private val _selectedPet = MutableLiveData<String>()

@@ -6,15 +6,24 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Keep
+data class DoctorResponse(
+    val doctors: List<Doctor>,
+    val error: Boolean,
+    val message: String
+)
+
+@Keep
 @Parcelize
 data class Doctor(
     @SerializedName("_id")val id: String,
-    val image: Int,
-    val namadokter: String,
-    val tempatbekerja: String,
-    val spesialis: String,
-    val pengalaman: String,
-    val harga: String,
+    val name: String,
+    val type: String,
+    val profpict: String,
+    val profile: String,
+    val experiences: String,
+    val year: String,
     val lat: Double,
-    val lon: Double
+    val long: Double,
+    val price: String,
+    val hospital: String
 ) : Parcelable

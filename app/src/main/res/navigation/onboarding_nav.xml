@@ -217,9 +217,6 @@
         android:name="com.ents_h108.petwell.view.main.featureScan.TabularFragment"
         android:label="fragment_tabular"
         tools:layout="@layout/fragment_tabular" >
-<!--        <argument-->
-<!--            android:name="uri"-->
-<!--            app:argType="string" />-->
         <action
             android:id="@+id/action_tabularFragment_to_tabularCatFragment"
             app:destination="@id/tabularCatFragment" />
@@ -303,6 +300,10 @@
         <action
             android:id="@+id/action_paymentFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+        <argument
+            android:name="doctor"
+            app:argType="com.ents_h108.petwell.data.model.Doctor"
+            app:nullable="true"/>
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -324,6 +325,10 @@
         <action
             android:id="@+id/action_dokterProfileAppointmentFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <argument
+            android:name="doctor"
+            app:argType="com.ents_h108.petwell.data.model.Doctor"
+            app:nullable="true"/>
     </fragment>
     <fragment
         android:id="@+id/detailPromoArticleFragment"

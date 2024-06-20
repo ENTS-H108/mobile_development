@@ -2,6 +2,7 @@ package com.ents_h108.petwell.data.remote
 
 import com.ents_h108.petwell.data.model.ArticleResponse
 import com.ents_h108.petwell.data.model.Doctor
+import com.ents_h108.petwell.data.model.DoctorResponse
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.PetResponse
 import com.ents_h108.petwell.data.model.User
@@ -99,10 +100,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body body: Map<String, String>
     ): LoginResponse
-    @GET("null")
+    @GET("appointments")
     suspend fun getAllDoctor(
         @Header("Authorization") token: String
-    ): Doctor
+    ): List<Doctor>
     @GET("null")
     suspend fun getTabularResponse(
         @Header("Authorization") token: String,
