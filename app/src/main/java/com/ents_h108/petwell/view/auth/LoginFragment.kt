@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
 
     private fun setupUI() {
         binding.apply {
-            logBtn.setOnClickListener { validateAndLogin() }
+            logBtnLogin.setOnClickListener { validateAndLogin() }
             regBtn.setOnClickListener {findNavController().navigate(LoginFragmentDirections.actionLoginToRegister())}
             backBtn.setOnClickListener {findNavController().navigate(LoginFragmentDirections.actionLoginToOnboarding())}
             forgotPw.setOnClickListener { handleForgotPassword() }
@@ -46,20 +46,20 @@ class LoginFragment : Fragment() {
     }
 
     private fun validateAndLogin() {
-        val email = binding.etEmail.text.toString().trim()
-        val password = binding.etPassword.text.toString().trim()
+        val email = binding.etEmailLogin.text.toString().trim()
+        val password = binding.etPasswordLogin.text.toString().trim()
 
         if (email.isEmpty() || password.isEmpty()) {
             showToast(requireContext(), getString(R.string.field_empty))
             return
         }
 
-        if (!binding.etEmail.isEmailValid) {
+        if (!binding.etEmailLogin.isEmailValid) {
             showToast(requireContext(), getString(R.string.incorrect_email_format))
             return
         }
 
-        if (!binding.etPassword.isPasswordValid) {
+        if (!binding.etPasswordLogin.isPasswordValid) {
             showToast(requireContext(), getString(R.string.incorrect_pw_format))
             return
         }
@@ -70,9 +70,9 @@ class LoginFragment : Fragment() {
     private fun handleLogin(email: String, password: String) {
         authViewModel.login(email, password).observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> binding.loading.visibility = View.VISIBLE
+                is Result.Loading -> binding.loadingLogin.visibility = View.VISIBLE
                 is Result.Success -> {
-                    binding.loading.visibility = View.GONE
+                    binding.loadingLogin.visibility = View.GONE
                     showToast(requireContext(), result.data.message ?: "Login berhasil")
                     result.data.token?.let { authViewModel.saveLoginStatus(it) }
                     lifecycleScope.launch {
@@ -81,7 +81,7 @@ class LoginFragment : Fragment() {
                     }
                 }
                 is Result.Error -> {
-                    binding.loading.visibility = View.GONE
+                    binding.loadingLogin.visibility = View.GONE
                     showToast(requireContext(), result.error)
                 }
             }
@@ -89,26 +89,26 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleForgotPassword() {
-        val email = binding.etEmail.text.toString().trim()
+        val email = binding.etEmailLogin.text.toString().trim()
 
-        if (!binding.etEmail.isEmailValid) {
+        if (!binding.etEmailLogin.isEmailValid) {
             showToast(requireContext(), getString(R.string.incorrect_email_format))
             return
         }
 
         if (email.isEmpty()) {
-            showError(binding.etEmail, requireContext())
+            showError(binding.etEmailLogin, requireContext())
             showToast(requireContext(), getString(R.string.field_empty))
             return
         }
 
-        resetError(binding.etEmail, requireContext())
+        resetError(binding.etEmailLogin, requireContext())
         authViewModel.requestToken(email).observe(viewLifecycleOwner) { result ->
-            binding.loading.visibility = View.GONE
+            binding.loadingLogin.visibility = View.GONE
             when (result) {
                 is Result.Success -> showToast(requireContext(), result.data.message)
                 is Result.Error -> showToast(requireContext(), getString(R.string.email_not_found))
-                is Result.Loading -> binding.loading.visibility = View.VISIBLE
+                is Result.Loading -> binding.loadingLogin.visibility = View.VISIBLE
             }
         }
     }

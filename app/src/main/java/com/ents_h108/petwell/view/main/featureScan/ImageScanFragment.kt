@@ -13,12 +13,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.databinding.FragmentImageScanBinding
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -28,6 +31,8 @@ class ImageScanFragment : Fragment() {
 
     private var currentImageUri: Uri? = null
     private lateinit var binding: FragmentImageScanBinding
+    private val viewModel: MainViewModel by viewModel()
+
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
@@ -108,7 +113,12 @@ class ImageScanFragment : Fragment() {
 
     private fun navigateToNext() {
         currentImageUri?.let {
-            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment(it.toString()))
+            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment())
+            viewModel.setImageUri(it.toString())
+        }
+        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
+            Toast.makeText(requireContext(), "select  $selectedPet"  , Toast.LENGTH_SHORT).show()
+
         }
     }
 }

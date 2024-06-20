@@ -4,21 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
-    tools:context=".view.main.featureScan.TabularFragment">
+    tools:context=".view.main.featureScan.TabularDogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         style="@style/H4Bold"
-        android:text="@string/answer_questione"
+        android:text="Tabular Dog"
         android:id="@+id/title"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_above="@id/btn_next_tabular"
+        android:layout_above="@id/btn_scan_dog"
         android:layout_below="@id/title"
         android:layout_marginTop="16dp">
 
@@ -105,45 +104,19 @@
                     android:text="@string/tabular_option_worse"/>
             </RadioGroup>
 
-            <!-- Question 4 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/tabular_question4"
-                style="@style/H4Bold"
-                android:id="@+id/question4"/>
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <RadioButton android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_none"/>
-                <RadioButton android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_not_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_worse"/>
-            </RadioGroup>
-
-            <!-- Additional Questions 5-12 go here in the same format -->
+            <!-- Repeat similar blocks for questions 4 to 10 -->
 
         </LinearLayout>
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next_tabular"
+        android:id="@+id/btn_scan_dog"
         style="@style/H4Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_yellow_states"
-        android:text="@string/next"
+        android:text="@string/start_scan"
         android:textColor="@android:color/white"/>
 </RelativeLayout>
