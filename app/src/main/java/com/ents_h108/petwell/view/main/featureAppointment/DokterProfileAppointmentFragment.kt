@@ -50,20 +50,28 @@ class DokterProfileAppointmentFragment : Fragment() {
 
     private fun setupUI() {
         binding.apply {
-            getAddressFromLocation(requireContext(), doctor.lat, doctor.long) { _, street,  number ->
-                binding.officeLocation.text = requireContext().getString(R.string.location_format, street ?: "", number ?: "")
+            getAddressFromLocation(requireContext(), doctor.lat, doctor.long) { _, street, number ->
+                binding.officeLocation.text =
+                    requireContext().getString(R.string.location_format, street ?: "", number ?: "")
             }
             cvDoctorProfile.setOnClickListener {
                 accordionToggle(binding.tvDoctorProfileDescription, binding.llDoctorProfile)
             }
             cvEducationalBackground.setOnClickListener {
-                accordionToggle(binding.tvEducationalBackgroundDescription, binding.llEducationalBackground)
+                accordionToggle(
+                    binding.tvEducationalBackgroundDescription,
+                    binding.llEducationalBackground
+                )
             }
 
             viewModel.getScheduleDoctor(doctor.id).observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is Result.Loading -> {}
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
                     is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
                         adapter.submitList(result.data.schedules)
                         tvDoctorName.text = result.data.doctor.name
                         tvDoctorProfileDescription.text = result.data.doctor.profile
@@ -72,6 +80,7 @@ class DokterProfileAppointmentFragment : Fragment() {
                         tvEducationalBackgroundDescription.text = result.data.doctor.experiences
                         tvPrice.text = result.data.doctor.price
                     }
+
                     is Result.Error -> {}
                 }
             }

@@ -389,4 +389,20 @@
         android:background="@drawable/btn_yellow_states"
         android:text="@string/next"
         android:textColor="@android:color/white" />
+    <RelativeLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary_blue"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 </RelativeLayout>

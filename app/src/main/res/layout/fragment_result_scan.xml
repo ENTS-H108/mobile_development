@@ -176,5 +176,19 @@
             android:text="@string/ask_a_doctor"
             android:textColor="@color/white" />
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary_blue"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 </RelativeLayout>

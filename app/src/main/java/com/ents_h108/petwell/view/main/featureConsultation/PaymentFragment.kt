@@ -62,13 +62,15 @@ class PaymentFragment : Fragment() {
                         when (result) {
                             is Result.Success -> {
                                 textPetName.text = result.data.name
+                                binding.progressBarPayment.visibility = View.GONE
+
                             }
                             is Result.Error -> {
                                 Log.d("PaymentFragment", "Error fetching pet: ${result.error}")
                                 // Handle error scenario
                             }
                             is Result.Loading -> {
-                                // Handle loading state if needed
+                                binding.progressBarPayment.visibility = View.VISIBLE
                             }
                         }
                     }

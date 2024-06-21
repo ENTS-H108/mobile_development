@@ -65,9 +65,11 @@ class HomeFragment : Fragment() {
 
     private fun changePet() {
         binding.changePet.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
         }
+
     }
+
 
     private fun setupUI() {
         binding.apply {
@@ -121,9 +123,21 @@ class HomeFragment : Fragment() {
                     petActive?.let { petId ->
                         getPet(petId).observe(viewLifecycleOwner) { result ->
                             when (result) {
-                                is Result.Loading -> {}
+                                is Result.Loading -> {
+                                    binding.petCardProgress.visibility = View.VISIBLE
+                                    petImage.visibility =View.INVISIBLE
+                                    petName.text =""
+                                    petRace.text = ""
+                                    changePet.visibility = View.INVISIBLE
+
+                                }
                                 is Result.Success -> {
+                                    binding.petCardProgress.visibility = View.GONE
+
                                     petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
+                                    changePet.visibility = View.VISIBLE
+                                    petImage.visibility =View.VISIBLE
+
                                     petName.text = result.data.name
                                     petRace.text = result.data.species
                                 }
