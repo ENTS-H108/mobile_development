@@ -189,11 +189,11 @@ class MainRepository(
         }
     }
 
-    fun getInvoiceAppointment(hour: String): LiveData<Result<DoctorSchedule>> = liveData {
+    fun getInvoiceAppointment(hour: String): LiveData<Result<DoctorInvoice>> = liveData {
         emit(Result.Loading)
         try {
             val token = getToken()
-            val response = apiService.getScheduleDoctor("Bearer $token", hour)
+            val response = apiService.getInvoiceAppointment("Bearer $token", hour)
             emit(Result.Success(response))
         } catch (e: HttpException) {
             emit(Result.Error(parseErrorMessage(e.response()?.errorBody()?.string())))

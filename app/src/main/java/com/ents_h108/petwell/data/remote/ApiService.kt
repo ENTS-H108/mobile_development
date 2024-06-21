@@ -2,6 +2,7 @@ package com.ents_h108.petwell.data.remote
 
 import com.ents_h108.petwell.data.model.ArticleResponse
 import com.ents_h108.petwell.data.model.Doctor
+import com.ents_h108.petwell.data.model.DoctorInvoice
 import com.ents_h108.petwell.data.model.DoctorSchedule
 import com.ents_h108.petwell.data.model.LoginResponse
 import com.ents_h108.petwell.data.model.PetResponse
@@ -117,8 +118,8 @@ interface ApiService {
     @GET("appointments/summary")
     suspend fun getInvoiceAppointment(
         @Header("Authorization") token: String,
-        @Query("hour") hour: String?
-    ): DoctorSchedule
+        @Query("workHourId") hour: String?
+    ): DoctorInvoice
     @GET("null")
     suspend fun getTabularResponse(
         @Header("Authorization") token: String,

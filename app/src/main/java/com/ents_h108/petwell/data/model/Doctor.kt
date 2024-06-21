@@ -18,6 +18,14 @@ data class DoctorSchedule(
 )
 
 @Keep
+data class DoctorInvoice(
+    val doctor: Doctor,
+    val date: String,
+    val workHour: WorkHours
+)
+
+
+@Keep
 data class WorkSchedule(
     val scheduleId: String,
     val date: String,
