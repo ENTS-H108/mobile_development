@@ -384,6 +384,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/gemini_icon"
-        app:backgroundTint="@color/primary_blue_light" />
+        app:backgroundTint="@color/primary_blue" />
 
 </RelativeLayout>

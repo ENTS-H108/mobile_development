@@ -173,9 +173,10 @@
                 android:id="@+id/payment_method_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/payment_summary_layout">
 
                 <RadioButton
                     android:id="@+id/radio_gopay"
