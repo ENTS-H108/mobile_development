@@ -321,12 +321,12 @@
         android:name="com.ents_h108.petwell.view.main.featureConsultation.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
-        <action
-            android:id="@+id/action_paymentFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
         <argument
             android:name="doctor"
             app:argType="com.ents_h108.petwell.data.model.Doctor"/>
+        <action
+            android:id="@+id/action_paymentFragment_to_invoiceFragment"
+            app:destination="@id/invoiceFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -421,5 +421,14 @@
         <argument
             android:name="petType"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/invoiceFragment"
+        android:name="com.ents_h108.petwell.view.main.featureConsultation.InvoiceFragment"
+        android:label="fragment_invoice"
+        tools:layout="@layout/fragment_invoice" >
+        <argument
+            android:name="dokterName"
+            app:argType="com.ents_h108.petwell.data.model.Doctor" />
     </fragment>
 </navigation>

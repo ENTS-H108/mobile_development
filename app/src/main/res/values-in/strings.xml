@@ -227,4 +227,19 @@
 
     <string name="image_upload_exception">Unggah gambar terlebih dahulu</string>
 
+    <string name="chat_payment_method">Silakan pilih metode pembayaran</string>
+    <string name="consultation_now">Konsultasi Sekarang</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="promo_title">Promo</string>
+    <string name="history_title">Riwayat</string>
+    <string name="doctor_profile_title">Profil Dokter</string>
+    <string name="invoice_title">Tagihan</string>
+    <string name="payment_title">Pembayaran</string>
+    <string name="chat_via_whatsapp">Chat melalui WhatsApp</string>
+
+<!--    <string name="help_content_description">Aplikasi ini menyediakan fitur utama untuk pengelolaan kesehatan hewan peliharaan. Fitur-fitur utama meliputi:\n\n1. Pemindaian Penyakit Hewan: Fitur ini memungkinkan pengguna untuk melakukan pemindaian penyakit hewan peliharaan secara cepat dan akurat menggunakan teknologi canggih.\n\n2. Konsultasi Online: Pengguna dapat berkonsultasi dengan dokter hewan secara online untuk mendapatkan saran medis mengenai kesehatan hewan peliharaan mereka tanpa perlu mengunjungi klinik.\n\n3. Jadwal Janji Dokter: Fitur ini memungkinkan pengguna untuk membuat janji langsung dengan dokter hewan pilihan mereka, memudahkan pengaturan jadwal kunjungan.\n\nKami mengutamakan keamanan dan privasi pengguna. Aplikasi ini dilengkapi dengan kebijakan privasi yang ketat dan langkah-langkah keamanan terintegrasi untuk melindungi informasi pribadi Anda. Untuk informasi lebih lanjut mengenai pembaruan aplikasi, termasuk perbaikan bug, penambahan fitur baru, dan perubahan terbaru, silakan lihat bagian "Pembaruan dan Rilis".\n\nJika Anda memiliki pertanyaan lebih lanjut atau membutuhkan bantuan, jangan ragu untuk menghubungi tim dukungan kami melalui tombol "Chat via WhatsApp" di bawah ini. Kami siap membantu Anda dengan segala pertanyaan terkait penggunaan aplikasi ini.</string>-->
+    <string name="help_content_description">ggwp</string>
+
+
 </resources>

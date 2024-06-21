@@ -229,8 +229,20 @@
 
 
     <string name="image_upload_exception">Upload image first</string>
+    <string name="chat_payment_method">Please choose a payment method</string>
+    <string name="rp_50000" translatable="false">RP. 50000</string>
+    <string name="consultation_now">Consultation Now</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="promo_title">Promo</string>
+    <string name="history_title">History</string>
+    <string name="doctor_profile_title">Doctor Profile</string>
+    <string name="invoice_title">Invoice</string>
+    <string name="payment_title">Payment</string>
+    <string name="chat_via_whatsapp">chat via whatsapp</string>
 
 
+    <string name="help_content_description">This app provides key features for pet health management. Key features include:\n\n1. Animal Disease Scanning: This feature allows users to perform quick and accurate pet disease scans using advanced technology. Online Consultation: Users can consult a veterinarian online for medical advice on their pet\'s health without the need to visit a clinic.\n\n3. Doctor Appointment Schedule: This feature allows users to make appointments directly with the veterinarian of their choice, making it easy to schedule visits.\n\nWe prioritize user safety and privacy. This app comes with a strict privacy policy and integrated security measures to protect your personal information. For more information regarding app updates, including bug fixes, new feature additions, and recent changes, please see the "Updates and Releases" section.\n\nIf you have further questions or need assistance, please feel free to contact our support team via the "Chat via WhatsApp" button below. We are ready to help you with any questions related to using this app.</string>
 
 
 

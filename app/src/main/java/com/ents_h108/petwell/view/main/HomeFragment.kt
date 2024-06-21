@@ -1,9 +1,11 @@
 package com.ents_h108.petwell.view.main
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -62,15 +64,39 @@ class HomeFragment : Fragment() {
         setupNavigation()
         setupUI()
         changePet()
+        setupDraggableFab()
     }
 
     private fun changePet() {
         binding.changePet.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToProfileFragment())
         }
-
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupDraggableFab() {
+        binding.geminiFab.setOnTouchListener(object : View.OnTouchListener {
+            private var dY = 0f
+
+            override fun onTouch(view: View, event: MotionEvent): Boolean {
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        dY = view.y - event.rawY
+                        return true
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        view.animate()
+                            .x((binding.root.width - view.width).toFloat())
+                            .y(event.rawY + dY)
+                            .setDuration(0)
+                            .start()
+                        return true
+                    }
+                    else -> return false
+                }
+            }
+        })
+    }
 
     private fun setupUI() {
         binding.apply {
@@ -80,7 +106,7 @@ class HomeFragment : Fragment() {
             setupLocation(requireContext(), fusedLocationProviderClient) { city ->
                 locationTitle.text = city
             }
-            with(viewModel){
+            with(viewModel) {
                 fetchUserProfile().observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Success -> {
@@ -129,19 +155,16 @@ class HomeFragment : Fragment() {
                             when (result) {
                                 is Result.Loading -> {
                                     binding.petCardProgress.visibility = View.VISIBLE
-                                    petImage.visibility =View.INVISIBLE
-                                    petName.text =""
+                                    petImage.visibility = View.INVISIBLE
+                                    petName.text = ""
                                     petRace.text = ""
                                     changePet.visibility = View.INVISIBLE
-
                                 }
                                 is Result.Success -> {
                                     binding.petCardProgress.visibility = View.GONE
-
                                     petImage.load(if (result.data.species == "anjing") R.drawable.avatar_dog else R.drawable.avatar_cat)
                                     changePet.visibility = View.VISIBLE
-                                    petImage.visibility =View.VISIBLE
-
+                                    petImage.visibility = View.VISIBLE
                                     petName.text = result.data.name
                                     petRace.text = result.data.species
                                 }

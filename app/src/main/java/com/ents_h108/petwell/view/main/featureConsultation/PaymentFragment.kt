@@ -9,12 +9,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentPaymentBinding
@@ -50,7 +53,11 @@ class PaymentFragment : Fragment() {
     private fun setupUIandNavigation() {
         binding.apply {
             buttonPayConfirm.setOnClickListener {
-                openWhatsApp(doctor.name)
+                if (isPaymentMethodSelected()) {
+                    findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToInvoiceFragment(doctor))
+                } else {
+                    Toast.makeText(requireContext(), R.string.chat_payment_method, Toast.LENGTH_SHORT).show()
+                }
             }
             textDoctorName.text = doctor.name
             textDoctorSpecialization.text = doctor.type
@@ -79,14 +86,8 @@ class PaymentFragment : Fragment() {
             }
         }
     }
-
-    private fun openWhatsApp(doctorName: String) {
-        val phoneNumber = "6281228375433"
-        val message = "Start chat with $doctorName about a consultation."
-        val url = "https://wa.me/$phoneNumber?text=${Uri.encode(message)}"
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(url)
-        }
-        startActivity(intent)
+    private fun isPaymentMethodSelected(): Boolean {
+        return binding.paymentMethodRadioGroup.checkedRadioButtonId != -1
     }
+
 }
