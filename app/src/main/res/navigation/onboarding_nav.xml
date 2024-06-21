@@ -202,6 +202,9 @@
         <action
             android:id="@+id/action_instructionScanFragment_to_imageScanFragment"
             app:destination="@id/imageScanFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/imageScanFragment"
@@ -211,6 +214,9 @@
         <action
             android:id="@+id/action_imageScanFragment_to_tabularFragment"
             app:destination="@id/tabularFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tabularFragment"
@@ -223,6 +229,12 @@
         <action
             android:id="@+id/action_tabularFragment_to_tabularDogFragment"
             app:destination="@id/tabularDogFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/resultScanFragment"
@@ -241,6 +253,12 @@
         <action
             android:id="@+id/action_resultScanFragment_to_consultationFragment2"
             app:destination="@id/consultationFragment" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
 
     </fragment>
     <fragment
@@ -373,6 +391,12 @@
         <action
             android:id="@+id/action_tabularCatFragment_to_resultScanFragment2"
             app:destination="@id/resultScanFragment" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tabularDogFragment"
@@ -382,5 +406,11 @@
         <action
             android:id="@+id/action_tabularDogFragment_to_resultScanFragment"
             app:destination="@id/resultScanFragment" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
 </navigation>

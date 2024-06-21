@@ -2,15 +2,19 @@ package com.ents_h108.petwell.view.main.featureScan
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentTabularBinding
 import com.ents_h108.petwell.utils.Result
@@ -36,74 +40,79 @@ class TabularFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObservers()
-
-        SecondNavigation()
-    }
-
-    private fun setupObservers() {
-        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
-            Toast.makeText(requireContext(), "Selected Pet: $selectedPet", Toast.LENGTH_SHORT)
-                .show()
-        }
-    }
-
-
-    private fun SecondNavigation() {
-        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
-            if (selectedPet == "cat") {
-                findNavController().navigate(
-                    TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
-                )
-            } else if (selectedPet == "dog") {
-                findNavController().navigate(
-                    TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
-                )
-            } else {
-                findNavController().navigate(
-                    TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
-                )
-            }
-        }
+        navigation()
     }
 
     private fun navigation() {
         val petActive = runBlocking {
             UserPreferences.getInstance(requireActivity().dataStore).getPetActive().first()
         }
+        val uri = arguments?.getString("uri") ?: return
+        val petType = arguments?.getString("petType") ?: return
 
         binding.btnNextTabular.setOnClickListener {
-            findNavController().navigate(
-                TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
+
+            val responsesTabular = IntArray(10)
+            val radioGroups = listOf(
+                binding.radioGroup1,
+                binding.radioGroup2,
+                binding.radioGroup3,
+                binding.radioGroup4,
+                binding.radioGroup5,
+                binding.radioGroup6,
+                binding.radioGroup7,
+                binding.radioGroup8,
+                binding.radioGroup9,
+                binding.radioGroup10
             )
+
+            var allAnswered = true
+
+            for (i in radioGroups.indices) {
+                val selectedId = radioGroups[i].checkedRadioButtonId
+                if (selectedId == -1) {
+                    allAnswered = false
+                    break
+                } else {
+                    val radioButton = radioGroups[i].findViewById<RadioButton>(selectedId)
+                    responsesTabular[i] = when (radioButton.text) {
+                        getString(R.string.tabular_option_none) -> 0
+                        getString(R.string.tabular_option_not_dominant) -> 1
+                        getString(R.string.tabular_option_dominant) -> 2
+                        getString(R.string.tabular_option_worse) -> 3
+                        else -> -1
+                    }
+                }
+            }
+
+            if (!allAnswered) {
+                Toast.makeText(requireContext(), R.string.require_question, Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            Log.d("TabularFragment", "Responses: ${responsesTabular.joinToString(", ")}")
+            Log.d("TabularFragment", "Responses: $petType")
+
+
+
             if (petActive != null) {
                 viewModel.addHistory(petActive, 3).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Loading -> {
-                            Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
-
                         }
 
                         is Result.Success -> {
-                            viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
-                                if (selectedPet == "cat") {
-                                    findNavController().navigate(
-                                        TabularFragmentDirections.actionTabularFragmentToTabularCatFragment()
-                                    )
-                                } else if (selectedPet == "dog") {
-                                    findNavController().navigate(
-                                        TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
-                                    )
-                                } else {
-                                    findNavController().navigate(
-                                        TabularFragmentDirections.actionTabularFragmentToTabularDogFragment()
-                                    )
-                                }
+                            if (petType.contains("ca") ) {
+                                findNavController().navigate(
+                                    TabularFragmentDirections.actionTabularFragmentToTabularCatFragment(uri,petType)
+                                )
+                            } else if (petType == "dog") {
+                                findNavController().navigate(
+                                    TabularFragmentDirections.actionTabularFragmentToTabularDogFragment(uri,petType)
+                                )
                             }
                         }
 
                         is Result.Error -> {
-                            Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

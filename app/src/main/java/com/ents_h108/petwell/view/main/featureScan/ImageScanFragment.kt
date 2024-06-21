@@ -112,13 +112,12 @@ class ImageScanFragment : Fragment() {
     }
 
     private fun navigateToNext() {
-        currentImageUri?.let {
-            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment())
-            viewModel.setImageUri(it.toString())
-        }
-        viewModel.selectedPet.observe(viewLifecycleOwner) { selectedPet ->
-            Toast.makeText(requireContext(), "select  $selectedPet"  , Toast.LENGTH_SHORT).show()
+        val petType = arguments?.getString("petType") ?: return
 
+        currentImageUri?.let {
+
+            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment(petType, it.toString()))
         }
+
     }
 }

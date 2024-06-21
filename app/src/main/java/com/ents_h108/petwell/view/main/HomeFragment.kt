@@ -60,6 +60,13 @@ class HomeFragment : Fragment() {
         setupRecyclerViews()
         setupNavigation()
         setupUI()
+        changePet()
+    }
+
+    private fun changePet() {
+        binding.changePet.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
     }
 
     private fun setupUI() {

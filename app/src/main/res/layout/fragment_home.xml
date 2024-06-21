@@ -145,7 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/semibold"
-                            android:text="@string/pet_name"
+                            android:text="@string/belum_ada_hewan"
                             android:textColor="@color/black" />
 
                         <TextView
@@ -153,11 +153,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="@string/pet_race"
+                            android:text=""
                             android:textColor="@color/grey" />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/changePet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

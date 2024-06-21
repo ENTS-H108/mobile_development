@@ -1,60 +1,77 @@
 package com.ents_h108.petwell.view.main.featureScan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
+import com.ents_h108.petwell.databinding.FragmentTabularCatBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TabularCatFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TabularCatFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentTabularCatBinding
+    private val responsesTabular = IntArray(10) { -1 }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tabular_cat, container, false)
+    ): View {
+        binding = FragmentTabularCatBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TabularCatFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TabularCatFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRadioGroups()
+        setupButton()
+    }
+
+    private fun setupRadioGroups() {
+        val radioGroups = listOf(
+            binding.radioGroup1,
+            binding.radioGroup2,
+            binding.radioGroup3,
+            binding.radioGroup4,
+            binding.radioGroup5,
+            binding.radioGroup6,
+            binding.radioGroup7,
+            binding.radioGroup8,
+            binding.radioGroup9,
+            binding.radioGroup10
+        )
+
+        radioGroups.forEachIndexed { index, radioGroup ->
+            radioGroup.setOnCheckedChangeListener { _, checkedId ->
+                responsesTabular[index] = when (checkedId) {
+                    radioGroup.getChildAt(0).id -> 0
+                    radioGroup.getChildAt(1).id -> 1
+                    radioGroup.getChildAt(2).id -> 2
+                    radioGroup.getChildAt(3).id -> 3
+                    else -> -1
                 }
             }
+        }
+    }
+
+    private fun setupButton() {
+        val petType = arguments?.getString("petType") ?: return
+        val uri = arguments?.getString("uri") ?: return
+        binding.btnScanCat.setOnClickListener {
+            if (responsesTabular.contains(-1)) {
+                Toast.makeText(requireContext(), R.string.require_question, Toast.LENGTH_SHORT).show()
+            } else {
+                Log.d("TabularCatFragment", "Responses: ${responsesTabular.contentToString()}")
+                // Navigate to the next fragment here
+                // Example:
+
+                findNavController().navigate(
+                    TabularCatFragmentDirections.actionTabularCatFragmentToResultScanFragment2(uri,petType)
+                )
+            }
+        }
     }
 }
