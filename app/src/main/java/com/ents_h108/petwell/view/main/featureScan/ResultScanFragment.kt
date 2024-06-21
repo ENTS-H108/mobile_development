@@ -12,6 +12,7 @@ import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentResultScanBinding
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.ents_h108.petwell.utils.Result
 
 class ResultScanFragment : Fragment() {
     private lateinit var binding: FragmentResultScanBinding
@@ -32,20 +33,20 @@ class ResultScanFragment : Fragment() {
         setupViews()
         observeUri()
 
-// API endpoint development is still not completed, Work in progress
-
-//        val args = ResultScanFragmentArgs.fromBundle(requireArguments())
-//        val predict = args.predict
-//        viewModel.getTabularResponse(predict).observe(viewLifecycleOwner) { result ->
-//            when (result) {
-//                is Result.Loading -> { /* Work in progress */ }
-//                is Result.Success -> {/* Work in progress */}
-//                is Result.Error -> {/* Work in progress */}
-//            }
-//        }
-
-        descriptionTextExternalDisease(1)
-        descriptionTextInternalDisease(2)
+        val responsesTabular = arguments?.getIntArray("responsesTabular")
+        if (responsesTabular != null) {
+            viewModel.getTabularResponse(responsesTabular.toList()).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> { /* Work in progress */ }
+                    is Result.Success -> {
+                        binding.tvResult.text = result.data.result
+                        binding.tvPenyakitLuarDescription.text = result.data.explanation
+                        binding.tvPenyakitDalamDescription.text = result.data.suggestion
+                    }
+                    is Result.Error -> {/* Work in progress */}
+                }
+            }
+        }
     }
 
     private fun setupViews() {
