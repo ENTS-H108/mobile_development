@@ -60,7 +60,7 @@ class DokterProfileAppointmentFragment : Fragment() {
                 accordionToggle(binding.tvEducationalBackgroundDescription, binding.llEducationalBackground)
             }
 
-            viewModel.getScheduleDoctor(doctor.id, null,null).observe(viewLifecycleOwner) { result ->
+            viewModel.getScheduleDoctor(doctor.id).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Loading -> {}
                     is Result.Success -> {

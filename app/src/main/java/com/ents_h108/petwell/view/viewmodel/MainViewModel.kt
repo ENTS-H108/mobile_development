@@ -43,7 +43,7 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
 
     fun getAllDoctor() = mainRepository.getDoctorList()
 
-    fun getScheduleDoctor(doctor: String, schedule: String?, hour: String?) = mainRepository.getScheduleDoctor(doctor, schedule, hour)
+    fun getScheduleDoctor(doctor: String) = mainRepository.getScheduleDoctor(doctor)
 
-
+    fun getInvoiceAppointment(hour: String) = mainRepository.getInvoiceAppointment(hour)
 }

@@ -113,7 +113,10 @@ interface ApiService {
     suspend fun getScheduleDoctor(
         @Header("Authorization") token: String,
         @Query("doctorId") doctorId: String,
-        @Query("schedule") schedule: String?,
+    ): DoctorSchedule
+    @GET("appointments/summary")
+    suspend fun getInvoiceAppointment(
+        @Header("Authorization") token: String,
         @Query("hour") hour: String?
     ): DoctorSchedule
     @GET("null")

@@ -10,7 +10,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
-import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.data.model.WorkHours
 import com.ents_h108.petwell.data.repository.UserPreferences
 import com.ents_h108.petwell.databinding.FragmentInvoiceAppointmentBinding
@@ -28,6 +27,7 @@ class InvoiceAppointmentFragment : Fragment() {
     private val viewModel: MainViewModel by viewModel()
     private lateinit var hour: WorkHours
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +41,14 @@ class InvoiceAppointmentFragment : Fragment() {
         navigateToStatus()
         arguments?.let {
             hour = InvoiceAppointmentFragmentArgs.fromBundle(it).hour
+        }
+        viewModel.getInvoiceAppointment(hour.workHourId).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {}
+                is Result.Success -> {
+                }
+                is Result.Error -> {}
+            }
         }
         binding.tvAppointmentTime.text = hour.availSlot
     }
