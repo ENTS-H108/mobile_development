@@ -26,10 +26,9 @@ class UtilsTest {
     @Test
     fun `test filter doctors to show only within 30km radius from user location`() {
         val doctors = listOf(
-            Doctor("7", R.drawable.doctor_7, "Drh. Dwi Putra", "RS Hewan Makmur", "Veterinarian", "2 Tahun", "Rp 30.000", 40.6643, -73.9385),
-            Doctor("2", R.drawable.doctor_2, "Drh. Ahmad Santoso", "RS Hewan Senang Hati", "Veterinarian", "32 Tahun", "Rp 250.000", 40.6782, -73.9442),
-            Doctor("4", R.drawable.doctor_4, "Drh. Rina Hartati", "RS Hewan Ceria", "Veterinarian", "7 Tahun", "Rp 280.000", 51.5074, -0.1278),
-
+            Doctor("7", "Drh. Dwi Putra", "Fish Doctor", "RS Hewan Makmur", "Veterinarian", "2 Tahun", "Rp 30.000", 40.6643, -73.9385, "Rp 250.000", "RS PERMATA"),
+            Doctor("8", "Drh. Tri Putra", "Lion Doctor", "RS Hewan Gendut", "Veterinarian", "2 Tahun", "Rp 30.000", 40.7128, -74.0060, "Rp 2222222", "RS PERMATA BUNDA"),
+            Doctor("9", "Drh. Eka Putra", "Ant Doctor", "RS Hewan Kurus", "Veterinarian", "2 Tahun", "Rp 30.000", 40.7128, -44.6666, "Rp 250.111", "RS PERMATA PAPA")
             )
 
         val filteredDoctors = filterDoctorsWithinRadius(doctors, 40.7128, -74.0060)

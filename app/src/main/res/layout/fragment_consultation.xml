@@ -8,18 +8,15 @@
     android:background="@color/secondWhite"
     tools:context=".view.main.featureConsultation.ConsultationFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListPersonChat"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:paddingTop="16dp"
         android:layout_marginHorizontal="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_chat_person" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
