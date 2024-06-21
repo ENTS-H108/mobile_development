@@ -120,7 +120,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("workHourId") hour: String?
     ): DoctorInvoice
-    @POST("null")
+    @POST("predicts")
     suspend fun getTabularResponse(
         @Header("Authorization") token: String,
         @Body request: List<Int>
