@@ -43,6 +43,7 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
 
     fun getAllDoctor() = mainRepository.getDoctorList()
 
+    fun getScheduleDoctor(doctor: String, schedule: String?, hour: String?) = mainRepository.getScheduleDoctor(doctor, schedule, hour)
 
     //    selected pet
     private val _selectedPet = MutableLiveData<String>()

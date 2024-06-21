@@ -176,6 +176,19 @@ class MainRepository(
         }
     }
 
+    fun getScheduleDoctor(doctor: String, schedule: String?, hour: String?): LiveData<Result<DoctorSchedule>> = liveData {
+        emit(Result.Loading)
+        try {
+            val token = getToken()
+            val response = apiService.getScheduleDoctor("Bearer $token", doctor, schedule, hour)
+            emit(Result.Success(response))
+        } catch (e: HttpException) {
+            emit(Result.Error(parseErrorMessage(e.response()?.errorBody()?.string())))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
     fun getTabularResponse(request: List<Any>): LiveData<Result<TabularModelResponse>> = liveData {
         emit(Result.Loading)
         try {
