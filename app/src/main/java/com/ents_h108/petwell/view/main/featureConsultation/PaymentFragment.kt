@@ -1,6 +1,8 @@
 package com.ents_h108.petwell.view.main.featureConsultation
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,7 +13,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.ents_h108.petwell.data.model.Doctor
@@ -42,14 +43,14 @@ class PaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args: PaymentFragmentArgs by navArgs()
-        doctor = args.doctor!!
+        doctor = args.doctor
         setupUIandNavigation()
     }
 
     private fun setupUIandNavigation() {
         binding.apply {
             buttonPayConfirm.setOnClickListener {
-                findNavController().navigate(PaymentFragmentDirections.actionPaymentFragmentToChatFragment())
+                openWhatsApp(doctor.name)
             }
             textDoctorName.text = doctor.name
             textDoctorSpecialization.text = doctor.type
@@ -75,5 +76,15 @@ class PaymentFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun openWhatsApp(doctorName: String) {
+        val phoneNumber = "6281228375433"
+        val message = "Start chat with $doctorName about a consultation."
+        val url = "https://wa.me/$phoneNumber?text=${Uri.encode(message)}"
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(url)
+        }
+        startActivity(intent)
     }
 }

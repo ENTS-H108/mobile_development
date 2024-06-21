@@ -27,6 +27,7 @@ import com.ents_h108.petwell.utils.Utils.setupLocation
 import com.ents_h108.petwell.utils.Utils.showToast
 import com.ents_h108.petwell.view.adapter.ArticleAdapter
 import com.ents_h108.petwell.view.adapter.PromoAdapter
+import com.ents_h108.petwell.view.main.featureConsultation.PaymentFragmentDirections
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -71,6 +72,9 @@ class HomeFragment : Fragment() {
 
     private fun setupUI() {
         binding.apply {
+            geminiFab.setOnClickListener {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToChatFragment())
+            }
             setupLocation(requireContext(), fusedLocationProviderClient) { city ->
                 locationTitle.text = city
             }
