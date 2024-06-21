@@ -225,5 +225,6 @@
     <string name="penyakit_dalam_anjing2">Peliharaan anda terkena Tick Fever\nTick Fever atau demam berbintik pada anjing disebabkan oleh infeksi bakteri yang ditularkan melalui gigitan kutu. Gejala utamanya adalah demam tinggi, lemah, kehilangan nafsu makan, dan terkadang pendarahan. Penanganan yang cepat diperlukan untuk mencegah komplikasi yang lebih serius.</string>
     <string name="penyakit_dalam_anjing3">Peliharaan anda Sehat\nHal ini menunjukkan bahwa anjing tidak mengalami penyakit tertentu atau tidak ada gejala yang mencolok pada saat pemeriksaan. Ini menandakan bahwa anjing dalam kondisi sehat secara umum.</string>
 
+    <string name="image_upload_exception">Unggah gambar terlebih dahulu</string>
 
 </resources>

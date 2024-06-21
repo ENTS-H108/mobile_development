@@ -71,9 +71,13 @@ class AppointmentFragment : Fragment() {
                 location?.let {
                     viewModel.getAllDoctor().observe(viewLifecycleOwner) { result ->
                         when (result) {
-                            is Result.Loading -> binding.extFloatingActionButton.text = getString(R.string.location)
+                            is Result.Loading -> {
+                                binding.extFloatingActionButton.text = getString(R.string.location)
+                                binding.progressBar.visibility = View.VISIBLE
+                            }
                             is Result.Error -> binding.extFloatingActionButton.text = getString(R.string.location)
                             is Result.Success -> {
+                                binding.progressBar.visibility = View.GONE
                                 setupLocation(requireContext(), fusedLocationProviderClient) { city ->
                                     binding.extFloatingActionButton.text = city
                                 }

@@ -53,10 +53,15 @@ class ConsultationFragment : Fragment() {
     private fun populateDummyData() {
         viewModel.getAllDoctor().observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> binding.rvListPersonChat.visibility = View.GONE
+                is Result.Loading -> {
+                    binding.rvListPersonChat.visibility = View.GONE
+                    binding.progressBarConsul.visibility = View.VISIBLE
+                }
                 is Result.Error -> binding.rvListPersonChat.visibility = View.GONE
                 is Result.Success -> {
                     binding.rvListPersonChat.visibility = View.VISIBLE
+                    binding.progressBarConsul.visibility = View.GONE
+
                     consultationAdapter.submitList(result.data)
                 }
             }

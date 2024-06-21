@@ -19,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
+import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentImageScanBinding
 import com.ents_h108.petwell.view.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -114,10 +115,14 @@ class ImageScanFragment : Fragment() {
     private fun navigateToNext() {
         val petType = arguments?.getString("petType") ?: return
 
-        currentImageUri?.let {
-
-            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment(petType, it.toString()))
+        if (currentImageUri == null) {
+            // Tampilkan pesan "Upload image first" jika currentImageUri null
+            Toast.makeText(requireContext(), R.string.image_upload_exception, Toast.LENGTH_SHORT).show()
+            return
         }
 
+        currentImageUri?.let {
+            findNavController().navigate(ImageScanFragmentDirections.actionImageScanFragmentToTabularFragment(petType, it.toString()))
+        }
     }
 }

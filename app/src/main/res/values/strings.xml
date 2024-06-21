@@ -228,6 +228,9 @@
     <string name="penyakit_dalam_anjing3">Your pet is Healthy \nThis indicates that the dog does not have any specific diseases or noticeable symptoms during examination. It signifies that the dog is in overall good health.</string>
 
 
+    <string name="image_upload_exception">Upload image first</string>
+
+
 
 
 

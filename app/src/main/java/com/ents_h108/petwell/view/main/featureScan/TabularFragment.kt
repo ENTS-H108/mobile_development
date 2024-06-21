@@ -2,6 +2,8 @@ package com.ents_h108.petwell.view.main.featureScan
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -98,9 +100,12 @@ class TabularFragment : Fragment() {
                 viewModel.addHistory(petActive, 3).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Loading -> {
+                            binding.loadingOverlay.visibility = View.VISIBLE
                         }
 
                         is Result.Success -> {
+                            binding.loadingOverlay.visibility = View.GONE
+
                             if (petType.contains("ca") ) {
                                 findNavController().navigate(
                                     TabularFragmentDirections.actionTabularFragmentToTabularCatFragment(uri,petType)
