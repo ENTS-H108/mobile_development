@@ -206,7 +206,7 @@ class MainRepository(
         emit(Result.Loading)
         try {
             val token = getToken()
-            val response = apiService.getTabularResponse("Bearer $token", request)
+            val response = apiService.getTabularResponse("Bearer $token", mapOf("input" to request))
             emit(Result.Success(response.data))
         } catch (e: HttpException) {
             emit(Result.Error(parseErrorMessage(e.response()?.errorBody()?.string())))

@@ -105,11 +105,7 @@ interface ApiService {
     suspend fun getAllDoctor(
         @Header("Authorization") token: String
     ): List<Doctor>
-    @GET("appointments/detail/{doctorId}")
-    suspend fun getDetailDoctor(
-        @Header("Authorization") token: String,
-        @Path("id") doctorId: String
-    ): Doctor
+
     @GET("appointments/detail")
     suspend fun getScheduleDoctor(
         @Header("Authorization") token: String,
@@ -123,6 +119,6 @@ interface ApiService {
     @POST("predicts")
     suspend fun getTabularResponse(
         @Header("Authorization") token: String,
-        @Body request: List<Int>
+        @Body request: Map<String, List<Int>>
     ): TabularModelResponse
 }
