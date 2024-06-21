@@ -364,6 +364,9 @@
         <action
             android:id="@+id/action_invoiceAppointmentFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+        <argument
+            android:name="hour"
+            app:argType="com.ents_h108.petwell.data.model.WorkHours"/>
     </fragment>
     <fragment
         android:id="@+id/statusFragment"

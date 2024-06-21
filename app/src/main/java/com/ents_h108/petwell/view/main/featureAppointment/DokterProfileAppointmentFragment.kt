@@ -59,7 +59,6 @@ class DokterProfileAppointmentFragment : Fragment() {
             cvEducationalBackground.setOnClickListener {
                 accordionToggle(binding.tvEducationalBackgroundDescription, binding.llEducationalBackground)
             }
-            navigateToInvoice()
 
             viewModel.getScheduleDoctor(doctor.id, null,null).observe(viewLifecycleOwner) { result ->
                 when (result) {
@@ -86,12 +85,6 @@ class DokterProfileAppointmentFragment : Fragment() {
             accordionItem.visibility = View.GONE
         } else {
             accordionItem.visibility = View.VISIBLE
-        }
-    }
-
-    private fun navigateToInvoice() {
-        binding.btnMakeAppointment.setOnClickListener {
-            findNavController().navigate(DokterProfileAppointmentFragmentDirections.actionDokterProfileAppointmentFragmentToInvoiceAppointmentFragment())
         }
     }
 }

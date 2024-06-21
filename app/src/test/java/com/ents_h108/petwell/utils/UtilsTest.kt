@@ -1,6 +1,5 @@
 package com.ents_h108.petwell.utils
 
-import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.utils.Utils.filterDoctorsWithinRadius
 import com.ents_h108.petwell.utils.Utils.generateHashedNonce

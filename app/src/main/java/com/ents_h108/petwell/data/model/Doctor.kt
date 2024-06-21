@@ -19,15 +19,18 @@ data class DoctorSchedule(
 
 @Keep
 data class WorkSchedule(
+    val scheduleId: String,
     val date: String,
     val workHours: List<WorkHours>
 )
 
 @Keep
+@Parcelize
 data class WorkHours(
+    val workHourId: String,
     val availSlot: String,
     val isAvail: Boolean
-)
+) : Parcelable
 
 @Keep
 @Parcelize
