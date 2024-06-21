@@ -65,12 +65,13 @@ class TabularCatFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.require_question, Toast.LENGTH_SHORT).show()
             } else {
                 Log.d("TabularCatFragment", "Responses: ${responsesTabular.contentToString()}")
-                // Navigate to the next fragment here
-                // Example:
-
-                findNavController().navigate(
-                    TabularCatFragmentDirections.actionTabularCatFragmentToResultScanFragment2(uri,petType)
-                )
+                val action = TabularCatFragmentDirections
+                    .actionTabularCatFragmentToResultScanFragment2(
+                        uri = uri,
+                        petType = petType,
+                        predict = responsesTabular.toList().toIntArray()
+                    )
+                findNavController().navigate(action)
             }
         }
     }

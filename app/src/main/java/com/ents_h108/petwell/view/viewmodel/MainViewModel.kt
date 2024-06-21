@@ -1,7 +1,5 @@
 package com.ents_h108.petwell.view.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -46,4 +44,6 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
     fun getScheduleDoctor(doctor: String) = mainRepository.getScheduleDoctor(doctor)
 
     fun getInvoiceAppointment(hour: String) = mainRepository.getInvoiceAppointment(hour)
-}
+
+    fun getTabularResponse(answer: List<Int>) = mainRepository.getTabularResponse(answer)
+    }

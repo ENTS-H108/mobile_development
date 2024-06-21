@@ -265,6 +265,9 @@
         <argument
             android:name="petType"
             app:argType="string" />
+        <argument
+            android:name="predict"
+            app:argType="integerArray" />
 
     </fragment>
     <fragment

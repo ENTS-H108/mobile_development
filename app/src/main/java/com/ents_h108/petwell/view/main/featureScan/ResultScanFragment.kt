@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
@@ -18,6 +17,7 @@ class ResultScanFragment : Fragment() {
     private lateinit var binding: FragmentResultScanBinding
     private var isPenyakitLuarExpanded = false
     private var isPenyakitDalamExpanded = false
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +31,19 @@ class ResultScanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         observeUri()
+
+// API endpoint development is still not completed, Work in progress
+
+//        val args = ResultScanFragmentArgs.fromBundle(requireArguments())
+//        val predict = args.predict
+//        viewModel.getTabularResponse(predict).observe(viewLifecycleOwner) { result ->
+//            when (result) {
+//                is Result.Loading -> { /* Work in progress */ }
+//                is Result.Success -> {/* Work in progress */}
+//                is Result.Error -> {/* Work in progress */}
+//            }
+//        }
+
         descriptionTextExternalDisease(1)
         descriptionTextInternalDisease(2)
     }
@@ -85,7 +98,7 @@ class ResultScanFragment : Fragment() {
             1 -> R.string.penyakit_luar1
             2 -> R.string.penyakit_luar2
             3 -> R.string.penyakit_luar3
-            else -> return  // optional, handle unexpected cases
+            else -> return
         }
         binding.tvPenyakitLuarDescription.text = getString(descriptionResId)
     }

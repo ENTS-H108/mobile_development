@@ -202,12 +202,12 @@ class MainRepository(
         }
     }
 
-    fun getTabularResponse(request: List<Any>): LiveData<Result<TabularModelResponse>> = liveData {
+    fun getTabularResponse(request: List<Int>): LiveData<Result<PredictionResult>> = liveData {
         emit(Result.Loading)
         try {
             val token = getToken()
             val response = apiService.getTabularResponse("Bearer $token", request)
-            emit(Result.Success(response))
+            emit(Result.Success(response.data))
         } catch (e: HttpException) {
             emit(Result.Error(parseErrorMessage(e.response()?.errorBody()?.string())))
         } catch (e: Exception) {
