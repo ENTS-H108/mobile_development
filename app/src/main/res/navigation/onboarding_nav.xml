@@ -97,6 +97,9 @@
             android:id="@+id/action_homeFragment_to_appointmentFragment"
             app:destination="@id/appointmentFragment" />
         <action
+            android:id="@+id/action_homeFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_promoFragment"
             app:destination="@id/promoFragment">
             <argument
@@ -110,6 +113,9 @@
         <action
             android:id="@+id/action_homeFragment_to_chosePetFragment"
             app:destination="@id/chosePetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -202,6 +208,9 @@
         <action
             android:id="@+id/action_instructionScanFragment_to_imageScanFragment"
             app:destination="@id/imageScanFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/imageScanFragment"
@@ -211,6 +220,9 @@
         <action
             android:id="@+id/action_imageScanFragment_to_tabularFragment"
             app:destination="@id/tabularFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/tabularFragment"
@@ -218,8 +230,14 @@
         android:label="fragment_tabular"
         tools:layout="@layout/fragment_tabular" >
         <action
-            android:id="@+id/action_tabularFragment_to_resultScanFragment"
-            app:destination="@id/resultScanFragment" />
+            android:id="@+id/action_tabularFragment_to_tabularCatFragment"
+            app:destination="@id/tabularCatFragment" />
+        <action
+            android:id="@+id/action_tabularFragment_to_tabularDogFragment"
+            app:destination="@id/tabularDogFragment" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
         <argument
             android:name="uri"
             app:argType="string" />
@@ -244,6 +262,10 @@
         <argument
             android:name="uri"
             app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/listArticleFragment"
@@ -299,9 +321,12 @@
         android:name="com.ents_h108.petwell.view.main.featureConsultation.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
+        <argument
+            android:name="doctor"
+            app:argType="com.ents_h108.petwell.data.model.Doctor"/>
         <action
-            android:id="@+id/action_paymentFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
+            android:id="@+id/action_paymentFragment_to_invoiceFragment"
+            app:destination="@id/invoiceFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -323,6 +348,9 @@
         <action
             android:id="@+id/action_dokterProfileAppointmentFragment_to_mapsFragment"
             app:destination="@id/mapsFragment" />
+        <argument
+            android:name="doctor"
+            app:argType="com.ents_h108.petwell.data.model.Doctor"/>
     </fragment>
     <fragment
         android:id="@+id/detailPromoArticleFragment"
@@ -342,6 +370,9 @@
         <action
             android:id="@+id/action_invoiceAppointmentFragment_to_statusFragment"
             app:destination="@id/statusFragment" />
+        <argument
+            android:name="hour"
+            app:argType="com.ents_h108.petwell.data.model.WorkHours"/>
     </fragment>
     <fragment
         android:id="@+id/statusFragment"
@@ -360,5 +391,44 @@
         android:name="com.ents_h108.petwell.view.main.profile.ChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password">
+    </fragment>
+    <fragment
+        android:id="@+id/tabularCatFragment"
+        android:name="com.ents_h108.petwell.view.main.featureScan.TabularCatFragment"
+        android:label="fragment_tabular_cat"
+        tools:layout="@layout/fragment_tabular_cat" >
+        <action
+            android:id="@+id/action_tabularCatFragment_to_resultScanFragment2"
+            app:destination="@id/resultScanFragment" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabularDogFragment"
+        android:name="com.ents_h108.petwell.view.main.featureScan.TabularDogFragment"
+        android:label="fragment_tabular_dog"
+        tools:layout="@layout/fragment_tabular_dog" >
+        <action
+            android:id="@+id/action_tabularDogFragment_to_resultScanFragment"
+            app:destination="@id/resultScanFragment" />
+        <argument
+            android:name="uri"
+            app:argType="string" />
+        <argument
+            android:name="petType"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/invoiceFragment"
+        android:name="com.ents_h108.petwell.view.main.featureConsultation.InvoiceFragment"
+        android:label="fragment_invoice"
+        tools:layout="@layout/fragment_invoice" >
+        <argument
+            android:name="dokterName"
+            app:argType="com.ents_h108.petwell.data.model.Doctor" />
     </fragment>
 </navigation>

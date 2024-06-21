@@ -173,9 +173,10 @@
                 android:id="@+id/payment_method_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/payment_summary_layout">
 
                 <RadioButton
                     android:id="@+id/radio_gopay"
@@ -253,5 +254,15 @@
             android:fontFamily="@font/regular"
             android:text="@string/bayar_n_konfirmasi" />
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBarPayment"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primary_blue"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

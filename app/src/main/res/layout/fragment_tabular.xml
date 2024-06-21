@@ -6,20 +6,12 @@
     android:paddingHorizontal="20dp"
     tools:context=".view.main.featureScan.TabularFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        style="@style/H4Bold"
-        android:text="@string/answer_questione"
-        android:id="@+id/title"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_above="@id/btn_Scan"
-        android:layout_below="@id/title"
+        android:layout_above="@id/btn_next_tabular"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="16dp">
 
         <LinearLayout
@@ -27,123 +19,390 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Question 1 -->
+            <!-- Dynamic Questions -->
             <TextView
+                android:id="@+id/title"
+                style="@style/H4Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/answer_questione" />
+            <TextView
+                android:id="@+id/subtitle"
+                style="@style/H4Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/gejala" />
+            <TextView
+                android:id="@+id/question1"
+                style="@style/H4Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tabular_question1"
-                style="@style/H4Bold"
-                android:id="@+id/question1"/>
+                android:text="@string/tabular_question1" />
 
             <RadioGroup
+                android:id="@+id/radioGroup1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton android:layout_width="wrap_content"
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_none"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_not_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_worse"/>
+                    android:text="@string/tabular_option_worse" />
             </RadioGroup>
 
-            <!-- Question 2 -->
             <TextView
+                android:id="@+id/question2"
+                style="@style/H4Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tabular_question2"
-                style="@style/H4Bold"
-                android:id="@+id/question2"/>
+                android:text="@string/tabular_question2" />
 
             <RadioGroup
+                android:id="@+id/radioGroup2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton android:layout_width="wrap_content"
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_none"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_not_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_worse"/>
+                    android:text="@string/tabular_option_worse" />
             </RadioGroup>
 
-            <!-- Question 3 -->
             <TextView
+
+                android:id="@+id/question3"
+                style="@style/H4Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tabular_question3"
-                style="@style/H4Bold"
-                android:id="@+id/question3"/>
+                android:text="@string/tabular_question3" />
 
             <RadioGroup
+                android:id="@+id/radioGroup3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton android:layout_width="wrap_content"
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_none"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_not_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_worse"/>
+                    android:text="@string/tabular_option_worse" />
             </RadioGroup>
 
-            <!-- Question 4 -->
             <TextView
+                android:id="@+id/question4"
+                style="@style/H4Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/tabular_question4"
-                style="@style/H4Bold"
-                android:id="@+id/question4"/>
+                android:text="@string/tabular_question4" />
 
             <RadioGroup
+                android:id="@+id/radioGroup4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <RadioButton android:layout_width="wrap_content"
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_none"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_not_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_dominant"/>
-                <RadioButton android:layout_width="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabular_option_worse"/>
+                    android:text="@string/tabular_option_worse" />
             </RadioGroup>
 
-            <!-- Additional Questions 5-12 go here in the same format -->
+            <TextView
+                android:id="@+id/question5"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question5" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/question6"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question6" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/question7"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question7" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/question8"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question8" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/question9"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question9" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/question10"
+                style="@style/H4Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tabular_question10" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_none" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_not_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_dominant" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabular_option_worse" />
+            </RadioGroup>
 
         </LinearLayout>
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_Scan"
+        android:id="@+id/btn_next_tabular"
         style="@style/H4Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/btn_yellow_states"
-        android:text="@string/start_scan"
-        android:textColor="@android:color/white"/>
+        android:text="@string/next"
+        android:textColor="@android:color/white" />
+    <RelativeLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary_blue"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 </RelativeLayout>

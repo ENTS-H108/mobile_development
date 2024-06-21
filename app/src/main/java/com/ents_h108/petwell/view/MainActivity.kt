@@ -90,17 +90,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun getTitleForDestination(destinationId: Int): String {
         return when (destinationId) {
-            R.id.profileFragment -> "Profile"
-            R.id.promoFragment -> "Promo"
-            R.id.historyFragment -> "History"
+            R.id.profileFragment -> getString(R.string.profile_title)
+            R.id.promoFragment -> getString(R.string.promo_title)
+            R.id.historyFragment -> getString(R.string.history_title)
             R.id.chosePetFragment, R.id.imageScanFragment, R.id.instructionScanFragment,
-            R.id.resultScanFragment, R.id.tabularFragment -> "Scan"
-            R.id.dokterProfileAppointmentFragment -> "Doctor Profile"
-            R.id.invoiceAppointmentFragment -> "Invoice"
-            R.id.consultationFragment -> "Consultation"
-            R.id.paymentFragment -> "Payment"
-            R.id.appointmentFragment -> "Appointment"
+            R.id.resultScanFragment, R.id.tabularFragment -> getString(R.string.scan_title)
+            R.id.dokterProfileAppointmentFragment -> getString(R.string.doctor_profile_title)
+            R.id.invoiceAppointmentFragment, R.id.invoiceFragment -> getString(R.string.invoice_title)
+            R.id.consultationFragment -> getString(R.string.consultation_title)
+            R.id.paymentFragment -> getString(R.string.payment_title)
+            R.id.appointmentFragment -> getString(R.string.appointment_title)
             else -> getString(R.string.app_name)
         }
     }
+
 }

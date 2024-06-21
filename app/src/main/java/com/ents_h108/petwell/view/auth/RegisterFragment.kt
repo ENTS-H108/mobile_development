@@ -52,10 +52,10 @@ class RegisterFragment : Fragment() {
 
     private fun handleRegister() {
         val fields = mapOf(
-            binding.etUsername to binding.etUsername.text.toString().trim(),
-            binding.etEmail to binding.etEmail.text.toString().trim(),
-            binding.etPassword to binding.etPassword.text.toString().trim(),
-            binding.etCpassword to binding.etCpassword.text.toString().trim()
+            binding.etUsernameRegister to binding.etUsernameRegister.text.toString().trim(),
+            binding.etEmailRegister to binding.etEmailRegister.text.toString().trim(),
+            binding.etPasswordRegister to binding.etPasswordRegister.text.toString().trim(),
+            binding.etCpasswordRegister to binding.etCpasswordRegister.text.toString().trim()
         )
 
         if (fields.any { it.value.isEmpty() }) {
@@ -66,46 +66,49 @@ class RegisterFragment : Fragment() {
             return
         }
 
-        if (!binding.etEmail.isEmailValid) {
+        if (!binding.etEmailRegister.isEmailValid) {
             showToast(requireContext(), getString(R.string.incorrect_email_format))
             return
         }
 
-        if (!binding.etPassword.isPasswordValid) {
+        if (!binding.etPasswordRegister.isPasswordValid) {
             showToast(requireContext(), getString(R.string.incorrect_pw_format))
             return
         }
 
-        if (binding.etPassword.text.toString() != binding.etCpassword.text.toString()) {
-            showError(binding.etCpassword, requireContext())
+        if (binding.etPasswordRegister.text.toString() != binding.etCpasswordRegister.text.toString()) {
+            showError(binding.etCpasswordRegister, requireContext())
             showToast(requireContext(), getString(R.string.cpassword_not_match))
             return
         }
 
         authViewModel.register(
-            fields.getValue(binding.etUsername),
-            fields.getValue(binding.etEmail),
-            fields.getValue(binding.etPassword)
+            fields.getValue(binding.etUsernameRegister),
+            fields.getValue(binding.etEmailRegister),
+            fields.getValue(binding.etPasswordRegister)
         ).observe(viewLifecycleOwner) { result ->
             handleRegistrationResult(result)
         }
     }
 
     private fun handleRegistrationResult(result: Result<MessageResponse>) {
-        binding.loading.visibility = View.GONE
+        binding.loadingRegister.visibility = View.GONE
         when (result) {
-            is Result.Success -> showToast(requireContext(), result.data.message)
+            is Result.Success ->{
+                showToast(requireContext(), result.data.message)
+                binding.registerResult.text = result.data.message
+            }
             is Result.Error -> {
                 showToast(requireContext(), result.error)
                 resetFields()
             }
-            is Result.Loading -> binding.loading.visibility = View.VISIBLE
+            is Result.Loading -> binding.loadingRegister.visibility = View.VISIBLE
         }
     }
 
     private fun resetFields() {
-        binding.etEmail.text?.clear()
-        binding.etPassword.text?.clear()
-        binding.etCpassword.text?.clear()
+        binding.etEmailRegister.text?.clear()
+        binding.etPasswordRegister.text?.clear()
+        binding.etCpasswordRegister.text?.clear()
     }
 }

@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.databinding.FragmentChosePetBinding
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChosePetFragment : Fragment() {
+    private val viewModel: MainViewModel by viewModel()
     private lateinit var binding: FragmentChosePetBinding
     private var selectedPet: String? = null
 
@@ -38,8 +40,8 @@ class ChosePetFragment : Fragment() {
         }
 
         binding.btnNext.setOnClickListener {
-            if (selectedPet != null) {
-                findNavController().navigate(ChosePetFragmentDirections.actionChosePetFragmentToInstructionScanFragment())
+            selectedPet?.let {
+                findNavController().navigate(ChosePetFragmentDirections.actionChosePetFragmentToInstructionScanFragment(it))
             }
         }
     }
@@ -47,14 +49,13 @@ class ChosePetFragment : Fragment() {
     private fun selectPet(pet: String) {
         selectedPet = pet
 
-        if (pet == "cat"){
+        if (pet == "cat") {
             binding.cardCat.setBackgroundResource(R.drawable.card_pet_active)
             binding.cardDog.setBackgroundResource(android.R.color.white)
-        }else{
+        } else {
             binding.cardDog.setBackgroundResource(R.drawable.card_pet_active)
             binding.cardCat.setBackgroundResource(android.R.color.white)
         }
-
 
         updateNextButtonState()
     }

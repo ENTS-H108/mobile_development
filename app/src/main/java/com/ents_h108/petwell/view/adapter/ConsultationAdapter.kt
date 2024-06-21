@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.ItemChatPersonBinding
 
@@ -51,12 +52,12 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
 
         fun bind(item: Doctor) {
             binding.apply {
-                tvDoctorName.text = item.namadokter
-                tvHospitalName.text = item.tempatbekerja
-                doctorType.text = item.spesialis
-                tvExperience.text = item.pengalaman
-                tvPrice.text = item.harga
-                imgDoctor.setImageResource(item.image)
+                tvDoctorName.text = item.name
+                tvHospitalName.text = item.hospital
+                doctorType.text = item.type
+                tvExperience.text = item.year
+                tvPrice.text = item.price
+                imgDoctor.load(item.profpict)
 
             }
         }
@@ -65,7 +66,7 @@ class ConsultationAdapter(private val listener: OnItemClickListener) :
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doctor>() {
             override fun areItemsTheSame(oldItem: Doctor, newItem: Doctor ): Boolean {
-                return oldItem.namadokter == newItem.namadokter && oldItem.tempatbekerja == newItem.tempatbekerja
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Doctor, newItem: Doctor): Boolean {

@@ -114,11 +114,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/section_1">
-
+                <ProgressBar
+                    android:id="@+id/pet_card_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:indeterminateTint="@color/primary_blue"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp">
+
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/pet_image"
@@ -145,7 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/semibold"
-                            android:text="@string/pet_name"
+                            android:text="@string/belum_ada_hewan"
                             android:textColor="@color/black" />
 
                         <TextView
@@ -153,11 +161,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/medium"
-                            android:text="@string/pet_race"
+                            android:text=""
                             android:textColor="@color/grey" />
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/changePet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -268,7 +277,7 @@
                     android:layout_below="@id/section_2"
                     android:layout_marginTop="10dp"
                     app:shimmer_auto_start="true"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
@@ -340,7 +349,7 @@
                     android:layout_below="@id/section_3"
                     android:layout_marginTop="10dp"
                     app:shimmer_auto_start="true"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
@@ -365,5 +374,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/gemini_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/gemini_icon"
+        app:backgroundTint="@color/primary_blue_light" />
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.ents_h108.petwell.view.main.featureAppointment
 
-import android.animation.LayoutTransition
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
@@ -9,53 +8,92 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ents_h108.petwell.R
+import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.FragmentDokterProfileAppointmentBinding
+import com.ents_h108.petwell.utils.Result
+import com.ents_h108.petwell.utils.Utils.getAddressFromLocation
+import com.ents_h108.petwell.view.adapter.AppointmentDateAdapter
+import com.ents_h108.petwell.view.viewmodel.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DokterProfileAppointmentFragment : Fragment() {
 
-private lateinit var binding: FragmentDokterProfileAppointmentBinding
+    private lateinit var binding: FragmentDokterProfileAppointmentBinding
+    private lateinit var doctor: Doctor
+    private lateinit var adapter: AppointmentDateAdapter
+    private val viewModel: MainViewModel by viewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        binding = FragmentDokterProfileAppointmentBinding.inflate(layoutInflater)
+        binding = FragmentDokterProfileAppointmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cvDoctorProfile.setOnClickListener { view ->
-            accordionToggle(
-                binding.tvDoctorProfileDescription,
-                binding.llDoctorProfile
-            )
+        arguments?.let {
+            doctor = DokterProfileAppointmentFragmentArgs.fromBundle(it).doctor
         }
-
-        binding.cvEducationalBackground.setOnClickListener { view ->
-            accordionToggle(
-                binding.tvEducationalBackgroundDescription,
-                binding.llEducationalBackground
-            )
-        }
-        navigateToInvoice()
+        setupRV()
+        setupUI()
     }
 
+    private fun setupRV() {
+        adapter = AppointmentDateAdapter()
+        binding.rvConsultationDate.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvConsultationDate.adapter = adapter
+    }
+
+    private fun setupUI() {
+        binding.apply {
+            getAddressFromLocation(requireContext(), doctor.lat, doctor.long) { _, street, number ->
+                binding.officeLocation.text =
+                    requireContext().getString(R.string.location_format, street ?: "", number ?: "")
+            }
+            cvDoctorProfile.setOnClickListener {
+                accordionToggle(binding.tvDoctorProfileDescription, binding.llDoctorProfile)
+            }
+            cvEducationalBackground.setOnClickListener {
+                accordionToggle(
+                    binding.tvEducationalBackgroundDescription,
+                    binding.llEducationalBackground
+                )
+            }
+
+            viewModel.getScheduleDoctor(doctor.id).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        adapter.submitList(result.data.schedules)
+                        tvDoctorName.text = result.data.doctor.name
+                        tvDoctorProfileDescription.text = result.data.doctor.profile
+                        roles.text = result.data.doctor.type
+                        officeLocation.text = result.data.doctor.hospital
+                        tvEducationalBackgroundDescription.text = result.data.doctor.experiences
+                        tvPrice.text = result.data.doctor.price
+                    }
+
+                    is Result.Error -> {}
+                }
+            }
+        }
+    }
 
     private fun accordionToggle(accordionItem: View, layout: ViewGroup) {
-        layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         TransitionManager.beginDelayedTransition(layout, AutoTransition())
 
         if (accordionItem.visibility == View.VISIBLE) {
             accordionItem.visibility = View.GONE
         } else {
             accordionItem.visibility = View.VISIBLE
-        }
-    }
-
-    private fun navigateToInvoice(){
-        binding.btnMakeAppointment.setOnClickListener {
-            findNavController().navigate(DokterProfileAppointmentFragmentDirections.actionDokterProfileAppointmentFragmentToInvoiceAppointmentFragment())
         }
     }
 }

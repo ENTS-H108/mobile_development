@@ -1,17 +1,14 @@
 package com.ents_h108.petwell.view.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.ents_h108.petwell.data.model.Article
 import com.ents_h108.petwell.data.repository.MainRepository
 import com.ents_h108.petwell.data.repository.UserPreferences
-import com.ents_h108.petwell.utils.Result
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val mainRepository: MainRepository, private val pref: UserPreferences) : ViewModel() {
+class MainViewModel(private val mainRepository: MainRepository, private val pref: UserPreferences) :
+    ViewModel() {
 
     fun setPetActive(id: String) {
         viewModelScope.launch {
@@ -19,7 +16,7 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
         }
     }
 
-    fun getContent(type: String): LiveData<Result<PagingData<Article>>> = mainRepository.getArticles(type, viewModelScope)
+    fun getContent(type: String) = mainRepository.getArticles(type).cachedIn(viewModelScope)
 
     fun getPets() =
         mainRepository.getPets()
@@ -28,15 +25,25 @@ class MainViewModel(private val mainRepository: MainRepository, private val pref
 
     fun getPet(id: String) = mainRepository.getPet(id)
 
-    fun editPet(id: String, name: String, species: String) = mainRepository.editPets(id, name, species)
+    fun editPet(id: String, name: String, species: String, age: Int) =
+        mainRepository.editPets(id, name, species, age)
 
-    fun addPet(name: String, species: String) = mainRepository.addPets(name, species)
+    fun addPet(name: String, species: String, age: Int) = mainRepository.addPets(name, species, age)
 
     fun deletePet(id: String) = mainRepository.deletePet(id)
 
-    fun editProfile(username: String, profilepict: String) = mainRepository.editProfile(username, profilepict)
+    fun editProfile(username: String, profilePict: String?) =
+        mainRepository.editProfile(username, profilePict)
 
     fun addHistory(id: String, type: Int) = mainRepository.addHistory(id, type)
 
     fun changePassword(currPw: String, newPw: String) = mainRepository.changePassword(currPw, newPw)
-}
+
+    fun getAllDoctor() = mainRepository.getDoctorList()
+
+    fun getScheduleDoctor(doctor: String) = mainRepository.getScheduleDoctor(doctor)
+
+    fun getInvoiceAppointment(hour: String) = mainRepository.getInvoiceAppointment(hour)
+
+    fun getTabularResponse(answer: List<Int>) = mainRepository.getTabularResponse(answer)
+    }

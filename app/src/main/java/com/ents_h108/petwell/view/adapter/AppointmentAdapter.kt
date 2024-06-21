@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.ents_h108.petwell.R
 import com.ents_h108.petwell.data.model.Doctor
 import com.ents_h108.petwell.databinding.ItemAppointmentBinding
@@ -46,14 +47,14 @@ class AppointmentAdapter(private val listener: OnItemClickListener) :
 
         fun bind(item: Doctor) {
             binding.apply {
-                tvDoctorName.text = item.namadokter
-                tvHospitalName.text = item.tempatbekerja
-                doctorType.text = item.spesialis
-                getAddressFromLocation(root.context, item.lat, item.lon) { _, street,  number ->
+                tvDoctorName.text = item.name
+                tvHospitalName.text = item.hospital
+                doctorType.text = item.type
+                getAddressFromLocation(root.context, item.lat, item.long) { _, street,  number ->
                     tvLocation.text = root.context.getString(R.string.location_format, street ?: "", number ?: "")
                 }
-                tvPrice.text = item.harga
-                imgDoctor.setImageResource(item.image)
+                tvPrice.text = item.price
+                imgDoctor.load(item.profpict)
             }
         }
     }
@@ -61,7 +62,7 @@ class AppointmentAdapter(private val listener: OnItemClickListener) :
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Doctor>() {
             override fun areItemsTheSame(oldItem: Doctor, newItem: Doctor): Boolean {
-                return oldItem.namadokter == newItem.namadokter && oldItem.tempatbekerja == newItem.tempatbekerja
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Doctor, newItem: Doctor): Boolean {

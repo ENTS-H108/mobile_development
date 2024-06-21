@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.main.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/appBarCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="3dp">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="10dp"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                app:subtitleTextAppearance="@style/CustomToolbarTitle"
+                app:titleTextAppearance="@style/CustomToolbarTitle"
+                app:titleTextColor="@color/black">
+
+
+                <LinearLayout
+                    android:id="@+id/userDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/app_icon"
+                        app:civ_border_color="@color/primary_blue"
+                        app:civ_border_width="2dp" />
+
+                    <TextView
+                        android:id="@+id/profile_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/semibold"
+                        android:text="@string/top_bar_username"
+                        android:textColor="@color/primary_blue" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/locationDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/location_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center"
+                        android:text="@string/top_bar_location"
+                        android:textColor="@color/primary_blue"
+                        app:drawableEndCompat="@drawable/maps_marker" />
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="60dp"
+            android:background="@color/white">
+
+            <!-- Section 1: Active Pet Profile -->
+            <TextView
+                android:id="@+id/section_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/bold"
+                android:text="@string/active_pet_profile"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Pet Card Section -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pet_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_1">
+                <ProgressBar
+                    android:id="@+id/pet_card_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:indeterminateTint="@color/primary_blue"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/pet_image"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/app_icon"
+                        app:civ_border_color="@color/primary_blue"
+                        app:civ_border_width="2dp" />
+
+                    <LinearLayout
+                        android:id="@+id/pet_identity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@id/pet_image"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/pet_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/semibold"
+                            android:text="@string/belum_ada_hewan"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/pet_race"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/medium"
+                            android:text=""
+                            android:textColor="@color/grey" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/changePet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="end|center_vertical"
+                        android:layout_toEndOf="@id/pet_identity"
+                        android:text="@string/change_pet_btn"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Menu Section -->
+            <LinearLayout
+                android:id="@+id/menu_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pet_card">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnConsultation"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/ic_chat"
+                    android:text="@string/first_feature" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAppointment"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/ic_schedule"
+                    android:text="@string/second_feature" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnScan"
+                    style="@style/CustomButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:drawableTop="@drawable/ic_scan"
+                    android:text="@string/third_feature" />
+
+
+            </LinearLayout>
+
+            <!-- Promo Section -->
+            <RelativeLayout
+                android:id="@+id/section_promo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:elevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/menu_section">
+
+                <TextView
+                    android:id="@+id/section_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/promo_section"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvPromoMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/medium"
+                    android:layout_toEndOf="@id/section_2"
+                    android:gravity="end"
+                    android:text="@string/more_btn"
+                    android:textColor="@color/primary_blue" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_promo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_2"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/promo_loading"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_2"
+                    android:layout_marginTop="10dp"
+                    app:shimmer_auto_start="true"
+                    android:visibility="gone">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <include layout="@layout/item_promo_placeholder"/>
+                            <include layout="@layout/item_promo_placeholder"/>
+                            <include layout="@layout/item_promo_placeholder"/>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </RelativeLayout>
+
+            <!-- Article Section -->
+            <RelativeLayout
+                android:id="@+id/section_article"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/section_promo">
+
+                <TextView
+                    android:id="@+id/section_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/article_section"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvArticleMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/medium"
+                    android:layout_toEndOf="@id/section_3"
+                    android:gravity="end"
+                    android:text="@string/more_btn"
+                    android:textColor="@color/primary_blue" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_article"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_3"
+                    android:layout_marginTop="10dp"
+                    tools:listitem="@layout/item_article"
+                    android:visibility="gone"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/article_loading"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/section_3"
+                    android:layout_marginTop="10dp"
+                    app:shimmer_auto_start="true"
+                    android:visibility="gone">
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <include layout="@layout/item_article_placeholder"/>
+                            <include layout="@layout/item_article_placeholder"/>
+                            <include layout="@layout/item_article_placeholder"/>
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/gemini_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/gemini_icon"
+        app:backgroundTint="@color/primary_blue" />
+
+</RelativeLayout>

@@ -82,6 +82,7 @@
     <string name="price">Rp. 100.000</string>
     <string name="biaya_konsultasi">Biaya Konsultasi</string>
     <string name="answer_questione">Jawab Pertanyaan</string>
+    <string name="answer_questione_2">Jawab Pertanyaan (2/2)</string>
     <string name="start_scan">Mulai Pemindaian</string>
     <string name="numberOne">1.</string>
     <string name="decriptionOne">Arahkan kamera Anda ke area yang terkena pada kulit hewan.</string>
@@ -121,14 +122,10 @@
     <string name="address">alamat</string>
     <string name="hospital_name">Nama Rumah Sakit</string>
     <string name="doctor_type">tipe dokter</string>
-    <string name="tabular_question1">1. Apakah hewan peliharaan Anda memiliki gejala kerak kering pada kulit?</string>
     <string name="tabular_option_none">Tidak ada</string>
     <string name="tabular_option_not_dominant">Tidak Dominan</string>
     <string name="tabular_option_dominant">Dominan</string>
     <string name="tabular_option_worse">Parah</string>
-    <string name="tabular_question2">2. Apakah hewan peliharaan Anda memiliki gejala kerak kering pada kulit?</string>
-    <string name="tabular_question4">4. Apakah hewan peliharaan Anda memiliki cincin bundar (ruam berbentuk cincin pada kulit) pada kulitnya?</string>
-    <string name="tabular_question3">3. Apakah hewan peliharaan Anda mengalami gejala kulit kudis?</string>
     <string name="appointment_status_desc">Janji temu Anda berhasil diselesaikan, dan sekarang Anda dapat melihat detail dan konfirmasi janji temu ini di bagian riwayat untuk referensi Anda.</string>
     <string name="succes">Berhasil</string>
     <string name="result">Berhasil</string>
@@ -164,5 +161,85 @@
     <string name="navigation">navigasi</string>
     <string name="promo_image">gambar promo </string>
     <string name="current_password">Password Sekarang</string>
+    <string name="change_password">Ubah Password</string>
+
+    <!-- Pertanyaan tabular -->
+    <string name="tabular_question1">Krusta (krusta kering di kulit)</string>
+    <string name="tabular_question2">Kulit berkerak</string>
+    <string name="tabular_question3">Ketombe</string>
+    <string name="tabular_question4">Lingkaran bulat (ruam berbentuk lingkaran di kulit)</string>
+    <string name="tabular_question5">Kulit bersisik</string>
+    <string name="tabular_question6">Nanah</string>
+    <string name="tabular_question7">Gatal</string>
+    <string name="tabular_question8">Kehilangan bulu</string>
+    <string name="tabular_question9">Keluaran kulit merah-coklat</string>
+    <string name="tabular_question10">Luka</string>
+
+    <string name="tabular_question_dog1">Penurunan berat badan</string>
+    <string name="tabular_question_dog2">Terganggu jalan</string>
+    <string name="tabular_question_dog3">Demam</string>
+    <string name="tabular_question_dog4">Lesu</string>
+    <string name="tabular_question_dog5">Frekuensi minum dan kencing meningkat</string>
+    <string name="tabular_question_dog6">Ingus</string>
+    <string name="tabular_question_dog7">Kesulitan bernapas</string>
+    <string name="tabular_question_dog8">Muntah</string>
+    <string name="tabular_question_dog9">Hilang nafsu makan</string>
+    <string name="tabular_question_dog10">Intake makanan lebih sedikit dari biasanya</string>
+
+    <string name="tabular_question_cat1">Anoreksia (kehilangan nafsu makan dan penurunan berat badan secara signifikan)</string>
+    <string name="tabular_question_cat2">Kurang responsif</string>
+    <string name="tabular_question_cat3">Muntah</string>
+    <string name="tabular_question_cat4">Demam</string>
+    <string name="tabular_question_cat5">Kelemahan</string>
+    <string name="tabular_question_cat6">Mata berair</string>
+    <string name="tabular_question_cat7">Ingus</string>
+    <string name="tabular_question_cat8">Batuk</string>
+    <string name="tabular_question_cat9">Ingus</string>
+    <string name="tabular_question_cat10">Diare</string>
+
+    <!-- Label tambahan -->
+    <string name="penyakit_luar">Penyakit Luar</string>
+    <string name="penyakit_dalam">Penyakit Dalam</string>
+    <string name="require_question">Silakan jawab semua pertanyaan terlebih dahulu</string>
+    <string name="gejala">Apakah hewan peliharaan Anda memiliki salah satu dari gejala kulit berikut?</string>
+    <string name="gejala2">Apakah hewan Anda mengalami salah satu dari gejala berikut?</string>
+    <string name="belum_ada_hewan">belum ada hewan</string>
+
+
+    <!-- Penyakit Luar -->
+    <string name="penyakit_luar0">Peliharaan anda terkena Dermatitis\nDermatitis adalah peradangan pada kulit yang bisa disebabkan oleh alergi, iritasi, atau infeksi. Gejalanya termasuk kulit kemerahan, gatal, dan dapat membentuk kerak kering di permukaan kulit. Penyebab umum termasuk reaksi terhadap alergen seperti makanan, serbuk sari, atau bahan kimia tertentu.</string>
+    <string name="penyakit_luar1">Peliharaan anda terkena Flea Allergy\nFlea Allergy adalah reaksi alergi yang disebabkan oleh gigitan kutu pada hewan peliharaan. Hewan yang alergi akan merespons gigitan kutu dengan meradang dan mengalami gatal parah. Kadang-kadang, reaksi ini bisa menyebabkan infeksi kulit sekunder akibat menggaruk yang berlebihan.</string>
+    <string name="penyakit_luar2">Peliharaan anda terkena Fungus\nFungus adalah infeksi jamur pada kulit hewan peliharaan bisa disebabkan oleh berbagai jenis jamur, seperti ringworm (dermatofitosis). Gejala yang umum termasuk adanya bercak-bercak bulat yang bersisik atau bersisik di kulit, terkadang disertai gatal. Penyakit ini bisa menular antar-hewan dan juga bisa menular ke manusia.</string>
+    <string name="penyakit_luar3">Peliharaan anda terkena Scabies\nScabies adalah infestasi parasit yang disebabkan oleh tungau Scabies pada hewan peliharaan. Tungau ini menggali lubang kecil di dalam kulit, menyebabkan gatal yang sangat parah dan rasa tidak nyaman. Hewan yang terinfeksi sering mengalami kerontokan bulu, kulit kemerahan, dan mungkin infeksi kulit sekunder karena menggaruk.</string>
+    <string name="penyakit_luar4">Peliharaan anda Sehat\nHal ini menunjukkan bahwa hewan peliharaan tidak mengalami penyakit kulit atau tidak ada gejala khusus yang terlihat pada saat pemeriksaan. Ini menandakan kondisi kulit yang normal dan tidak ada masalah yang perlu diperhatikan pada saat itu.</string>
+
+    <!-- Penyakit Dalam Kucing -->
+    <string name="penyakit_dalam_kucing0">Peliharaan anda terkena Enteritis\nEnteritis adalah peradangan pada usus kucing yang dapat disebabkan oleh infeksi virus atau bakteri. Gejalanya meliputi muntah, diare, kehilangan nafsu makan, dan bisa menyebabkan dehidrasi yang serius jika tidak diobati dengan tepat.</string>
+    <string name="penyakit_dalam_kucing1">Peliharaan anda terkena FCV (Feline Calicivirus)\nFCV (Feline Calicivirus) adalah virus yang menyebabkan penyakit pernapasan dan mulut pada kucing. Gejala yang umum termasuk bersin, demam, sakit tenggorokan, dan ulserasi pada mulut dan lidah. Beberapa kucing dapat mengalami kehilangan nafsu makan dan menjadi lebih rentan terhadap infeksi sekunder.</string>
+    <string name="penyakit_dalam_kucing2">Peliharaan anda terkena Panleukopenia\nPanleukopenia adalah penyakit virus yang sangat menular pada kucing, juga dikenal sebagai parvovirus felin. Gejalanya termasuk muntah, diare berdarah, kehilangan nafsu makan, dan sering kali berakibat fatal terutama pada anak kucing yang belum divaksinasi.</string>
+    <string name="penyakit_dalam_kucing3">Peliharaan anda Sehat\nHal ini menunjukkan bahwa kucing tidak mengalami penyakit tertentu atau tidak ada gejala yang mencolok pada saat pemeriksaan. Ini menandakan bahwa kucing dalam kondisi sehat secara umum.</string>
+
+    <!-- Penyakit Dalam Anjing -->
+    <string name="penyakit_dalam_anjing0">Peliharaan anda terkena Allergies\nAllergies adalah reaksi tubuh anjing terhadap alergen tertentu seperti serbuk sari, tungau, atau makanan tertentu. Gejalanya bisa bervariasi dari gatal-gatal ringan hingga gatal parah dan dermatitis, tergantung pada jenis alergen dan sensitivitas anjing.</string>
+    <string name="penyakit_dalam_anjing1">Peliharaan anda terkena Distemper\nDistemper adalah penyakit virus yang sangat menular dan serius pada anjing. Gejalanya termasuk demam, muntah, diare, konjungtivitis, dan dapat berkembang menjadi infeksi sekunder yang lebih serius. Distemper dapat mempengaruhi sistem pernapasan, pencernaan, dan saraf, dan sering kali berakibat fatal.</string>
+    <string name="penyakit_dalam_anjing2">Peliharaan anda terkena Tick Fever\nTick Fever atau demam berbintik pada anjing disebabkan oleh infeksi bakteri yang ditularkan melalui gigitan kutu. Gejala utamanya adalah demam tinggi, lemah, kehilangan nafsu makan, dan terkadang pendarahan. Penanganan yang cepat diperlukan untuk mencegah komplikasi yang lebih serius.</string>
+    <string name="penyakit_dalam_anjing3">Peliharaan anda Sehat\nHal ini menunjukkan bahwa anjing tidak mengalami penyakit tertentu atau tidak ada gejala yang mencolok pada saat pemeriksaan. Ini menandakan bahwa anjing dalam kondisi sehat secara umum.</string>
+
+    <string name="image_upload_exception">Unggah gambar terlebih dahulu</string>
+
+    <string name="chat_payment_method">Silakan pilih metode pembayaran</string>
+    <string name="consultation_now">Konsultasi Sekarang</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="promo_title">Promo</string>
+    <string name="history_title">Riwayat</string>
+    <string name="doctor_profile_title">Profil Dokter</string>
+    <string name="invoice_title">Tagihan</string>
+    <string name="payment_title">Pembayaran</string>
+    <string name="chat_via_whatsapp">Chat melalui WhatsApp</string>
+
+<!--    <string name="help_content_description">Aplikasi ini menyediakan fitur utama untuk pengelolaan kesehatan hewan peliharaan. Fitur-fitur utama meliputi:\n\n1. Pemindaian Penyakit Hewan: Fitur ini memungkinkan pengguna untuk melakukan pemindaian penyakit hewan peliharaan secara cepat dan akurat menggunakan teknologi canggih.\n\n2. Konsultasi Online: Pengguna dapat berkonsultasi dengan dokter hewan secara online untuk mendapatkan saran medis mengenai kesehatan hewan peliharaan mereka tanpa perlu mengunjungi klinik.\n\n3. Jadwal Janji Dokter: Fitur ini memungkinkan pengguna untuk membuat janji langsung dengan dokter hewan pilihan mereka, memudahkan pengaturan jadwal kunjungan.\n\nKami mengutamakan keamanan dan privasi pengguna. Aplikasi ini dilengkapi dengan kebijakan privasi yang ketat dan langkah-langkah keamanan terintegrasi untuk melindungi informasi pribadi Anda. Untuk informasi lebih lanjut mengenai pembaruan aplikasi, termasuk perbaikan bug, penambahan fitur baru, dan perubahan terbaru, silakan lihat bagian "Pembaruan dan Rilis".\n\nJika Anda memiliki pertanyaan lebih lanjut atau membutuhkan bantuan, jangan ragu untuk menghubungi tim dukungan kami melalui tombol "Chat via WhatsApp" di bawah ini. Kami siap membantu Anda dengan segala pertanyaan terkait penggunaan aplikasi ini.</string>-->
+    <string name="help_content_description">ggwp</string>
+
 
 </resources>

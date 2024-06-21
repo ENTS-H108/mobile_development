@@ -35,5 +35,5 @@ data class History(
 data class EditPet(
     val name: String,
     val species: String,
-    val age: Int = 5
+    val age: Int
 )

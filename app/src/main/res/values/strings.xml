@@ -82,7 +82,8 @@
     <string name="appointment">Appointment</string>
     <string name="price">Rp. 100.000</string>
     <string name="biaya_konsultasi">Consultation Fee</string>
-    <string name="answer_questione">Answer Questione</string>
+    <string name="answer_questione">Answer Question (1/2)</string>
+    <string name="answer_questione_2">Answer Question (2/2)</string>
     <string name="start_scan">Start Scan</string>
     <string name="numberOne">1.</string>
     <string name="decriptionOne">Point your camera to affected area on the animal\'s skin.</string>
@@ -124,14 +125,10 @@
     <string name="address">address</string>
     <string name="hospital_name">Hospital Name</string>
     <string name="doctor_type">doctor type</string>
-    <string name="tabular_question1">1. Does your pet have symptoms of dry crusts on the skin?</string>
     <string name="tabular_option_none">None</string>
     <string name="tabular_option_not_dominant">Not Dominant</string>
     <string name="tabular_option_dominant">Dominant</string>
     <string name="tabular_option_worse">Worse</string>
-    <string name="tabular_question2">2. Does your pet have symptoms of dry crusts on the skin?</string>
-    <string name="tabular_question4">4. Does your pet have a round ring (ring-shaped rash on the skin) on the skin?</string>
-    <string name="tabular_question3">3. Does your pet have scabby skin symptoms?</string>
     <string name="appointment_status_desc">Your appointment was successfully completed, and you can now view the details and confirmation of this appointment in the history section for your reference.</string>
     <string name="succes">Succes</string>
     <string name="result">Result</string>
@@ -170,6 +167,86 @@
     <string name="navigation">navigation</string>
     <string name="promo_image">promo image</string>
     <string name="current_password">Current Password</string>
+    <string name="change_password">Change Password</string>
+
+    <!--tabular question-->
+    <string name="tabular_question1">Crusts (dry crusts on the skin)</string>
+    <string name="tabular_question2">Scabby skin</string>
+    <string name="tabular_question3">Dandruff</string>
+    <string name="tabular_question4">Round rings (ring-shaped rash on the skin)</string>
+    <string name="tabular_question5">Scaly skin</string>
+    <string name="tabular_question6">Pus</string>
+    <string name="tabular_question7">Itching</string>
+    <string name="tabular_question8">Fur loss</string>
+    <string name="tabular_question9">Red-brown skin discharge</string>
+    <string name="tabular_question10">Sores</string>
+
+    <string name="tabular_question_dog1">Weight loss</string>
+    <string name="tabular_question_dog2">Limping</string>
+    <string name="tabular_question_dog3">Fever</string>
+    <string name="tabular_question_dog4">Lethargy</string>
+    <string name="tabular_question_dog5">Increased frequency of drinking and urination	</string>
+    <string name="tabular_question_dog6">Runny nose	</string>
+    <string name="tabular_question_dog7">Difficulty breathing</string>
+    <string name="tabular_question_dog8">Vomiting</string>
+    <string name="tabular_question_dog9">Loss of appetite</string>
+    <string name="tabular_question_dog10">Less food intake than usual</string>
+
+    <string name="tabular_question_cat1">Anorexia (loss of appetite and significant weight loss)	</string>
+    <string name="tabular_question_cat2">Lack of response	</string>
+    <string name="tabular_question_cat3">Vomiting	</string>
+    <string name="tabular_question_cat4">Fever	</string>
+    <string name="tabular_question_cat5">Weakness	</string>
+    <string name="tabular_question_cat6">Watery eyes	</string>
+    <string name="tabular_question_cat7">Runny nose	</string>
+    <string name="tabular_question_cat8">Cough	</string>
+    <string name="tabular_question_cat9">Runny nose	</string>
+    <string name="tabular_question_cat10">Diarrhea</string>
+    <string name="penyakit_luar">External Disease</string>
+    <string name="penyakit_dalam">Internal Medicine</string>
+    <string name="require_question">Please answer all questions first</string>
+    <string name="gejala">Does your pet have any of the following skin symptoms?</string>
+    <string name="gejala2">Does your animal experience any of the following symptoms?</string>
+    <string name="belum_ada_hewan">No animals yet</string>
+    <!-- External Diseases -->
+    <string name="penyakit_luar0">Your pet has Dermatitis \nDermatitis is an inflammation of the skin that can be caused by allergies, irritants, or infections. Symptoms include red, itchy skin and may develop dry crusts on the skin surface. Common causes include reactions to allergens such as food, pollen, or certain chemicals.</string>
+    <string name="penyakit_luar1">Your pet has Flea Allergy \nFlea Allergy is an allergic reaction caused by flea bites on pets. Allergic pets will respond to flea bites with inflammation and severe itching. Sometimes, this reaction can lead to secondary skin infections due to excessive scratching.</string>
+    <string name="penyakit_luar2">Your pet has Fungus \nFungus is a fungal infection on the skin of pets that can be caused by various types of fungi, such as ringworm (dermatophytosis). Common symptoms include circular, scaly patches on the skin, sometimes accompanied by itching. This disease can be transmitted between animals and can also be contagious to humans.</string>
+    <string name="penyakit_luar3">Your pet has Scabies \nScabies is a parasitic infestation caused by scabies mites on pets. These mites burrow small holes in the skin, causing intense itching and discomfort. Infected animals often experience hair loss, red skin, and may develop secondary skin infections from scratching.</string>
+    <string name="penyakit_luar4">Your pet is Healthy \nThis indicates that the pet does not have any skin diseases or visible symptoms during examination. It signifies normal skin condition and no issues of concern at the time.</string>
+
+    <!-- Internal Diseases in Cats -->
+    <string name="penyakit_dalam_kucing0">Your pet has Enteritis \nEnteritis is inflammation of the intestines in cats, which can be caused by viral or bacterial infections. Symptoms include vomiting, diarrhea, loss of appetite, and can lead to serious dehydration if not treated properly.</string>
+    <string name="penyakit_dalam_kucing1">Your pet has FCV (Feline Calicivirus) \nFCV (Feline Calicivirus) is a virus that causes respiratory and oral disease in cats. Common symptoms include sneezing, fever, sore throat, and ulceration in the mouth and tongue. Some cats may experience loss of appetite and increased susceptibility to secondary infections.</string>
+    <string name="penyakit_dalam_kucing2">Your pet has Panleukopenia \nPanleukopenia is a highly contagious viral disease in cats, also known as feline parvovirus. Symptoms include vomiting, bloody diarrhea, loss of appetite, and often fatal outcomes, especially in unvaccinated kittens.</string>
+    <string name="penyakit_dalam_kucing3">Your pet is Healthy \nThis indicates that the cat does not have any specific diseases or noticeable symptoms during examination. It signifies that the cat is in overall good health.</string>
+
+    <!-- Internal Diseases in Dogs -->
+    <string name="penyakit_dalam_anjing0">Your pet has Allergies \nAllergies are the body\'s reaction to certain allergens in dogs, such as pollen, mites, or certain foods. Symptoms can vary from mild itching to severe itching and dermatitis, depending on the type of allergen and the dog\'s sensitivity.</string>
+    <string name="penyakit_dalam_anjing1">Your pet has Distemper \nDistemper is a highly contagious and serious viral disease in dogs. Symptoms include fever, vomiting, diarrhea, conjunctivitis, and can progress to more serious secondary infections. Distemper can affect the respiratory, digestive, and nervous systems, and often leads to fatal outcomes.</string>
+    <string name="penyakit_dalam_anjing2">Your pet has Tick Fever \nTick Fever or spotted fever in dogs is caused by a bacterial infection transmitted through tick bites. Main symptoms include high fever, weakness, loss of appetite, and sometimes bleeding. Prompt treatment is necessary to prevent more serious complications.</string>
+    <string name="penyakit_dalam_anjing3">Your pet is Healthy \nThis indicates that the dog does not have any specific diseases or noticeable symptoms during examination. It signifies that the dog is in overall good health.</string>
+
+
+    <string name="image_upload_exception">Upload image first</string>
+    <string name="chat_payment_method">Please choose a payment method</string>
+    <string name="rp_50000" translatable="false">RP. 50000</string>
+    <string name="consultation_now">Consultation Now</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="promo_title">Promo</string>
+    <string name="history_title">History</string>
+    <string name="doctor_profile_title">Doctor Profile</string>
+    <string name="invoice_title">Invoice</string>
+    <string name="payment_title">Payment</string>
+    <string name="chat_via_whatsapp">chat via whatsapp</string>
+
+
+    <string name="help_content_description">This app provides key features for pet health management. Key features include:\n\n1. Animal Disease Scanning: This feature allows users to perform quick and accurate pet disease scans using advanced technology. Online Consultation: Users can consult a veterinarian online for medical advice on their pet\'s health without the need to visit a clinic.\n\n3. Doctor Appointment Schedule: This feature allows users to make appointments directly with the veterinarian of their choice, making it easy to schedule visits.\n\nWe prioritize user safety and privacy. This app comes with a strict privacy policy and integrated security measures to protect your personal information. For more information regarding app updates, including bug fixes, new feature additions, and recent changes, please see the "Updates and Releases" section.\n\nIf you have further questions or need assistance, please feel free to contact our support team via the "Chat via WhatsApp" button below. We are ready to help you with any questions related to using this app.</string>
+
+
+
+
 
 
 </resources>

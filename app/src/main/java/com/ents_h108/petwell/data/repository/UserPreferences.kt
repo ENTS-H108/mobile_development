@@ -10,45 +10,45 @@ import kotlinx.coroutines.flow.map
 
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
-    private val TOKEN_KEY = stringPreferencesKey("token")
-    private val STATE_KEY = booleanPreferencesKey("state")
-    private val pet_active = stringPreferencesKey("pet")
+    private val key = stringPreferencesKey("token")
+    private val state = booleanPreferencesKey("state")
+    private val petActive = stringPreferencesKey("pet")
 
     suspend fun logout() {
         dataStore.edit { preferences ->
-            preferences[STATE_KEY] = false
-            preferences[TOKEN_KEY] = ""
+            preferences[state] = false
+            preferences[key] = ""
         }
     }
 
     suspend fun saveToken(token: String) {
         dataStore.edit { preferences ->
-            preferences[STATE_KEY] = true
-            preferences[TOKEN_KEY] = token
+            preferences[state] = true
+            preferences[key] = token
         }
     }
 
     suspend fun setPetActive(id: String) {
         dataStore.edit { preferences ->
-            preferences[pet_active] = id
+            preferences[petActive] = id
         }
     }
 
     fun getToken(): Flow<String?> {
         return dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY]
+            preferences[key]
         }
     }
 
     fun getLoginStatus(): Flow<Boolean?> {
         return dataStore.data.map { preferences ->
-            preferences[STATE_KEY]
+            preferences[state]
         }
     }
 
     fun getPetActive(): Flow<String?> {
         return dataStore.data.map { preferences ->
-            preferences[pet_active]
+            preferences[petActive]
         }
     }
 

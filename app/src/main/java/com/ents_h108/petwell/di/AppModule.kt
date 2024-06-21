@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user")
+var baseUrl = BuildConfig.BASE_URL
 
 val networkModule = module {
     single {
@@ -43,10 +44,9 @@ val networkModule = module {
             .certificatePinner(certificatePinner)
             .build()
     }
-
     single {
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
